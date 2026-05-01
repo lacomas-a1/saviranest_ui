@@ -666,6 +666,13 @@ footer {
         display: block;
     }
 
+    .navbar-wrapper.sticky-nav .custom-navbar {
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0.3rem 4rem;
+    }
+
+
     .custom-navbar .navbar-content {
         justify-content: space-between;
     }
@@ -2350,4 +2357,206 @@ footer {
     .room-row {
         flex-direction: column;
     }
+}
+
+/* Experiences */
+/* Hero Section */
+.experiences-header {
+    background: linear-gradient(rgba(11, 31, 58, 0.75), rgba(11, 31, 58, 0.75)),
+        url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center;
+    background-size: cover;
+    min-height: 45vh;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 60px;
+    text-align: center;
+}
+
+/* Category Filter Bar (styled like stays page) */
+.category-bar {
+    background: var(--white);
+    border-radius: 60px;
+    padding: 0.5rem 1rem;
+    margin: -30px 0 2rem 0;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    color: var(--deep-navy);
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: var(--sunrise-gold);
+    color: white;
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+}
+
+.filter-btn:hover:not(.active) {
+    background: #eef2ff;
+    color: var(--ocean-blue);
+}
+
+/* Experience Cards Grid */
+.experiences-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.exp-card {
+    background: var(--white);
+    border-radius: 28px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 340px;
+    transition: all 0.3s;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.exp-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 36px -12px rgba(0, 0, 0, 0.15);
+}
+
+.exp-img {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.exp-body {
+    padding: 1.5rem;
+}
+
+.exp-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.exp-desc {
+    font-size: 0.85rem;
+    color: #475569;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.exp-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.exp-price {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--support-green);
+}
+
+.exp-duration {
+    font-size: 0.8rem;
+    background: #f1f5f9;
+    padding: 4px 12px;
+    border-radius: 40px;
+    color: var(--ocean-blue);
+}
+
+.btn-exp-book {
+    /* background: var(--sunrise-gold);
+    color: var(--deep-navy); */
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    /* padding: 10px;
+    border-radius: 40px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.2s; */
+
+    background-color: var(--sunrise-gold);
+    text-decoration: none;
+    color: var(--white);
+    border: 2px solid var(--sunrise-gold);
+    padding: 0.4rem 1.25rem;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: all 0.25s;
+}
+
+.btn-exp-book:hover {
+    text-decoration: none;
+    background-color: transparent;
+    color: var(--sunrise-gold);
+    border-color: var(--sunrise-gold);
+}
+
+/* How It Works Steps */
+.steps-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin: 40px 0 60px;
+}
+
+.step-card {
+    background: var(--white);
+    border-radius: 28px;
+    padding: 32px 24px;
+    width: 260px;
+    text-align: center;
+    border: 1px solid #feeacd;
+    transition: 0.2s;
+}
+
+.step-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--sunrise-gold);
+}
+
+.step-number {
+    background: var(--sunrise-gold);
+    color: var(--deep-navy);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 auto 16px;
+}
+
+.step-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.step-card p {
+    font-size: 0.85rem;
+    color: #475569;
 }
