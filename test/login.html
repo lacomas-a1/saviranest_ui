@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SaviraNest | Your Nest Away From Home</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1a2c1e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+    .logo h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1E4A2F, #2C7A4B);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #2c4b2f;
+      transition: 0.2s;
+      font-size: 0.98rem;
+    }
+    .nav-links a:hover {
+      color: #2A7A4B;
+    }
+    .hamburger {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #1e3c2c;
+    }
+
+    /* buttons */
+    .btn-primary {
+      display: inline-block;
+      background: #2C7A4B;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(44,122,75,0.2);
+    }
+    .btn-primary:hover {
+      background: #1E5A38;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -8px rgba(44,122,75,0.4);
+    }
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      border: 1.5px solid #2C7A4B;
+      color: #2C7A4B;
+      padding: 10px 26px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .btn-outline:hover {
+      background: #2C7A4B;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(145deg, #FCF9F0 0%, #F2F6EC 100%);
+      padding: 70px 0 80px;
+    }
+    .hero-content {
+      text-align: center;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .hero-content h1 {
+      font-size: 3.6rem;
+      font-weight: 800;
+      color: #1A3A25;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #45634A;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .search-card {
+      background: white;
+      border-radius: 80px;
+      padding: 8px 12px 8px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(200, 215, 185, 0.6);
+    }
+    .search-field {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f9fbf7;
+      padding: 8px 20px;
+      border-radius: 60px;
+      border: 1px solid #e6ede0;
+      transition: 0.2s;
+    }
+    .search-field i {
+      color: #2C7A4B;
+      font-size: 1.2rem;
+    }
+    .search-field input, .search-field select {
+      border: none;
+      background: transparent;
+      font-size: 0.95rem;
+      width: 100%;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+    .search-btn {
+      background: #2C7A4B;
+      border: none;
+      padding: 12px 36px;
+      border-radius: 60px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .search-btn:hover {
+      background: #1E5A38;
+      transform: scale(0.98);
+    }
+    .hero-buttons {
+      margin-top: 2.8rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* sections */
+    section {
+      padding: 80px 0;
+    }
+    .section-title {
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: #1A3A25;
+      text-align: center;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .section-sub {
+      text-align: center;
+      color: #5C7562;
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+
+    /* categories */
+    .categories-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.8rem;
+    }
+    .cat-card {
+      background: white;
+      padding: 1.8rem 1.5rem;
+      border-radius: 2rem;
+      text-align: center;
+      width: 180px;
+      transition: all 0.25s;
+      border: 1px solid #eef3e8;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.02);
+      cursor: pointer;
+    }
+    .cat-card i {
+      font-size: 2.6rem;
+      color: #2C7A4B;
+      margin-bottom: 1rem;
+    }
+    .cat-card h3 {
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .cat-card p {
+      font-size: 0.85rem;
+      color: #6f8b72;
+    }
+    .cat-card:hover {
+      transform: translateY(-8px);
+      border-color: #cfdfca;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08);
+    }
+
+    /* property cards */
+    .property-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 2rem;
+    }
+    .property-card {
+      background: white;
+      border-radius: 2rem;
+      overflow: hidden;
+      transition: 0.3s cubic-bezier(0.2, 0, 0, 1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      border: 1px solid #f0f2ea;
+    }
+    .property-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.12);
+      border-color: #e2e8da;
+    }
+    .property-img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .property-card:hover .property-img {
+      transform: scale(1.02);
+    }
+    .property-info {
+      padding: 1.5rem 1.5rem 1.8rem;
+    }
+    .property-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .property-location {
+      color: #72946b;
+      margin: 0.4rem 0;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .price {
+      font-weight: 800;
+      color: #2C7A4B;
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
+    .rating {
+      color: #f5b042;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+    .btn-book {
+      background: none;
+      border: 1.5px solid #2C7A4B;
+      color: #2C7A4B;
+      padding: 10px 0;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+      font-size: 0.9rem;
+    }
+    .btn-book:hover {
+      background: #2C7A4B;
+      color: white;
+    }
+
+    /* testimonials */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .test-card {
+      background: #FFFFFF;
+      padding: 2rem;
+      border-radius: 2rem;
+      border: 1px solid #eef2e6;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.02);
+    }
+    .test-card i {
+      color: #2C7A4B;
+      font-size: 1.8rem;
+      opacity: 0.7;
+    }
+    .test-text {
+      margin: 1rem 0;
+      font-style: normal;
+      color: #2b3e2a;
+      line-height: 1.5;
+    }
+    .test-name {
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+
+    /* about + contact combined */
+    .about-contact-wrap {
+      background: #F8FBF5;
+      border-radius: 2.5rem;
+      padding: 2.5rem;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 14px 18px;
+      margin-bottom: 1rem;
+      border: 1px solid #dee6d6;
+      border-radius: 48px;
+      font-family: 'Inter', sans-serif;
+      background: white;
+      transition: 0.2s;
+    }
+    .contact-form textarea {
+      border-radius: 28px;
+      resize: vertical;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #2C7A4B;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(44,122,75,0.1);
+    }
+    .support-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .support-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    footer {
+      background: #122117;
+      color: #c6dec0;
+      padding: 2.5rem 0;
+      text-align: center;
+    }
+    .footer-social i {
+      font-size: 1.6rem;
+      margin: 0 0.8rem;
+      color: #bedbac;
+      transition: 0.2s;
+    }
+    .footer-social i:hover {
+      color: white;
+    }
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 1rem;
+        background: white;
+        padding: 1.2rem 0;
+        border-radius: 20px;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
+      .search-card {
+        flex-direction: column;
+        border-radius: 48px;
+        padding: 1rem;
+      }
+      .search-field {
+        width: 100%;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+      .section-title {
+        font-size: 1.9rem;
+      }
+      .container {
+        padding: 0 20px;
+      }
+      section {
+        padding: 60px 0;
+      }
+    }
+    @media (max-width: 520px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container nav-container">
+    <div class="logo">
+      <h1>SaviraNest</h1>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#">Home</a>
+      <a href="#stays">Stays</a>
+      <a href="#about">About</a>
+      <a href="#contact-support">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero Section with brand message & search -->
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Your Nest Away From Home</h1>
+      <p>Find comforting escapes, wild adventures, and handpicked nests — from city lofts to safari havens.</p>
+      <!-- Search bar: location, dates, guests -->
+      <div class="search-card" id="searchWidget">
+        <div class="search-field">
+          <i class="fas fa-map-marker-alt"></i>
+          <input type="text" id="locationInput" placeholder="Where to? City, region..." value="Nairobi, Kenya">
+        </div>
+        <div class="search-field">
+          <i class="fas fa-calendar-alt"></i>
+          <input type="date" id="checkinDate" value="2026-06-10">
+        </div>
+        <div class="search-field">
+          <i class="fas fa-calendar-check"></i>
+          <input type="date" id="checkoutDate" value="2026-06-15">
+        </div>
+        <div class="search-field">
+          <i class="fas fa-users"></i>
+          <input type="number" id="guestsCount" min="1" max="12" value="2" placeholder="Guests">
+        </div>
+        <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i> Search</button>
+      </div>
+      <div class="hero-buttons">
+        <a href="#featured" class="btn-primary"><i class="fas fa-bed"></i> Explore Stays</a>
+        <a href="#featured" class="btn-outline"><i class="fas fa-calendar-check"></i> Book Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Property categories -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Live like a local</h2>
+      <p class="section-sub">Choose your vibe, we'll find your nest</p>
+      <div class="categories-grid">
+        <div class="cat-card"><i class="fas fa-city"></i><h3>Apartments</h3><p>Urban comfort</p></div>
+        <div class="cat-card"><i class="fas fa-swimming-pool"></i><h3>Villas</h3><p>Luxury escapes</p></div>
+        <div class="cat-card"><i class="fas fa-tree"></i><h3>Safari Stays</h3><p>Wild & serene</p></div>
+        <div class="cat-card"><i class="fas fa-water"></i><h3>Beachfront</h3><p>Ocean breeze</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Properties -->
+  <section id="featured">
+    <div class="container">
+      <h2 class="section-title">✨ Featured stays</h2>
+      <p class="section-sub">Curated for unforgettable moments</p>
+      <div class="property-grid">
+        <div class="property-card">
+          <img class="property-img" src="https://picsum.photos/id/104/400/260" alt="modern apartment">
+          <div class="property-info">
+            <div class="property-title">Skyline Haven</div>
+            <div class="property-location"><i class="fas fa-map-pin"></i> Westlands, Nairobi</div>
+            <div class="price">$119 / night</div>
+            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.8</div>
+            <button class="btn-book bookNowBtn">Book Now →</button>
+          </div>
+        </div>
+        <div class="property-card">
+          <img class="property-img" src="https://picsum.photos/id/160/400/260" alt="luxury villa">
+          <div class="property-info">
+            <div class="property-title">Ol Donyo Retreat</div>
+            <div class="property-location"><i class="fas fa-map-pin"></i> Amboseli view</div>
+            <div class="price">$349 / night</div>
+            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 5.0</div>
+            <button class="btn-book bookNowBtn">Book Now →</button>
+          </div>
+        </div>
+        <div class="property-card">
+          <img class="property-img" src="https://picsum.photos/id/89/400/260" alt="safari lodge">
+          <div class="property-info">
+            <div class="property-title">Mara Eden Lodge</div>
+            <div class="property-location"><i class="fas fa-map-pin"></i> Maasai Mara</div>
+            <div class="price">$289 / night</div>
+            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 4.9</div>
+            <button class="btn-book bookNowBtn">Book Now →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recommended Stays -->
+  <section id="stays">
+    <div class="container">
+      <h2 class="section-title">🌟 Recommended for you</h2>
+      <p class="section-sub">Traveler's top picks – unique and cozy</p>
+      <div class="property-grid">
+        <div class="property-card">
+          <img class="property-img" src="https://picsum.photos/id/125/400/260" alt="river cottage">
+          <div class="property-info">
+            <div class="property-title">Riverside Nook</div>
+            <div class="property-location"><i class="fas fa-map-pin"></i> Karura Forest</div>
+            <div class="price">$99 / night</div>
+            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 4.7</div>
+            <button class="btn-book bookNowBtn">Book Now →</button>
+          </div>
+        </div>
+        <div class="property-card">
+          <img class="property-img" src="https://picsum.photos/id/96/400/260" alt="treehouse">
+          <div class="property-info">
+            <div class="property-title">Canopy Treehouse</div>
+            <div class="property-location"><i class="fas fa-map-pin"></i> Aberdare Highlands</div>
+            <div class="price">$210 / night</div>
+            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> 4.9</div>
+            <button class="btn-book bookNowBtn">Book Now →</button>
+          </div>
+        </div>
+        <div class="property-card">
+          <img class="property-img" src="https://picsum.photos/id/58/400/260" alt="beach studio">
+          <div class="property-info">
+            <div class="property-title">Bahari Wave Studio</div>
+            <div class="property-location"><i class="fas fa-map-pin"></i> Diani Beach</div>
+            <div class="price">$159 / night</div>
+            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> 4.8</div>
+            <button class="btn-book bookNowBtn">Book Now →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials & Reviews -->
+  <section style="background: #FCFAF5;">
+    <div class="container">
+      <h2 class="section-title">Trusted by wanderers</h2>
+      <p class="section-sub">Real stories, real nests</p>
+      <div class="testimonial-grid">
+        <div class="test-card">
+          <i class="fas fa-quote-left"></i>
+          <p class="test-text">“The safari stay was pure magic. Everything felt like a dream – from booking to checkout. SaviraNest delivered beyond expectations.”</p>
+          <p class="test-name">— Lena M. <span style="color:#2C7A4B;">⭐ 5.0</span></p>
+        </div>
+        <div class="test-card">
+          <i class="fas fa-quote-left"></i>
+          <p class="test-text">“Cozy apartments, incredible support. We booked three different stays and each one felt like home. Highly recommend for any adventure.”</p>
+          <p class="test-name">— David K. <span style="color:#2C7A4B;">⭐ 4.9</span></p>
+        </div>
+        <div class="test-card">
+          <i class="fas fa-quote-left"></i>
+          <p class="test-text">“The villa we stayed in had breathtaking views. SaviraNest’s customer service is outstanding – responsive, warm, and helpful.”</p>
+          <p class="test-name">— Priya S. <span style="color:#2C7A4B;">⭐ 5.0</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About SaviraNest + Contact and support -->
+  <section id="about">
+    <div class="container about-contact-wrap">
+      <div class="about-grid">
+        <div>
+          <h2 class="section-title" style="text-align: left; margin-bottom: 1rem;">About SaviraNest</h2>
+          <p style="font-size: 1.05rem; margin-bottom: 1rem; color: #2b442f;">We believe travel is about feeling at home, even miles away. SaviraNest hand-selects unique stays — from sleek apartments to wild safari camps — so you focus on creating memories. Every nest is verified, cozy, and ready to welcome you.</p>
+          <p>🌟 <strong>12k+ happy guests</strong> · 🏆 Top-rated hospitality · ✨ 24/7 guest care</p>
+          <div style="margin-top: 2rem;">
+            <a href="#featured" class="btn-primary" style="margin-right: 1rem;">Explore Stays</a>
+            <a href="#contact-support" class="btn-outline">Contact Us</a>
+          </div>
+        </div>
+        <div id="contact-support">
+          <h2 class="section-title" style="text-align: left; margin-bottom: 1rem;">Contact & Support</h2>
+          <div class="support-info">
+            <div class="support-item"><i class="fas fa-phone-alt fa-lg" style="color:#2C7A4B;"></i> <span>+254 700 123 456 | 24/7 hotline</span></div>
+            <div class="support-item"><i class="fas fa-envelope fa-lg" style="color:#2C7A4B;"></i> <span>hello@saviranest.com</span></div>
+            <div class="support-item"><i class="fas fa-headset fa-lg" style="color:#2C7A4B;"></i> <span>Live chat · Instant reply</span></div>
+          </div>
+          <div class="contact-form">
+            <h3 style="margin-bottom: 1rem; font-weight: 600;">Send us a message</h3>
+            <input type="text" id="contactName" placeholder="Your name">
+            <input type="email" id="contactEmail" placeholder="Email address">
+            <textarea rows="3" id="contactMsg" placeholder="Need help? Let us know..."></textarea>
+            <button id="supportSendBtn" class="btn-primary" style="width: auto;">Send Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-social">
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-twitter"></i>
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-tiktok"></i>
+    </div>
+    <p style="margin-top: 1rem;">© 2026 SaviraNest — Your Nest Away From Home. Designed for dreamers.</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  }
+
+  // Booking buttons
+  const bookBtns = document.querySelectorAll('.bookNowBtn');
+  bookBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const card = btn.closest('.property-card');
+      const title = card ? card.querySelector('.property-title')?.innerText : 'this stay';
+      alert(`✨ Ready to nest! You're booking "${title}". Our team will guide you through the final steps. ✨`);
+    });
+  });
+
+  // Search simulator
+  const searchBtn = document.getElementById('searchBtn');
+  if (searchBtn) {
+    searchBtn.addEventListener('click', () => {
+      const location = document.getElementById('locationInput')?.value || 'anywhere';
+      const checkin = document.getElementById('checkinDate')?.value || '—';
+      const checkout = document.getElementById('checkoutDate')?.value || '—';
+      const guests = document.getElementById('guestsCount')?.value || '1';
+      alert(`🔍 Searching “${location}” · ${checkin} → ${checkout} · ${guests} guest(s).\nWe'll show the most charming nests available.`);
+      document.getElementById('featured')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  // Contact form
+  const sendSupport = document.getElementById('supportSendBtn');
+  if (sendSupport) {
+    sendSupport.addEventListener('click', () => {
+      const name = document.getElementById('contactName')?.value.trim();
+      const email = document.getElementById('contactEmail')?.value.trim();
+      const msg = document.getElementById('contactMsg')?.value.trim();
+      if (!name || !email || !msg) {
+        alert('Please fill in all fields so we can assist you.');
+        return;
+      }
+      alert(`✅ Thanks ${name}! Our support team will reply within 2 hours at ${email}.`);
+      document.getElementById('contactName').value = '';
+      document.getElementById('contactEmail').value = '';
+      document.getElementById('contactMsg').value = '';
+    });
+  }
+
+  // smooth scroll for cta
+  const exploreCtas = document.querySelectorAll('.hero-buttons .btn-primary, .hero-buttons .btn-outline, a[href="#featured"]');
+  exploreCtas.forEach(cta => {
+    cta.addEventListener('click', (e) => {
+      const targetId = cta.getAttribute('href');
+      if (targetId && targetId.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(targetId);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+  // category interactive alert
+  document.querySelectorAll('.cat-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const cat = card.querySelector('h3')?.innerText || '';
+      alert(`🏡 Browse ${cat} — perfect for your next escape.`);
+    });
+  });
+  // set default dates if needed
+  if (!document.getElementById('checkinDate').value) {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('checkinDate').value = today;
+    const future = new Date();
+    future.setDate(future.getDate() + 5);
+    document.getElementById('checkoutDate').value = future.toISOString().split('T')[0];
+  }
+</script>
+</body>
+</html>

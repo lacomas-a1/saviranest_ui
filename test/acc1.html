@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SaviraNest | Premium Accommodations & Stays</title>
+
+    <meta name="description"
+        content="Discover the best accommodations in Kenya from luxury beach resorts to safari lodges. Handpicked stays with ocean views, wildlife encounters, and Swahili charm.">
+    <meta name="keywords"
+        content="Kenya accommodations, beach resorts Kenya, safari lodges, Watamu hotels, Diani resorts, Wild Nomads Kenya">
+
+    <link rel="icon" href="assets/logo/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* Base styles (original design kept intact) */
+        @font-face {
+            font-family: 'Aptos';
+            src: url('/Aptos/Aptos.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --ocean-blue: #1E88E5;
+            --deep-navy: #0B1F3A;
+            --sand-beige: #F4E7D3;
+            --orange: #E07C3C;
+            --sunrise-gold: #F9A826;
+            --support-green: #059669;
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Aptos', sans-serif;
+            color: var(--deep-navy);
+            background-color: var(--light);
+            line-height: 1.5;
+            font-size: 0.9rem;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Aptos', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Header Hero */
+        .accommodation-header {
+            background: linear-gradient(rgba(30, 58, 138, 0.82), rgba(30, 58, 138, 0.82)),
+                url('https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-4.0.3') no-repeat center center;
+            background-size: cover;
+            min-height: 38vh;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 50px;
+            padding-bottom: 40px;
+            text-align: center;
+        }
+
+        /* Navbar Wrapper (sticky) */
+        .navbar-wrapper {
+            position: relative;
+            z-index: 1100;
+            transition: all 0.3s ease;
+            margin-top: 0;
+            border-radius: 60px;
+            background: transparent;
+        }
+
+        .custom-navbar {
+            background: var(--white);
+            border-radius: 60px;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-wrapper.sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            margin: 0;
+            border-radius: 0;
+            z-index: 1100;
+            background: var(--white);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-wrapper.sticky-nav .custom-navbar {
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0.3rem 1rem;
+        }
+
+        body.nav-fixed-padding {
+            padding-top: 85px;
+        }
+
+        .travel-logo {
+            height: 70px;
+            transition: transform 0.2s;
+            max-width: 100%;
+        }
+
+        .navbar-brand:hover .travel-logo {
+            transform: scale(1.02);
+        }
+
+        /* Desktop inline navigation (hidden on mobile) */
+        .custom-navbar .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .navbar-brand {
+            margin-right: 0;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .navbar-collapse {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar-nav {
+            display: flex;
+            flex-direction: row;
+            gap: 0.25rem;
+            margin: 0;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--ocean-blue);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--support-green);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .btn-primary-travel {
+            background-color: var(--sunrise-gold);
+            text-decoration: none;
+            color: var(--white);
+            border: 2px solid var(--sunrise-gold);
+            padding: 0.4rem 1.25rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.25s;
+        }
+
+        .btn-primary-travel:hover {
+            text-decoration: none;
+            background-color: transparent;
+            color: var(--sunrise-gold);
+            border-color: var(--sunrise-gold);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--orange);
+            color: var(--orange);
+            padding: 8px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: 0.2s;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            background: var(--orange);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero-title {
+            font-size: 2.8rem;
+            margin-bottom: 0.75rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 500;
+            opacity: 0.92;
+        }
+
+        /* Category Filter Bar */
+        .category-bar {
+            background: var(--white);
+            border-radius: 60px;
+            padding: 0.5rem 1rem;
+            margin: -30px 0 2rem 0;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            color: var(--deep-navy);
+            cursor: pointer;
+        }
+
+        .filter-btn.active {
+            background: var(--sunrise-gold);
+            color: white;
+            box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+        }
+
+        .filter-btn:hover:not(.active) {
+            background: #eef2ff;
+            color: var(--ocean-blue);
+        }
+
+        /* Cards Grid */
+        .accommodation-grid-section {
+            padding: 1rem 0 4rem 0;
+            background: var(--light);
+        }
+
+        .accommodation-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .accommodation-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 36px -12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img-top {
+            height: 220px;
+            object-fit: cover;
+            width: 100%;
+            transition: transform 0.4s;
+        }
+
+        .accommodation-card:hover .card-img-top {
+            transform: scale(1.03);
+        }
+
+        .img-holder {
+            overflow: hidden;
+        }
+
+        .card-body {
+            padding: 1.3rem 1.2rem 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .location-text {
+            font-size: 0.8rem;
+            color: var(--deep-navy);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rating-stars {
+            color: var(--sunrise-gold);
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .desc-text {
+            font-size: 0.85rem;
+            color: var(--deep-navy);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .price-block {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--support-green);
+            margin-bottom: 1rem;
+        }
+
+        .card-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .card-buttons .btn {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem 0.2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 40px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-outline-accent {
+            background: transparent;
+            border: 1.5px solid var(--sunrise-gold);
+            color: var(--sunrise-gold);
+        }
+
+        .btn-outline-accent:hover {
+            background: var(--sunrise-gold);
+            color: white;
+        }
+
+        .btn-inquire {
+            background: var(--ocean-blue);
+            border: none;
+            color: white;
+        }
+
+        .btn-inquire:hover {
+            background: #0f6bb3;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-navy);
+            color: var(--white);
+            padding: 56px 0 28px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h5 {
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .footer-col p {
+            font-size: 13px;
+            color: var(--light);
+            line-height: 1.7;
+            margin-bottom: 6px;
+        }
+
+        .footer-col a {
+            color: var(--light);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .footer-col a:hover {
+            color: var(--orange);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .footer-social a {
+            width: 34px;
+            height: 34px;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #CFDCD8;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--sunrise-gold);
+            padding-top: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-bottom p {
+            font-size: 12.5px;
+            color: var(--white);
+            margin: 0;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25D366;
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            font-size: 26px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #20b359;
+        }
+
+        /* Modals */
+        .modal-content {
+            border-radius: 24px;
+        }
+
+        .modal-header {
+            background: var(--deep-navy);
+            color: white;
+            border-bottom: none;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        /* ---------- MOBILE OFF-CANVAS MENU (inspired by provided images) ---------- */
+        .mobile-menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--ocean-blue);
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            transition: 0.2s;
+        }
+
+        .mobile-menu-toggle:hover {
+            color: var(--sunrise-gold);
+        }
+
+        /* Offcanvas custom styling */
+        .offcanvas {
+            background: var(--white);
+            width: 85% !important;
+            max-width: 350px;
+            border-right: none;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .offcanvas-header {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 1.2rem 1rem;
+        }
+
+        .offcanvas-header .offcanvas-logo {
+            height: 50px;
+        }
+
+        .offcanvas-body {
+            padding: 1.5rem 1rem;
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+
+        .mobile-nav-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .mobile-nav-list a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--deep-navy);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.6rem 0.8rem;
+            border-radius: 40px;
+            transition: all 0.2s;
+        }
+
+        .mobile-nav-list a i {
+            width: 24px;
+            color: var(--sunrise-gold);
+            font-size: 1.1rem;
+        }
+
+        .mobile-nav-list a:hover {
+            background: #F1F5F9;
+            color: var(--support-green);
+            padding-left: 1rem;
+        }
+
+        .mobile-action-buttons {
+            margin: 1.5rem 0 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mobile-action-buttons .btn-mobile-book {
+            background: var(--sunrise-gold);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 40px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+
+        .mobile-action-buttons .btn-mobile-wa {
+            background: #25D366;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .mobile-contact-info {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .mobile-contact-info p {
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--deep-navy);
+        }
+
+        .mobile-contact-info i {
+            color: var(--orange);
+            width: 24px;
+        }
+
+        .mobile-social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 1rem;
+        }
+
+        .mobile-social-links a {
+            color: var(--deep-navy);
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+
+        .mobile-social-links a:hover {
+            color: var(--sunrise-gold);
+        }
+
+        /* Responsive: On screens < 992px hide desktop nav & show offcanvas toggler */
+        @media (max-width: 991px) {
+
+            .navbar-collapse,
+            .nav-right {
+                display: none !important;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .custom-navbar .navbar-content {
+                justify-content: space-between;
+            }
+
+            .navbar-brand {
+                margin-right: auto;
+            }
+        }
+
+        /* Force hide offcanvas toggle on desktop */
+        @media (min-width: 992px) {
+            .mobile-menu-toggle {
+                display: none !important;
+            }
+        }
+
+        /* Additional responsive touches */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .filter-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.75rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .travel-logo {
+                height: 55px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .card-buttons {
+                flex-direction: column;
+            }
+
+            .card-buttons .btn {
+                width: 100%;
+            }
+        }
+
+        .footer-grid img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .nav-link i {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="accommodation-header">
+        <div class="container">
+            <div class="navbar-wrapper" id="navbarWrapper">
+                <div class="custom-navbar">
+                    <nav class="navbar navbar-expand-lg navbar-light p-0">
+                        <div class="container-fluid px-0 navbar-content">
+                            <!-- Logo -->
+                            <a class="navbar-brand" href="index.html">
+                                <img src="assets/image/savira_nest_logo.png" alt="Savira Nest Logo" class="travel-logo">
+                            </a>
+
+                            <!-- Desktop navigation (hidden on mobile via CSS) -->
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="tours.html">Safari Tours</a></li>
+                                    <li class="nav-item"><a class="nav-link active" href="acc.html">Stays</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                                </ul>
+                                <!-- <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="index.html">
+                                            <i class="fas fa-home me-2"></i> Home
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="about.html">
+                                            <i class="fas fa-info-circle me-2"></i> About
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="tours.html">
+                                            <i class="fas fa-binoculars me-2"></i> Safari Tours
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="acc.html">
+                                            <i class="fas fa-bed me-2"></i> Stays
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="pricing.html">
+                                            <i class="fas fa-tags me-2"></i> Pricing
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="contact.html">
+                                            <i class="fas fa-envelope me-2"></i> Contact
+                                        </a>
+                                    </li>
+                                </ul> -->
+                            </div>
+
+                            <!-- Desktop right buttons -->
+                            <div class="nav-right">
+                                <a href="https://wa.me/254712345678" class="btn-outline" target="_blank"><i
+                                        class="fab fa-whatsapp"></i> WhatsApp</a>
+                                <a href="#" class="btn-primary-travel">Book Now</a>
+                            </div>
+
+                            <!-- Mobile Hamburger (triggers offcanvas) -->
+                            <button class="mobile-menu-toggle" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" id="mobileMenuBtn">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-content container">
+            <h1 class="hero-title">Unforgettable Stays Across Kenya</h1>
+            <p class="hero-subtitle">Beachfront bliss · Safari lodges · Eco-retreats</p>
+        </div>
+    </header>
+
+    <!-- Category Filter & Cards (unchanged) -->
+    <div class="container">
+        <div class="category-bar">
+            <button class="filter-btn active" data-filter="all">All Stays</button>
+            <button class="filter-btn" data-filter="coast">Coast / Beach</button>
+            <button class="filter-btn" data-filter="safari">Safari Lodges</button>
+            <button class="filter-btn" data-filter="lake">Lake & Highlands</button>
+        </div>
+    </div>
+
+    <section class="accommodation-grid-section">
+        <div class="container">
+            <div class="row g-4" id="accommodationGrid">
+                <!-- Card 1 - Watamu Beach Resort (coast) -->
+                <div class="col-lg-4 col-md-6 accommodation-item" data-category="coast">
+                    <div class="accommodation-card">
+                        <div class="img-holder"><img
+                                src="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?ixlib=rb-4.0.3&w=600&h=400&fit=crop"
+                                class="card-img-top" alt="Watamu Beach Resort"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Watamu Beach Resort</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"
+                                    style="color: var(--sunrise-gold);"></i> Watamu, Coast Region</div>
+                            <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star-half-alt"></i> <span class="ms-1 small text-muted">(4.6)</span>
+                            </div>
+                            <p class="desc-text">Oceanfront paradise with infinity pool, direct beach access, and
+                                Swahili spa.</p>
+                            <div class="price-block">KES 8,500 / night</div>
+                            <div class="card-buttons"><a href="acc-details.html?id=1" class="btn btn-outline-accent"><i
+                                        class="fas fa-info-circle"></i> Details</a><a
+                                    href="https://wa.me/254700123456?text=I'm%20interested%20in%20Watamu%20Beach%20Resort"
+                                    target="_blank" class="btn btn-inquire"><i class="fab fa-whatsapp"></i> Inquire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 - Diani Reef Beach Resort (coast) -->
+                <div class="col-lg-4 col-md-6 accommodation-item" data-category="coast">
+                    <div class="accommodation-card">
+                        <div class="img-holder"><img
+                                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&w=600&h=400&fit=crop"
+                                class="card-img-top" alt="Diani Reef Beach Resort"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Diani Reef Beach Resort</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"
+                                    style="color: var(--sunrise-gold);"></i> Diani Beach, South Coast</div>
+                            <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span
+                                    class="ms-1 small text-muted">(4.8)</span></div>
+                            <p class="desc-text">Luxury villas with private plunge pools & premier diving center.
+                                All-inclusive available.</p>
+                            <div class="price-block">KES 12,000 / night</div>
+                            <div class="card-buttons"><a href="acc-details.html?id=2" class="btn btn-outline-accent"><i
+                                        class="fas fa-info-circle"></i> Details</a><a
+                                    href="https://wa.me/254700123456?text=I'm%20interested%20in%20Diani%20Reef%20Beach%20Resort"
+                                    target="_blank" class="btn btn-inquire"><i class="fab fa-whatsapp"></i> Inquire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 - Sarova Whitesands (coast) -->
+                <div class="col-lg-4 col-md-6 accommodation-item" data-category="coast">
+                    <div class="accommodation-card">
+                        <div class="img-holder"><img
+                                src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?ixlib=rb-4.0.3&w=600&h=400&fit=crop"
+                                class="card-img-top" alt="Sarova Whitesands Beach Resort"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Sarova Whitesands Beach Resort</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"
+                                    style="color: var(--sunrise-gold);"></i> Bamburi, Mombasa</div>
+                            <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> <span
+                                    class="ms-1 small text-muted">(4.4)</span></div>
+                            <p class="desc-text">Five pools, lush gardens, multiple restaurants on a white-sand beach.
+                                Family-friendly.</p>
+                            <div class="price-block">KES 10,500 / night</div>
+                            <div class="card-buttons"><a href="acc-details.html?id=4" class="btn btn-outline-accent"><i
+                                        class="fas fa-info-circle"></i> Details</a><a
+                                    href="https://wa.me/254700123456?text=I'm%20interested%20in%20Sarova%20Whitesands"
+                                    target="_blank" class="btn btn-inquire"><i class="fab fa-whatsapp"></i> Inquire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 - Masai Mara Sopa Lodge (safari) -->
+                <div class="col-lg-4 col-md-6 accommodation-item" data-category="safari">
+                    <div class="accommodation-card">
+                        <div class="img-holder"><img
+                                src="https://images.unsplash.com/photo-1549366021-9f761d450615?ixlib=rb-4.0.3&w=600&h=400&fit=crop"
+                                class="card-img-top" alt="Masai Mara Sopa Lodge"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Masai Mara Sopa Lodge</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"
+                                    style="color: var(--sunrise-gold);"></i> Masai Mara, Narok</div>
+                            <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star-half-alt"></i> <span class="ms-1 small text-muted">(4.5)</span>
+                            </div>
+                            <p class="desc-text">Perched on the slopes of Oloolaimutia Hills, overlooking the plains.
+                                Unmatched wildebeest views.</p>
+                            <div class="price-block">KES 18,000 / night (full board)</div>
+                            <div class="card-buttons"><a href="acc-details.html?id=3" class="btn btn-outline-accent"><i
+                                        class="fas fa-info-circle"></i> Details</a><a
+                                    href="https://wa.me/254700123456?text=I'm%20interested%20in%20Masai%20Mara%20Sopa%20Lodge"
+                                    target="_blank" class="btn btn-inquire"><i class="fab fa-whatsapp"></i> Inquire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5 - The Sands at Nomad (coast) -->
+                <div class="col-lg-4 col-md-6 accommodation-item" data-category="coast">
+                    <div class="accommodation-card">
+                        <div class="img-holder"><img
+                                src="https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&w=600&h=400&fit=crop"
+                                class="card-img-top" alt="The Sands at Nomad"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">The Sands at Nomad</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"
+                                    style="color: var(--sunrise-gold);"></i> Diani Beach, South Coast</div>
+                            <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span
+                                    class="ms-1 small text-muted">(4.9)</span></div>
+                            <p class="desc-text">Boutique chic with oceanfront suites, yoga shala, and farm-to-table
+                                cuisine.</p>
+                            <div class="price-block">KES 14,000 / night</div>
+                            <div class="card-buttons"><a href="acc-details.html?id=6" class="btn btn-outline-accent"><i
+                                        class="fas fa-info-circle"></i> Details</a><a
+                                    href="https://wa.me/254700123456?text=I'm%20interested%20in%20The%20Sands%20at%20Nomad"
+                                    target="_blank" class="btn btn-inquire"><i class="fab fa-whatsapp"></i> Inquire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 6 - Lamu Swahili House (coast) -->
+                <div class="col-lg-4 col-md-6 accommodation-item" data-category="coast">
+                    <div class="accommodation-card">
+                        <div class="img-holder"><img
+                                src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?ixlib=rb-4.0.3&w=600&h=400&fit=crop"
+                                class="card-img-top" alt="Lamu Swahili House"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Lamu Swahili House</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"
+                                    style="color: var(--sunrise-gold);"></i> Lamu Island, Archipelago</div>
+                            <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star-half-alt"></i> <span class="ms-1 small text-muted">(4.5)</span>
+                            </div>
+                            <p class="desc-text">Restored 18th-century Swahili mansion with rooftop terrace and sea
+                                views. Authentic charm.</p>
+                            <div class="price-block">KES 9,500 / night</div>
+                            <div class="card-buttons"><a href="acc-details.html?id=8" class="btn btn-outline-accent"><i
+                                        class="fas fa-info-circle"></i> Details</a><a
+                                    href="https://wa.me/254700123456?text=I'm%20interested%20in%20Lamu%20Swahili%20House"
+                                    target="_blank" class="btn btn-inquire"><i class="fab fa-whatsapp"></i> Inquire</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER unchanged -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <img src="assets/image/savira_nest_logo.png" alt="Savira Nest Logo"
+                    style="background: #f0f2f5; border-radius: 12px; padding: 0 10px;">
+                <div class="footer-col">
+                    <h5>SaviraNest</h5>
+                    <p>We connect travelers with extraordinary homes — from bustling city apartments to wild safari
+                        nooks. Every stay is curated for comfort, local charm, and unforgettable memories.</p>
+                    <div class="footer-social"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i
+                                class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-tiktok"></i></a><a
+                            href="https://wa.me/254712345678" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <p><i class="fas fa-phone-alt" style="color:var(--orange);margin-right:6px;"></i> +254 712 345 678
+                    </p>
+                    <p><i class="fas fa-map-marker-alt" style="color:var(--orange);margin-right:6px;"></i> Bofa Road,
+                        Kilifi Kenya</p>
+                    <p><i class="far fa-envelope" style="color:var(--orange);margin-right:6px;"></i>
+                        info@saviranest.co.ke</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy
+                        Policy</a><a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Booking Terms</a><a
+                        href="#" data-bs-toggle="modal" data-bs-target="#cancellationModal">Cancellation Policy</a><a
+                        href="#">FAQ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 SaviraNest — Your Nest Away From Home. Curated Stays For Modern Explorers.</p>
+                <p>Kilifi, Kenya 🌊</p>
+                <p>Design By: <strong>LacomasTech</strong>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/254712345678" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i
+            class="fab fa-whatsapp"></i></a>
+
+    <!-- OFF-CANVAS MOBILE MENU (inspired by reference images) -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
+        <div class="offcanvas-header">
+            <img src="assets/image/savira_nest_logo.png" alt="Savira Nest Logo" class="offcanvas-logo"
+                style="height: 55px;">
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="mobile-nav-list">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="tours.html"><i class="fas fa-binoculars"></i> Safari Tours</a></li>
+                <li><a href="acc.html"><i class="fas fa-hotel"></i> Stays</a></li>
+                <li><a href="pricing.html"><i class="fas fa-tag"></i> Pricing</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="mobile-action-buttons">
+                <a href="#" class="btn-mobile-book"><i class="fas fa-calendar-check"></i> Book Now</a>
+                <a href="https://wa.me/254712345678" target="_blank" class="btn-mobile-wa"><i
+                        class="fab fa-whatsapp"></i> WhatsApp Inquiry</a>
+            </div>
+            <div class="mobile-contact-info">
+                <p><i class="fas fa-phone-alt"></i> +254 712 345 678</p>
+                <p><i class="fas fa-map-marker-alt"></i> Bofa Road, Kilifi, Kenya</p>
+                <p><i class="far fa-envelope"></i> info@saviranest.co.ke</p>
+                <div class="mobile-social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.me/254712345678" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals (Privacy, Terms, Cancellation) unchanged -->
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Privacy Policy</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>SaviraNest Privacy Commitment</strong></p>
+                    <p>We collect personal information only to process bookings, improve stay experiences, and
+                        communicate offers. Your data is never shared with third parties without consent. We use
+                        industry encryption to protect payment details. By using our services, you agree to the
+                        collection and use of information in accordance with this policy.</p>
+                    <p>For any privacy inquiries, contact <strong>info@saviranest.co.ke</strong>.</p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Booking Terms & Conditions</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Reservations & Payments:</strong> A deposit of 30% is required to confirm any booking.
+                        Remainder due 14 days before arrival. Cancellations made 30+ days before arrival receive full
+                        refund minus admin fee. Cancellations within 14 days are non-refundable. Early check-in/late
+                        check-out subject to availability. Guests are responsible for their belongings.</p>
+                    <p>We reserve the right to modify bookings due to unforeseen events. Full terms provided upon
+                        confirmation.</p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="cancellationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cancellation Policy</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Flexible cancellations:</strong> Free cancellation up to 30 days before check-in. 50%
+                        refund between 15-29 days. No refund for cancellations within 14 days of arrival. For groups
+                        larger than 6 rooms, different terms apply – please contact us directly. In case of a no-show,
+                        total amount is charged.</p>
+                    <p>In rare events like natural disasters, we offer travel credit or rescheduling at no extra cost.
+                    </p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Category filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const accommodationItems = document.querySelectorAll('.accommodation-item');
+        function filterAccommodations(category) {
+            accommodationItems.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterAccommodations(btn.getAttribute('data-filter'));
+            });
+        });
+
+        // Sticky navbar
+        const navbarWrapper = document.getElementById('navbarWrapper');
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 20) {
+                if (!navbarWrapper.classList.contains('sticky-nav')) {
+                    navbarWrapper.classList.add('sticky-nav');
+                    document.body.classList.add('nav-fixed-padding');
+                }
+            } else {
+                if (navbarWrapper.classList.contains('sticky-nav')) {
+                    navbarWrapper.classList.remove('sticky-nav');
+                    document.body.classList.remove('nav-fixed-padding');
+                }
+            }
+        });
+
+        // --- NEW: Hide navbar when offcanvas (sidebar) opens, show when closed ---
+        const offcanvasElement = document.getElementById('mobileOffcanvas');
+        if (offcanvasElement) {
+            // When offcanvas starts to show, hide the entire navbar wrapper (the bar with logo + menu button)
+            offcanvasElement.addEventListener('show.bs.offcanvas', function () {
+                if (navbarWrapper) {
+                    navbarWrapper.style.display = 'none';
+                }
+            });
+            // When offcanvas is fully hidden, restore navbar wrapper visibility
+            offcanvasElement.addEventListener('hidden.bs.offcanvas', function () {
+                if (navbarWrapper) {
+                    navbarWrapper.style.display = '';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

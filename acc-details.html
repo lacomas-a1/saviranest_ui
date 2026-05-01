@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Watamu Beach Resort | SaviraNest – Premium Oceanfront Stay</title>
+
+    <meta name="description"
+        content="Experience luxury beachfront accommodation at Watamu Beach Resort. Direct Indian Ocean access, infinity pool, fine dining, and marine adventures.">
+    <meta name="keywords"
+        content="Watamu Beach Resort, Watamu accommodation, beachfront hotel Kenya, Wild Nomads Kenya">
+
+    <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="assets/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <header class="stay-details-header">
+        <div class="container">
+            <div class="navbar-wrapper" id="navbarWrapper">
+                <div class="custom-navbar">
+                    <nav class="navbar navbar-expand-lg navbar-light p-0">
+                        <div class="container-fluid px-0 navbar-content">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="assets/image/savira_nest_logo.png" alt="Wild Nomads Kenya Logo"
+                                    class="travel-logo">
+                            </a>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                                    <li class="nav-item"><a class="nav-link active" href="acc.html">Stays</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#">Safari Tours</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-right">
+                                <!-- <a href="https://wa.me/254700123456" class="btn-outline" target="_blank"><i
+                                        class="fab fa-whatsapp"></i> WhatsApp</a> -->
+                                <a href="#" class="btn-primary-travel">Login / Sign Up</a>
+                                <!-- <a href="#" class="btn-primary-travel">Book Now</a> -->
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="hero-content container">
+            <h1 class="hero-title">Watamu Beach Resort</h1>
+            <p class="hero-subtitle">Oceanfront Paradise · Infinity Pool · Direct Beach Access</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="resort-card fade-up">
+                <div class="position-relative">
+                    <div class="tour-badge"><i class="fas fa-crown me-1"></i> Luxury Beachfront</div>
+                    <img src="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?ixlib=rb-4.0.3"
+                        alt="Watamu Beach Resort" class="tour-image">
+                </div>
+                <div class="p-4 p-lg-5">
+                    <!-- Compact Action Bar -->
+                    <div class="compact-action-bar">
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="action-badge"><i class="fas fa-tag"></i> From KES 8,500/night</span>
+                            <span class="action-badge"><i class="fas fa-star"></i> 4.6/5 Rating</span>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="#" class="compact-btn compact-btn-primary"><i class="fas fa-paper-plane"></i>
+                                Inquiry</a>
+                            <a href="https://wa.me/254700123456?text=I%20would%20like%20to%20book%20Watamu%20Beach%20Resort"
+                                target="_blank" class="compact-btn compact-btn-whatsapp"><i class="fab fa-whatsapp"></i>
+                                WhatsApp</a>
+                            <a href="tel:+254700123456" class="compact-btn compact-btn-phone"><i
+                                    class="fas fa-phone"></i> Call</a>
+                        </div>
+                    </div>
+
+                    <!-- Tabs (added Availability) -->
+                    <div class="custom-tabs">
+                        <button class="tab-btn active" onclick="showTab('overview')"><i
+                                class="fas fa-home me-2"></i>Overview</button>
+                        <button class="tab-btn" onclick="showTab('rooms')"><i class="fas fa-bed me-2"></i>Rooms &
+                            Suites</button>
+                        <button class="tab-btn" onclick="showTab('amenities')"><i
+                                class="fas fa-concierge-bell me-2"></i>Amenities</button>
+                        <button class="tab-btn" onclick="showTab('location')"><i
+                                class="fas fa-map-marker-alt me-2"></i>Location</button>
+                        <button class="tab-btn" onclick="showTab('availability'); initCalendarIfNeeded();"><i
+                                class="fas fa-calendar-alt me-2"></i>Availability</button>
+                        <button class="tab-btn" onclick="showTab('reviews')"><i
+                                class="fas fa-star me-2"></i>Reviews</button>
+                    </div>
+
+                    <!-- Overview Tab -->
+                    <div id="overview" class="tab-pane active">
+                        <h2 class="mb-3">Watamu Beach Resort</h2>
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <p class="lead">Nestled along the pristine shores of the Indian Ocean, Watamu Beach
+                                    Resort offers an authentic coastal escape. With 45 modern rooms, two infinity pools,
+                                    a world-class spa, and direct access to Watamu Marine National Park, it's the
+                                    perfect base for snorkeling, diving, or pure relaxation.</p>
+                            </div>
+                        </div>
+                        <h3>Resort Highlights</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-swimmer"></i></div>
+                                <h5>Infinity Pool</h5>
+                                <p>Ocean-view pool with swim-up bar</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-spa"></i></div>
+                                <h5>Kaya Spa</h5>
+                                <p>Traditional Swahili massages</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-utensils"></i></div>
+                                <h5>Sea Breeze Restaurant</h5>
+                                <p>Fresh seafood & local cuisine</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-fish"></i></div>
+                                <h5>Dive Center</h5>
+                                <p>PADI courses & snorkeling trips</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-dumbbell"></i></div>
+                                <h5>Fitness Center</h5>
+                                <p>24/7 gym & yoga deck</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-wifi"></i></div>
+                                <h5>Free High-Speed WiFi</h5>
+                                <p>Throughout the resort</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-ship"></i></div>
+                                <h5>Boat Excursions</h5>
+                                <p>Sunset cruises & island hopping</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-cocktail"></i></div>
+                                <h5>Beach Bar</h5>
+                                <p>Signature cocktails by the ocean</p>
+                            </div>
+                        </div>
+                        <p>Watamu Beach Resort combines eco‑conscious luxury with genuine Swahili hospitality. Every
+                            room offers panoramic ocean views, and the resort operates on solar energy with a strong
+                            commitment to marine conservation.</p>
+                    </div>
+
+                    <!-- Rooms Tab (same as original) -->
+                    <div id="rooms" class="tab-pane">
+                        <h3 class="mb-4">Luxurious Accommodations</h3>
+                        <div class="room-card">
+                            <div class="room-header" onclick="toggleRoom(this)">
+                                <h5><i class="fas fa-bed me-2"></i>Deluxe Ocean View Room</h5><i
+                                    class="fas fa-chevron-down toggle-icon"></i>
+                            </div>
+                            <div class="room-content">
+                                <div class="room-row">
+                                    <div class="room-image-col"><img
+                                            src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3"
+                                            alt="Deluxe Room"></div>
+                                    <div class="room-text-col">
+                                        <p>Spacious 45m² room with king or twin beds, private balcony overlooking the
+                                            Indian Ocean.</p>
+                                        <div class="amenities-list"><span class="amenity-tag"><i
+                                                    class="fas fa-wifi"></i> WiFi</span><span class="amenity-tag"><i
+                                                    class="fas fa-hot-tub"></i> Rainfall shower</span><span
+                                                class="amenity-tag"><i class="fas fa-coffee"></i> Nespresso</span></div>
+                                        <div class="price-badge">From KES 8,500 per night</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="room-card">
+                            <div class="room-header" onclick="toggleRoom(this)">
+                                <h5><i class="fas fa-users me-2"></i>Family Terrace Suite</h5><i
+                                    class="fas fa-chevron-down toggle-icon"></i>
+                            </div>
+                            <div class="room-content">
+                                <div class="room-row">
+                                    <div class="room-image-col"><img
+                                            src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3"
+                                            alt="Family Suite"></div>
+                                    <div class="room-text-col">
+                                        <p>70m² suite with separate living area, two bedrooms, and a large terrace.
+                                            Accommodates up to 5 guests.</p>
+                                        <div class="amenities-list"><span class="amenity-tag"><i
+                                                    class="fas fa-tshirt"></i> Laundry</span><span
+                                                class="amenity-tag"><i class="fas fa-baby-carriage"></i> Baby cot</span>
+                                        </div>
+                                        <div class="price-badge">From KES 15,000 / night (up to 4 adults)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="room-card">
+                            <div class="room-header" onclick="toggleRoom(this)">
+                                <h5><i class="fas fa-crown me-2"></i>Honeymoon Penthouse</h5><i
+                                    class="fas fa-chevron-down toggle-icon"></i>
+                            </div>
+                            <div class="room-content">
+                                <div class="room-row">
+                                    <div class="room-image-col"><img
+                                            src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3"
+                                            alt="Penthouse"></div>
+                                    <div class="room-text-col">
+                                        <p>Top-floor suite with private plunge pool, panoramic ocean views, four-poster
+                                            bed, and butler service.</p>
+                                        <div class="amenities-list"><span class="amenity-tag"><i
+                                                    class="fas fa-champagne-glasses"></i> Champagne</span><span
+                                                class="amenity-tag"><i class="fas fa-hot-tub"></i> Plunge pool</span>
+                                        </div>
+                                        <div class="price-badge">From KES 22,000 / night (all-inclusive for two)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amenities, Location, Reviews Tabs (condensed for brevity but fully functional) -->
+                    <div id="amenities" class="tab-pane">
+                        <h3 class="mb-4">Resort Amenities & Services</h3>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-swimmer"></i></div>
+                                <h5>Infinity Pools</h5>
+                                <p>Adult & family-friendly</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-umbrella-beach"></i></div>
+                                <h5>Private Beach</h5>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-spa"></i></div>
+                                <h5>Kaya Spa</h5>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon"><i class="fas fa-dumbbell"></i></div>
+                                <h5>Fitness & Yoga</h5>
+                            </div>
+                        </div>
+                        <div class="notes-section">
+                            <h5><i class="fas fa-clock me-2"></i>Check-in / Check-out</h5>
+                            <p>Check-in from 14:00 | Check-out by 11:00.</p>
+                        </div>
+                    </div>
+                    <div id="location" class="tab-pane">
+                        <h3 class="mb-4">Discover Watamu</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="notes-section">
+                                    <h5><i class="fas fa-map-marker-alt"></i> Getting There</h5>
+                                    <p>Located on Watamu Beach Road, 5 min from Marine Park entrance.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="bg-light p-4 rounded-4 text-center"><i
+                                        class="fas fa-map fa-3x text-primary mb-2"></i>
+                                    <p>Maps & directions upon booking.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="reviews" class="tab-pane">
+                        <h3 class="mb-4">Guest Reviews</h3>
+                        <div id="reviewsList">
+                            <div class="review-card">
+                                <div class="review-header d-flex justify-content-between"><strong>James
+                                        Mwangi</strong><span>March 2025</span></div>
+                                <div class="review-rating"><i class="fas fa-star text-warning"></i><i
+                                        class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
+                                        class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
+                                </div>
+                                <p>Absolutely stunning!</p>
+                                <div class="admin-reply"><strong>Resort Manager:</strong><br>Thank you James!</div>
+                                <div class="reply-form"><input type="text" class="reply-input"
+                                        placeholder="Write a reply..."><button class="reply-btn"
+                                        onclick="replyToReview(this)">Reply</button></div>
+                            </div>
+                        </div>
+                        <div class="add-review-form">
+                            <h5>Add Your Review</h5>
+                            <div class="row g-3">
+                                <div class="col-md-6"><input type="text" id="reviewerName" class="form-control"
+                                        placeholder="Your Name"></div>
+                                <div class="col-md-6"><select id="reviewRating" class="form-select">
+                                        <option value="5">★★★★★ (5)</option>
+                                        <option value="4">★★★★☆ (4)</option>
+                                    </select></div>
+                                <div class="col-12"><textarea id="reviewText" class="form-control" rows="3"
+                                        placeholder="Write your review..."></textarea></div>
+                                <div class="col-12"><button class="btn btn-primary"
+                                        style="background:var(--support-green)" onclick="addNewReview()">Submit
+                                        Review</button></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AVAILABILITY TAB with Calendar & Book Now -->
+                    <div id="availability" class="tab-pane">
+                        <h3 class="mb-4">Check Availability & Book</h3>
+                        <div id="calendarRoot" class="calendar-container"></div>
+                        <div class="selection-info" id="selectionInfo">
+                            <p><strong>Selected dates:</strong> <span id="selectedRangeText">None</span></p>
+                            <button id="bookNowAvailBtn" class="book-now-avail btn-large"
+                                style="background: var(--sunrise-gold);">Book Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Photo Gallery Carousel -->
+                    <h3 class="mt-5 mb-3">Photo Gallery</h3>
+                    <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active"><img
+                                    src="https://images.unsplash.com/photo-1544551763-46a013bb70d5"
+                                    class="d-block w-100" alt="Pool"></div>
+                            <div class="carousel-item"><img
+                                    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+                                    class="d-block w-100" alt="Beach"></div>
+                            <div class="carousel-item"><img
+                                    src="https://images.unsplash.com/photo-1547970810-dc1eac37d174"
+                                    class="d-block w-100" alt="Dining"></div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel"
+                            data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel"
+                            data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <!-- <div class="cta-block fade-up text-center">
+                <i class="fas fa-umbrella-beach" style="font-size: 2.5rem; color: var(--sunrise-gold);"></i>
+                <h3 style="font-size: 1.8rem; margin-top: 12px;">Book Your Coastal Escape</h3>
+                <p>Direct ocean views, Swahili hospitality, and unforgettable sunsets await.</p>
+                <button class="btn-large"
+                    onclick="alert('✨ Thank you for choosing Watamu Beach Resort! Our team will reach out to confirm your stay.')">Check
+                    Availability →</button>
+            </div> -->
+
+            <div class="mt-2 mb-4 text-center">
+                <a href="acc.html" class="btn-back-stays"><i class="fas fa-arrow-left me-2"></i>Back to
+                    Stays</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <img src="assets/image/savira_nest_logo.png" alt="Savira Nest Logo"
+                    style="background: #f0f2f5; border-radius: 12px; padding: 0 10px;">
+                <div class="footer-col">
+                    <h5>SaviraNest</h5>
+                    <p>We connect travelers with extraordinary homes — from bustling city apartments to wild safari
+                        nooks. Every stay is curated for comfort, local charm, and unforgettable memories.</p>
+                    <div class="footer-social"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i
+                                class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-tiktok"></i></a><a
+                            href="https://wa.me/254712345678" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <p><i class="fas fa-phone-alt" style="color:var(--orange);margin-right:6px;"></i> +254 712 345 678
+                    </p>
+                    <p><i class="fas fa-map-marker-alt" style="color:var(--orange);margin-right:6px;"></i> Bofa Road,
+                        Kilifi Kenya</p>
+                    <p><i class="far fa-envelope" style="color:var(--orange);margin-right:6px;"></i>
+                        info@saviranest.co.ke</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy
+                        Policy</a><a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Booking Terms</a><a
+                        href="#" data-bs-toggle="modal" data-bs-target="#cancellationModal">Cancellation Policy</a><a
+                        href="#">FAQ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 SaviraNest — Your Nest Away From Home. Curated Stays For Modern Explorers.</p>
+                <p>Kilifi, Kenya 🌊</p>
+                <p>Design By: <strong>LacomasTech</strong>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/254712345678" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i
+            class="fab fa-whatsapp"></i></a>
+
+    <!-- OFF-CANVAS MOBILE MENU (inspired by reference images) -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
+        <div class="offcanvas-header">
+            <img src="assets/image/savira_nest_logo.png" alt="Savira Nest Logo" class="offcanvas-logo"
+                style="height: 55px;">
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="mobile-nav-list">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <!-- <li><a href="tours.html"><i class="fas fa-binoculars"></i> Safari Tours</a></li> -->
+                <li><a href="acc.html"><i class="fas fa-hotel"></i> Stays</a></li>
+                <li><a href="pricing.html"><i class="fas fa-tag"></i> Pricing</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="mobile-action-buttons">
+                <a href="#" class="btn-mobile-book"><i class="fas fa-calendar-check"></i> Book Now</a>
+                <a href="https://wa.me/254712345678" target="_blank" class="btn-mobile-wa"><i
+                        class="fab fa-whatsapp"></i> WhatsApp Inquiry</a>
+            </div>
+            <div class="mobile-contact-info">
+                <p><i class="fas fa-phone-alt"></i> +254 712 345 678</p>
+                <p><i class="fas fa-map-marker-alt"></i> Bofa Road, Kilifi, Kenya</p>
+                <p><i class="far fa-envelope"></i> info@saviranest.co.ke</p>
+                <div class="mobile-social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.me/254712345678" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals (Privacy, Terms, Cancellation) unchanged -->
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Privacy Policy</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>SaviraNest Privacy Commitment</strong></p>
+                    <p>We collect personal information only to process bookings, improve stay experiences, and
+                        communicate offers. Your data is never shared with third parties without consent. We use
+                        industry encryption to protect payment details. By using our services, you agree to the
+                        collection and use of information in accordance with this policy.</p>
+                    <p>For any privacy inquiries, contact <strong>info@saviranest.co.ke</strong>.</p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Booking Terms & Conditions</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Reservations & Payments:</strong> A deposit of 30% is required to confirm any booking.
+                        Remainder due 14 days before arrival. Cancellations made 30+ days before arrival receive full
+                        refund minus admin fee. Cancellations within 14 days are non-refundable. Early check-in/late
+                        check-out subject to availability. Guests are responsible for their belongings.</p>
+                    <p>We reserve the right to modify bookings due to unforeseen events. Full terms provided upon
+                        confirmation.</p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="cancellationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cancellation Policy</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Flexible cancellations:</strong> Free cancellation up to 30 days before check-in. 50%
+                        refund between 15-29 days. No refund for cancellations within 14 days of arrival. For groups
+                        larger than 6 rooms, different terms apply – please contact us directly. In case of a no-show,
+                        total amount is charged.</p>
+                    <p>In rare events like natural disasters, we offer travel credit or rescheduling at no extra cost.
+                    </p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const offcanvasElement = document.getElementById('mobileOffcanvas');
+        if (offcanvasElement) {
+            // When offcanvas starts to show, hide the entire navbar wrapper (the bar with logo + menu button)
+            offcanvasElement.addEventListener('show.bs.offcanvas', function () {
+                if (navbarWrapper) {
+                    navbarWrapper.style.display = 'none';
+                }
+            });
+            // When offcanvas is fully hidden, restore navbar wrapper visibility
+            offcanvasElement.addEventListener('hidden.bs.offcanvas', function () {
+                if (navbarWrapper) {
+                    navbarWrapper.style.display = '';
+                }
+            });
+        }
+        // Existing functions: fade-up, sticky navbar, showTab, toggleRoom, replyToReview, addNewReview, escapeHtml (preserved)
+        // Additional: calendar logic for availability tab
+        let currentDate = new Date(2026, 3, 1); // April 2026
+        let selectedStart = null, selectedEnd = null;
+        // Booked dates (YYYY-MM-DD)
+        const bookedDates = ["2026-04-10", "2026-04-11", "2026-04-12", "2026-04-13", "2026-04-14", "2026-04-15", "2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23", "2026-04-24", "2026-04-25", "2026-05-05", "2026-05-06", "2026-05-07", "2026-05-08", "2026-05-09", "2026-05-10"];
+
+        function isBooked(date) { return bookedDates.includes(date.toISOString().split('T')[0]); }
+        function clearSelection() { selectedStart = null; selectedEnd = null; renderCalendar(); updateSelectionText(); }
+        function updateSelectionText() {
+            const span = document.getElementById('selectedRangeText');
+            if (selectedStart && selectedEnd) span.innerText = `${selectedStart.toDateString()} → ${selectedEnd.toDateString()}`;
+            else if (selectedStart) span.innerText = `${selectedStart.toDateString()} (select check-out)`;
+            else span.innerText = 'None';
+        }
+        function renderCalendar() {
+            const year = currentDate.getFullYear(), month = currentDate.getMonth();
+            const firstDay = new Date(year, month, 1);
+            const startWeekday = firstDay.getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const prevMonthDays = new Date(year, month, 0).getDate();
+            const calendarDiv = document.getElementById('calendarRoot');
+            if (!calendarDiv) return;
+            let html = `<div class="calendar-header"><button class="calendar-nav" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i> Prev</button><h4 class="m-0">${firstDay.toLocaleString('default', { month: 'long' })} ${year}</h4><button class="calendar-nav" onclick="changeMonth(1)">Next <i class="fas fa-chevron-right"></i></button></div><div class="calendar-weekdays">${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => `<div>${d}</div>`).join('')}</div><div class="calendar-days">`;
+            let dayCount = 1;
+            for (let i = 0; i < 42; i++) {
+                let dayNum, isCurrentMonth = true, dateObj;
+                if (i < startWeekday) { dayNum = prevMonthDays - (startWeekday - i) + 1; isCurrentMonth = false; dateObj = new Date(year, month - 1, dayNum); }
+                else if (i >= startWeekday + daysInMonth) { dayNum = i - (startWeekday + daysInMonth) + 1; isCurrentMonth = false; dateObj = new Date(year, month + 1, dayNum); }
+                else { dayNum = i - startWeekday + 1; dateObj = new Date(year, month, dayNum); }
+                const dateStr = dateObj.toISOString().split('T')[0];
+                const booked = isBooked(dateObj);
+                let classes = 'calendar-day';
+                if (!isCurrentMonth) classes += ' other-month';
+                if (booked) classes += ' booked';
+                else classes += ' selectable';
+                if (selectedStart && dateObj.toDateString() === selectedStart.toDateString()) classes += ' selected-start';
+                else if (selectedEnd && dateObj.toDateString() === selectedEnd.toDateString()) classes += ' selected-end';
+                else if (selectedStart && selectedEnd && dateObj > selectedStart && dateObj < selectedEnd && !booked) classes += ' in-range';
+                html += `<div class="${classes}" data-date="${dateStr}" data-timestamp="${dateObj.getTime()}">${dayNum}</div>`;
+            }
+            html += `</div><div class="mt-3"><button class="btn btn-sm btn-outline-danger" onclick="clearSelection()">Clear selection</button></div>`;
+            calendarDiv.innerHTML = html;
+            attachCalendarEvents();
+        }
+        function attachCalendarEvents() {
+            document.querySelectorAll('.calendar-day.selectable:not(.booked)').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    const timestamp = parseInt(el.dataset.timestamp);
+                    const clickedDate = new Date(timestamp);
+                    if (!selectedStart || (selectedStart && selectedEnd)) { selectedStart = clickedDate; selectedEnd = null; }
+                    else if (selectedStart && !selectedEnd) {
+                        if (clickedDate > selectedStart) {
+                            let hasBooked = false;
+                            for (let d = new Date(selectedStart); d <= clickedDate; d.setDate(d.getDate() + 1)) {
+                                if (isBooked(new Date(d))) { hasBooked = true; break; }
+                            }
+                            if (hasBooked) alert('Selected range includes a booked date. Please choose another range.');
+                            else { selectedEnd = clickedDate; }
+                        } else { selectedStart = clickedDate; selectedEnd = null; }
+                    }
+                    renderCalendar();
+                    updateSelectionText();
+                });
+            });
+        }
+        function changeMonth(delta) {
+            currentDate.setMonth(currentDate.getMonth() + delta);
+            renderCalendar();
+        }
+        function initCalendarIfNeeded() { if (document.getElementById('calendarRoot') && !document.getElementById('calendarRoot').innerHTML) renderCalendar(); }
+        document.getElementById('bookNowAvailBtn')?.addEventListener('click', () => {
+            if (selectedStart && selectedEnd) alert(`✨ Booking request for Watamu Beach Resort from ${selectedStart.toDateString()} to ${selectedEnd.toDateString()}. Our team will contact you shortly.`);
+            else alert('Please select valid check-in and check-out dates from the calendar.');
+        });
+        // preserve original functions
+        const fadeElements = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
+        fadeElements.forEach(el => observer.observe(el));
+        const navbarWrapper = document.getElementById('navbarWrapper');
+        window.addEventListener('scroll', function () { if (window.scrollY > 20) { navbarWrapper.classList.add('sticky-nav'); document.body.classList.add('nav-fixed-padding'); } else { navbarWrapper.classList.remove('sticky-nav'); document.body.classList.remove('nav-fixed-padding'); } });
+        function showTab(tabId) { document.querySelectorAll('.tab-pane').forEach(tab => tab.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active')); document.getElementById(tabId).classList.add('active'); event.target.closest('.tab-btn').classList.add('active'); if (tabId === 'availability') initCalendarIfNeeded(); }
+        function toggleRoom(header) { header.classList.toggle('collapsed'); const content = header.nextElementSibling; if (content.style.display === 'none') content.style.display = 'block'; else content.style.display = 'none'; }
+        document.querySelectorAll('.room-content').forEach(el => el.style.display = 'block');
+        function replyToReview(btn) { const input = btn.previousElementSibling; const replyText = input.value.trim(); if (!replyText) return alert('Please enter a reply.'); const reviewCard = btn.closest('.review-card'); let adminDiv = reviewCard.querySelector('.admin-reply'); if (!adminDiv) { adminDiv = document.createElement('div'); adminDiv.className = 'admin-reply'; reviewCard.appendChild(adminDiv); } adminDiv.innerHTML = `<strong>Resort Manager:</strong><br>${escapeHtml(replyText)}`; input.value = ''; }
+        function addNewReview() { const name = document.getElementById('reviewerName').value.trim(); const rating = parseInt(document.getElementById('reviewRating').value); const text = document.getElementById('reviewText').value.trim(); if (!name || !text) return alert('Please fill name and review.'); const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating); const reviewsDiv = document.getElementById('reviewsList'); const newReview = document.createElement('div'); newReview.className = 'review-card'; newReview.innerHTML = `<div class="review-header d-flex justify-content-between"><strong>${escapeHtml(name)}</strong><span>Just now</span></div><div class="review-rating">${stars}</div><p>${escapeHtml(text)}</p><div class="reply-form"><input type="text" class="reply-input" placeholder="Write a reply..."><button class="reply-btn" onclick="replyToReview(this)">Reply</button></div>`; reviewsDiv.prepend(newReview); document.getElementById('reviewerName').value = ''; document.getElementById('reviewText').value = ''; alert('Review added! Thank you.'); }
+        function escapeHtml(str) { return str.replace(/[&<>]/g, function (m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
+        window.initCalendarIfNeeded = initCalendarIfNeeded;
+    </script>
+</body>
+
+</html>
