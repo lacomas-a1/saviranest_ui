@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SaviraNest Admin | Manage Experiences</title>
+
+    <link rel="icon" href="assets/logo/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Aptos';
+            src: url('/Aptos/Aptos.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --ocean-blue: #1E88E5;
+            --deep-navy: #0B1F3A;
+            --sand-beige: #F4E7D3;
+            --orange: #E07C3C;
+            --sunrise-gold: #F9A826;
+            --support-green: #059669;
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+            --sidebar-width: 280px;
+            --header-height: 70px;
+        }
+
+        body {
+            font-family: 'Aptos', 'Inter', sans-serif;
+            background: #f1f5f9;
+            color: var(--deep-navy);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* ADMIN LAYOUT */
+        .admin-wrapper {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* SIDEBAR - FIXED POSITION */
+        .admin-sidebar {
+            width: var(--sidebar-width);
+            background: var(--white);
+            border-right: 1px solid #e2e8f0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.02);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem 1.5rem 1rem;
+            border-bottom: 1px solid #eef2ff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar-header img {
+            height: 55px;
+            margin-bottom: 8px;
+        }
+
+        .sidebar-header h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 12px;
+        }
+
+        .login-persona {
+            background: #f8fafc;
+            border-radius: 28px;
+            padding: 12px 16px;
+            margin: 16px;
+            text-align: center;
+        }
+
+        .login-persona .avatar-sm {
+            width: 48px;
+            height: 48px;
+            background: var(--sunrise-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--deep-navy);
+        }
+
+        .login-persona .name {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .login-persona .role {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid #e2e8f0;
+            border-radius: 40px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #e07c3c;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+        }
+
+        .logout-btn:hover {
+            background: #fef2e8;
+            border-color: var(--orange);
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 1.5rem 1rem;
+        }
+
+        .nav-item-admin {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link-admin {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.75rem 1rem;
+            border-radius: 16px;
+            color: #475569;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .nav-link-admin i {
+            width: 24px;
+            font-size: 1.2rem;
+            color: var(--ocean-blue);
+        }
+
+        .nav-link-admin:hover,
+        .nav-link-admin.active {
+            background: rgba(30, 136, 229, 0.08);
+            color: var(--ocean-blue);
+        }
+
+        .nav-link-admin.active {
+            background: rgba(30, 136, 229, 0.12);
+            font-weight: 600;
+            color: var(--ocean-blue);
+        }
+
+        /* MAIN CONTENT - scrollable */
+        .admin-main {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-y: auto;
+            background: #f1f5f9;
+        }
+
+        .admin-topbar {
+            background: var(--white);
+            padding: 0 2rem;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--deep-navy);
+            cursor: pointer;
+            margin-right: auto;
+        }
+
+        .dashboard-content {
+            padding: 2rem;
+        }
+
+        /* Table & filters */
+        .actions-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-filter {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .search-filter input,
+        .search-filter select {
+            padding: 10px 16px;
+            border-radius: 40px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            font-family: inherit;
+        }
+
+        .btn-primary-admin {
+            background: var(--sunrise-gold);
+            border: none;
+            color: var(--deep-navy);
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-primary-admin:hover {
+            background: #e6950e;
+        }
+
+        .data-table {
+            width: 100%;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #eef2ff;
+        }
+
+        .data-table th {
+            background: #f8fafc;
+            font-weight: 600;
+        }
+
+        .data-table tr:hover {
+            background: #fefce8;
+        }
+
+        .btn-icon {
+            background: transparent;
+            border: none;
+            color: var(--ocean-blue);
+            cursor: pointer;
+            margin: 0 4px;
+            font-size: 1rem;
+        }
+
+        .btn-icon.delete {
+            color: #e07c3c;
+        }
+
+        .btn-icon:hover {
+            opacity: 0.7;
+        }
+
+        /* Modal */
+        .modal-content {
+            border-radius: 28px;
+            border: none;
+        }
+
+        .modal-header {
+            background: var(--deep-navy);
+            color: white;
+            border-radius: 28px 28px 0 0;
+        }
+
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 40px;
+            padding: 10px 18px;
+            border: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 992px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+                z-index: 1050;
+            }
+
+            .admin-sidebar.open {
+                transform: translateX(0);
+            }
+
+            .admin-main {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .data-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .actions-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1040;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-wrapper">
+        <!-- Sidebar (fixed) -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <img src="../assets/image/savira_nest_logo.png" alt="SaviraNest Logo">
+                <h4>SaviraNest Admin</h4>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item-admin">
+                    <a href="dashboard.html" class="nav-link-admin">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="stay.html" class="nav-link-admin">
+                        <i class="fas fa-building"></i> Stays
+                    </a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="experience.html" class="nav-link-admin active">
+                        <i class="fas fa-compass"></i> Experiences
+                    </a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="bookings.html" class="nav-link-admin">
+                        <i class="fas fa-calendar-check"></i> Bookings
+                    </a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="guests.html" class="nav-link-admin">
+                        <i class="fas fa-users"></i> Guests
+                    </a>
+                </div>
+                <div class="nav-item-admin"><a href="transactions.html" class="nav-link-admin"><i
+                            class="fas fa-credit-card"></i> Transactions</a></div>
+                <div class="nav-item-admin"><a href="reports.html" class="nav-link-admin"><i
+                            class="fas fa-chart-line"></i> Reports</a></div>
+                <div class="nav-item-admin">
+                    <a href="settings.html" class="nav-link-admin">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                </div>
+            </div>
+            <div class="login-persona">
+                <div class="avatar-sm">MA</div>
+                <div class="name">Michael Amadi</div>
+                <div class="role">Super Administrator</div>
+                <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="admin-main">
+            <div class="admin-topbar">
+                <button class="menu-toggle" id="menuToggleBtn"><i class="fas fa-bars"></i></button>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="actions-bar">
+                    <h2>Manage Experiences</h2>
+                    <div style="display: flex; gap: 12px;">
+                        <div class="search-filter">
+                            <input type="text" id="searchInput" placeholder="Search by title...">
+                            <select id="categoryFilter">
+                                <option value="all">All Categories</option>
+                                <option value="coastal">🌊 Coastal</option>
+                                <option value="safari">🐘 Safari & Adventure</option>
+                                <option value="lifestyle">🧘 Lifestyle & Relaxation</option>
+                                <option value="cultural">🎭 Cultural & Local</option>
+                            </select>
+                        </div>
+                        <button class="btn-primary-admin" data-bs-toggle="modal" data-bs-target="#addExpModal">
+                            <i class="fas fa-plus"></i> Add New Experience
+                        </button>
+                    </div>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="data-table" id="experiencesTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Price (KES)</th>
+                                <th>Duration</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="experiencesTableBody">
+                            <!-- Data loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="overlay" id="sidebarOverlay"></div>
+
+    <!-- Add Experience Modal -->
+    <div class="modal fade" id="addExpModal" tabindex="-1" aria-labelledby="addExpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-plus-circle"></i> Add New Experience</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addExpForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Experience Title *</label>
+                                <input type="text" class="form-control" id="expTitle" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Category *</label>
+                                <select class="form-select" id="expCategory" required>
+                                    <option value="coastal">🌊 Coastal</option>
+                                    <option value="safari">🐘 Safari & Adventure</option>
+                                    <option value="lifestyle">🧘 Lifestyle & Relaxation</option>
+                                    <option value="cultural">🎭 Cultural & Local</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Price (KES) *</label>
+                                <input type="number" class="form-control" id="expPrice" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Duration *</label>
+                                <input type="text" class="form-control" id="expDuration"
+                                    placeholder="e.g., 2 hrs, Full day" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Short Description *</label>
+                                <textarea class="form-control" id="expDesc" rows="2" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Image URL (optional)</label>
+                                <input type="text" class="form-control" id="expImage" placeholder="https://...">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-primary-travel" id="saveExpBtn">Save Experience</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Experience Modal -->
+    <div class="modal fade" id="editExpModal" tabindex="-1" aria-labelledby="editExpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-edit"></i> Edit Experience</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editExpForm">
+                        <input type="hidden" id="editExpId">
+                        <div class="row g-3">
+                            <div class="col-md-6"><label>Title</label><input type="text" class="form-control"
+                                    id="editTitle"></div>
+                            <div class="col-md-6"><label>Category</label><select class="form-select" id="editCategory">
+                                    <option value="coastal">Coastal</option>
+                                    <option value="safari">Safari</option>
+                                    <option value="lifestyle">Lifestyle</option>
+                                    <option value="cultural">Cultural</option>
+                                </select></div>
+                            <div class="col-md-6"><label>Price (KES)</label><input type="number" class="form-control"
+                                    id="editPrice"></div>
+                            <div class="col-md-6"><label>Duration</label><input type="text" class="form-control"
+                                    id="editDuration"></div>
+                            <div class="col-12"><label>Description</label><textarea class="form-control" id="editDesc"
+                                    rows="2"></textarea></div>
+                            <div class="col-12"><label>Image URL</label><input type="text" class="form-control"
+                                    id="editImage"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-primary-travel" id="updateExpBtn">Update Experience</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample initial experiences data
+        let experiences = [
+            { id: 1, title: "Sunset Dhow Cruise", category: "coastal", price: 3500, duration: "2 hrs", description: "Sail into the Indian Ocean on a traditional dhow with snacks and drinks.", image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop" },
+            { id: 2, title: "Tsavo East Day Safari", category: "safari", price: 12000, duration: "Full day", description: "Game drive with expert guide, picnic lunch, search for elephants and lions.", image: "https://images.unsplash.com/photo-1549366021-9f761d450615?w=600&h=400&fit=crop" },
+            { id: 3, title: "Beachfront Yoga & Wellness", category: "lifestyle", price: 1800, duration: "1.5 hrs", description: "Morning or sunset yoga session with certified instructor.", image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&h=400&fit=crop" },
+            { id: 4, title: "Swahili Cooking Class", category: "cultural", price: 2500, duration: "3 hrs", description: "Learn to make coconut fish curry, samosas, and chapati.", image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop" },
+        ];
+        let nextExpId = 5;
+
+        // Render table
+        function renderExperiences() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const filtered = experiences.filter(e => {
+                const matchSearch = e.title.toLowerCase().includes(searchTerm);
+                const matchCategory = categoryFilter === 'all' || e.category === categoryFilter;
+                return matchSearch && matchCategory;
+            });
+            const tbody = document.getElementById('experiencesTableBody');
+            tbody.innerHTML = '';
+            filtered.forEach(exp => {
+                const row = tbody.insertRow();
+                row.insertCell(0).innerText = exp.id;
+                row.insertCell(1).innerHTML = `<strong>${exp.title}</strong>`;
+                let categoryDisplay = exp.category;
+                if (categoryDisplay === 'coastal') categoryDisplay = '🌊 Coastal';
+                else if (categoryDisplay === 'safari') categoryDisplay = '🐘 Safari';
+                else if (categoryDisplay === 'lifestyle') categoryDisplay = '🧘 Lifestyle';
+                else if (categoryDisplay === 'cultural') categoryDisplay = '🎭 Cultural';
+                row.insertCell(2).innerText = categoryDisplay;
+                row.insertCell(3).innerText = `KES ${exp.price.toLocaleString()}`;
+                row.insertCell(4).innerText = exp.duration;
+                const actions = row.insertCell(5);
+                actions.innerHTML = `<button class="btn-icon edit-btn" data-id="${exp.id}"><i class="fas fa-edit"></i></button>
+                                     <button class="btn-icon delete-btn" data-id="${exp.id}"><i class="fas fa-trash-alt"></i></button>`;
+            });
+            // attach event listeners
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', () => editExperience(parseInt(btn.dataset.id)));
+            });
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.dataset.id);
+                    if (confirm('Delete this experience permanently?')) {
+                        experiences = experiences.filter(e => e.id !== id);
+                        renderExperiences();
+                        alert('Experience deleted.');
+                    }
+                });
+            });
+        }
+
+        function editExperience(id) {
+            const exp = experiences.find(e => e.id === id);
+            if (!exp) return;
+            document.getElementById('editExpId').value = exp.id;
+            document.getElementById('editTitle').value = exp.title;
+            document.getElementById('editCategory').value = exp.category;
+            document.getElementById('editPrice').value = exp.price;
+            document.getElementById('editDuration').value = exp.duration;
+            document.getElementById('editDesc').value = exp.description;
+            document.getElementById('editImage').value = exp.image || '';
+            const editModal = new bootstrap.Modal(document.getElementById('editExpModal'));
+            editModal.show();
+        }
+
+        // Add experience
+        document.getElementById('saveExpBtn').addEventListener('click', () => {
+            const title = document.getElementById('expTitle').value.trim();
+            const category = document.getElementById('expCategory').value;
+            const price = parseFloat(document.getElementById('expPrice').value);
+            const duration = document.getElementById('expDuration').value.trim();
+            const description = document.getElementById('expDesc').value.trim();
+            const image = document.getElementById('expImage').value.trim() || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop';
+            if (!title || !price || !duration || !description) {
+                alert('Please fill all required fields.');
+                return;
+            }
+            const newExp = { id: nextExpId++, title, category, price, duration, description, image };
+            experiences.push(newExp);
+            renderExperiences();
+            document.getElementById('addExpForm').reset();
+            bootstrap.Modal.getInstance(document.getElementById('addExpModal')).hide();
+            alert('Experience added successfully!');
+        });
+
+        // Update experience
+        document.getElementById('updateExpBtn').addEventListener('click', () => {
+            const id = parseInt(document.getElementById('editExpId').value);
+            const index = experiences.findIndex(e => e.id === id);
+            if (index !== -1) {
+                experiences[index].title = document.getElementById('editTitle').value;
+                experiences[index].category = document.getElementById('editCategory').value;
+                experiences[index].price = parseFloat(document.getElementById('editPrice').value);
+                experiences[index].duration = document.getElementById('editDuration').value;
+                experiences[index].description = document.getElementById('editDesc').value;
+                experiences[index].image = document.getElementById('editImage').value;
+                renderExperiences();
+                bootstrap.Modal.getInstance(document.getElementById('editExpModal')).hide();
+                alert('Experience updated.');
+            }
+        });
+
+        // Filters
+        document.getElementById('searchInput').addEventListener('input', renderExperiences);
+        document.getElementById('categoryFilter').addEventListener('change', renderExperiences);
+
+        // Sidebar and logout
+        const menuBtn = document.getElementById('menuToggleBtn');
+        const sidebar = document.getElementById('adminSidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
+        function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; }
+        menuBtn.addEventListener('click', openSidebar);
+        overlay.addEventListener('click', closeSidebar);
+        window.addEventListener('resize', () => { if (window.innerWidth > 992 && sidebar.classList.contains('open')) closeSidebar(); });
+        document.getElementById('logoutBtn').addEventListener('click', () => alert('Logout demo'));
+
+        // Initial render
+        renderExperiences();
+    </script>
+    <style>
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--orange);
+            color: var(--orange);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: var(--orange);
+            color: white;
+        }
+
+        .btn-primary-travel {
+            background-color: var(--sunrise-gold);
+            color: var(--deep-navy);
+            border: 2px solid var(--sunrise-gold);
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .btn-primary-travel:hover {
+            background-color: transparent;
+            color: var(--sunrise-gold);
+        }
+    </style>
+</body>
+
+</html>

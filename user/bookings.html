@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SaviraNest | My Bookings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Aptos';
+            src: url('/Aptos/Aptos.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --ocean-blue: #1E88E5;
+            --deep-navy: #0B1F3A;
+            --sand-beige: #F4E7D3;
+            --orange: #E07C3C;
+            --sunrise-gold: #F9A826;
+            --support-green: #059669;
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+            --sidebar-width: 280px;
+            --header-height: 70px;
+        }
+
+        body {
+            font-family: 'Aptos', 'Inter', sans-serif;
+            background: #f1f5f9;
+            color: var(--deep-navy);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .admin-wrapper {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar - simplified for bookings only */
+        .admin-sidebar {
+            width: var(--sidebar-width);
+            background: var(--white);
+            border-right: 1px solid #e2e8f0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.02);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem 1.5rem 1rem;
+            border-bottom: 1px solid #eef2ff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar-header img {
+            height: 55px;
+            margin-bottom: 8px;
+        }
+        .sidebar-header h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin: 0;
+        }
+
+        .login-persona {
+            background: #f8fafc;
+            border-radius: 28px;
+            padding: 12px 16px;
+            margin: 16px;
+            text-align: center;
+            border: 1px solid #eef2ff;
+        }
+        .login-persona .avatar-sm {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--sunrise-gold), var(--orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .login-persona .name {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--deep-navy);
+        }
+        .login-persona .role {
+            font-size: 0.7rem;
+            color: var(--orange);
+            background: #fff0e6;
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-top: 6px;
+        }
+        .logout-btn {
+            background: transparent;
+            border: 1px solid #e2e8f0;
+            border-radius: 40px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #e07c3c;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+            margin-top: 12px;
+        }
+        .logout-btn:hover {
+            background: #fef2e8;
+            border-color: var(--orange);
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 1.5rem 1rem;
+        }
+        .nav-item-admin {
+            margin-bottom: 0.5rem;
+        }
+        .nav-link-admin {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.75rem 1rem;
+            border-radius: 16px;
+            color: #475569;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .nav-link-admin i {
+            width: 24px;
+            font-size: 1.2rem;
+            color: var(--ocean-blue);
+        }
+        .nav-link-admin:hover,
+        .nav-link-admin.active {
+            background: rgba(30, 136, 229, 0.08);
+            color: var(--ocean-blue);
+        }
+        .nav-link-admin.active {
+            background: rgba(30, 136, 229, 0.12);
+            font-weight: 600;
+        }
+
+        .admin-main {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-y: auto;
+            background: #f1f5f9;
+        }
+        .admin-topbar {
+            background: var(--white);
+            padding: 0 2rem;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--deep-navy);
+            cursor: pointer;
+            margin-right: auto;
+        }
+        .dashboard-content {
+            padding: 2rem;
+        }
+        .welcome-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-bar input, .filter-bar select {
+            padding: 8px 16px;
+            border-radius: 40px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            font-family: inherit;
+            font-size: 0.85rem;
+        }
+        .card-panel {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 1px solid #eef2ff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+        .booking-table {
+            width: 100%;
+            font-size: 0.9rem;
+            border-collapse: collapse;
+        }
+        .booking-table th, .booking-table td {
+            padding: 14px 8px;
+            border-bottom: 1px solid #eef2ff;
+            vertical-align: middle;
+        }
+        .booking-table th {
+            background: #f8fafc;
+            font-weight: 600;
+        }
+        .badge-status {
+            background: #e6f7e6;
+            color: var(--support-green);
+            padding: 4px 10px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .badge-pending {
+            background: #fff3e0;
+            color: #e67e22;
+        }
+        .badge-upcoming {
+            background: #e3f2fd;
+            color: #1E88E5;
+        }
+        .badge-cancelled {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        .badge-completed {
+            background: #e6f7e6;
+            color: #059669;
+        }
+        .btn-sm-outline {
+            background: transparent;
+            border: 1px solid var(--ocean-blue);
+            border-radius: 40px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--ocean-blue);
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .btn-sm-outline:hover {
+            background: var(--ocean-blue);
+            color: white;
+        }
+        .btn-danger-outline {
+            background: transparent;
+            border: 1px solid #dc2626;
+            color: #dc2626;
+            border-radius: 40px;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-danger-outline:hover {
+            background: #dc2626;
+            color: white;
+        }
+        .modal-content {
+            border-radius: 28px;
+            border: none;
+        }
+        .modal-header {
+            background: var(--deep-navy);
+            color: white;
+            border-radius: 28px 28px 0 0;
+        }
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+        @media (max-width: 992px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+                z-index: 1050;
+            }
+            .admin-sidebar.open {
+                transform: translateX(0);
+            }
+            .admin-main {
+                margin-left: 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        @media (max-width: 768px) {
+            .booking-table {
+                display: block;
+                overflow-x: auto;
+            }
+            .filter-bar {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1040;
+        }
+        .overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="admin-wrapper">
+    <!-- Simplified Sidebar - only My Bookings active -->
+    <aside class="admin-sidebar" id="userSidebar">
+        <div class="sidebar-header">
+            <img src="../assets/image/savira_nest_logo.png" alt="SaviraNest Logo" onerror="this.src='https://placehold.co/60x60?text=SN'">
+            <h4>SaviraNest</h4>
+        </div>
+        <div class="sidebar-nav">
+            <div class="nav-item-admin">
+                <a href="#" class="nav-link-admin active" id="navBookingsOnly">
+                    <i class="fas fa-calendar-check"></i> My Bookings
+                </a>
+            </div>
+        </div>
+        <div class="login-persona">
+            <div class="avatar-sm">AJ</div>
+            <div class="name">Alex Johnson</div>
+            <div class="role">Gold Explorer · 1,280 pts</div>
+            <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </aside>
+
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <button class="menu-toggle" id="menuToggleBtn"><i class="fas fa-bars"></i></button>
+            <div class="admin-user">
+                <span>Alex J.</span>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="welcome-header">
+                <h2><i class="fas fa-calendar-check"></i> My Bookings</h2>
+                <div class="filter-bar">
+                    <input type="text" id="searchBooking" placeholder="Search by property or ID...">
+                    <select id="statusFilter">
+                        <option value="all">All Statuses</option>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancelled">Cancelled</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card-panel" style="overflow-x: auto;">
+                <table class="booking-table" id="bookingsTable">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Property / Experience</th>
+                            <th>Dates</th>
+                            <th>Guests</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTableBody">
+                        <tr><td colspan="7" class="text-center">Loading bookings...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="overlay" id="sidebarOverlay"></div>
+
+<!-- Booking Details Modal -->
+<div class="modal fade" id="bookingDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-receipt"></i> Booking Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="bookingDetailBody"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn-sm-outline" data-bs-dismiss="modal">Close</button>
+                <button id="modalCancelBtn" class="btn-danger-outline" style="display:none;">Cancel Booking</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // ---------- USER BOOKINGS DATA (sample) ----------
+    let userBookings = [
+        { id: "SNB1001", name: "Watamu Beach Resort", type: "Stay", checkIn: "2025-06-12", checkOut: "2025-06-18", guests: 2, amount: 51200, status: "upcoming", createdAt: "2025-05-10" },
+        { id: "SNB1002", name: "Mara Serena Lodge", type: "Stay", checkIn: "2025-05-03", checkOut: "2025-05-07", guests: 2, amount: 87000, status: "completed", createdAt: "2025-02-15" },
+        { id: "SNB1003", name: "Sunset Dhow Cruise", type: "Experience", checkIn: "2025-04-20", checkOut: null, guests: 2, amount: 4500, status: "completed", createdAt: "2025-03-01" },
+        { id: "SNB1004", name: "Lamu Swahili House", type: "Stay", checkIn: "2025-08-01", checkOut: "2025-08-04", guests: 3, amount: 32800, status: "upcoming", createdAt: "2025-06-01" },
+        { id: "SNB1005", name: "Tsavo Day Safari", type: "Experience", checkIn: "2025-03-10", checkOut: null, guests: 2, amount: 9200, status: "completed", createdAt: "2025-02-20" },
+        { id: "SNB1006", name: "Diani Sea Resort", type: "Stay", checkIn: "2025-07-20", checkOut: "2025-07-25", guests: 4, amount: 74500, status: "pending", createdAt: "2025-06-18" },
+        { id: "SNB1007", name: "Maasai Village Cultural Tour", type: "Experience", checkIn: "2025-09-05", checkOut: null, guests: 2, amount: 6800, status: "upcoming", createdAt: "2025-06-22" }
+    ];
+
+    // Helper: status badge HTML
+    function getStatusBadge(status) {
+        switch(status) {
+            case 'upcoming': return '<span class="badge-status badge-upcoming">Upcoming</span>';
+            case 'completed': return '<span class="badge-status badge-completed">Completed</span>';
+            case 'cancelled': return '<span class="badge-status badge-cancelled">Cancelled</span>';
+            case 'pending': return '<span class="badge-status badge-pending">Pending</span>';
+            default: return '<span class="badge-status">'+status+'</span>';
+        }
+    }
+
+    // Format date display
+    function formatDateRange(booking) {
+        if (booking.type === 'Stay') {
+            return `${booking.checkIn} → ${booking.checkOut}`;
+        } else {
+            return booking.checkIn; // single date for experiences
+        }
+    }
+
+    // Render bookings table with filters
+    function renderBookings() {
+        const searchTerm = document.getElementById('searchBooking').value.toLowerCase();
+        const statusFilter = document.getElementById('statusFilter').value;
+        
+        const filtered = userBookings.filter(booking => {
+            const matchSearch = booking.name.toLowerCase().includes(searchTerm) || booking.id.toLowerCase().includes(searchTerm);
+            const matchStatus = statusFilter === 'all' || booking.status === statusFilter;
+            return matchSearch && matchStatus;
+        });
+        
+        const tbody = document.getElementById('bookingsTableBody');
+        if (!tbody) return;
+        
+        if (filtered.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" class="text-center py-5">No bookings found matching your criteria.</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = '';
+        filtered.forEach(booking => {
+            const row = tbody.insertRow();
+            row.insertCell(0).innerHTML = `<strong>${booking.id}</strong>`;
+            row.insertCell(1).innerHTML = `${booking.name} <small class="text-muted">(${booking.type})</small>`;
+            row.insertCell(2).innerText = formatDateRange(booking);
+            row.insertCell(3).innerText = booking.guests;
+            row.insertCell(4).innerHTML = `KES ${booking.amount.toLocaleString()}`;
+            row.insertCell(5).innerHTML = getStatusBadge(booking.status);
+            
+            const actionsCell = row.insertCell(6);
+            // View details button always present
+            actionsCell.innerHTML = `<button class="btn-sm-outline view-detail-btn" data-id="${booking.id}" style="margin-right:6px;"><i class="fas fa-eye"></i> Details</button>`;
+            // Cancel button only for upcoming or pending (not cancelled/completed)
+            if (booking.status === 'upcoming' || booking.status === 'pending') {
+                actionsCell.innerHTML += `<button class="btn-danger-outline cancel-booking-btn" data-id="${booking.id}"><i class="fas fa-times"></i> Cancel</button>`;
+            }
+        });
+        
+        // Attach event listeners to dynamically created buttons
+        document.querySelectorAll('.view-detail-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const bookingId = btn.getAttribute('data-id');
+                showBookingDetails(bookingId);
+            });
+        });
+        
+        document.querySelectorAll('.cancel-booking-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const bookingId = btn.getAttribute('data-id');
+                if (confirm('Are you sure you want to cancel this booking? Cancellation policy may apply.')) {
+                    cancelBooking(bookingId);
+                }
+            });
+        });
+    }
+
+    // Show booking details modal
+    function showBookingDetails(bookingId) {
+        const booking = userBookings.find(b => b.id === bookingId);
+        if (!booking) return;
+        
+        const modalBody = document.getElementById('bookingDetailBody');
+        const cancelModalBtn = document.getElementById('modalCancelBtn');
+        
+        let detailsHtml = `
+            <div class="row mb-3">
+                <div class="col-md-5 fw-bold">Booking ID:</div>
+                <div class="col-md-7">${booking.id}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-5 fw-bold">Property / Experience:</div>
+                <div class="col-md-7">${booking.name} (${booking.type})</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-5 fw-bold">Dates:</div>
+                <div class="col-md-7">${formatDateRange(booking)}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-5 fw-bold">Number of Guests:</div>
+                <div class="col-md-7">${booking.guests}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-5 fw-bold">Total Amount:</div>
+                <div class="col-md-7">KES ${booking.amount.toLocaleString()}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-5 fw-bold">Status:</div>
+                <div class="col-md-7">${getStatusBadge(booking.status)}</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-5 fw-bold">Booked On:</div>
+                <div class="col-md-7">${booking.createdAt}</div>
+            </div>
+        `;
+        
+        modalBody.innerHTML = detailsHtml;
+        
+        // Show cancel button only if eligible
+        if (booking.status === 'upcoming' || booking.status === 'pending') {
+            cancelModalBtn.style.display = 'inline-block';
+            // Remove previous event listeners and add fresh one
+            const newCancelBtn = cancelModalBtn.cloneNode(true);
+            cancelModalBtn.parentNode.replaceChild(newCancelBtn, cancelModalBtn);
+            newCancelBtn.addEventListener('click', () => {
+                if (confirm(`Cancel booking ${booking.id}?`)) {
+                    cancelBooking(booking.id);
+                    bootstrap.Modal.getInstance(document.getElementById('bookingDetailModal')).hide();
+                }
+            });
+            document.getElementById('modalCancelBtn').style.display = 'inline-block';
+        } else {
+            cancelModalBtn.style.display = 'none';
+        }
+        
+        const modal = new bootstrap.Modal(document.getElementById('bookingDetailModal'));
+        modal.show();
+    }
+    
+    // Cancel booking logic
+    function cancelBooking(bookingId) {
+        const bookingIndex = userBookings.findIndex(b => b.id === bookingId);
+        if (bookingIndex !== -1 && (userBookings[bookingIndex].status === 'upcoming' || userBookings[bookingIndex].status === 'pending')) {
+            userBookings[bookingIndex].status = 'cancelled';
+            renderBookings();  // refresh table
+            alert(`Booking ${bookingId} has been successfully cancelled.`);
+        } else {
+            alert('This booking cannot be cancelled.');
+        }
+    }
+
+    // Sidebar toggle for mobile
+    const menuBtn = document.getElementById('menuToggleBtn');
+    const sidebar = document.getElementById('userSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    
+    function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+    
+    if (menuBtn) menuBtn.addEventListener('click', openSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
+    
+    // Close sidebar on window resize if screen becomes large
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 992 && sidebar.classList.contains('open')) {
+            closeSidebar();
+        }
+    });
+    
+    // Logout button demo
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+        alert('You have been logged out (demo). Redirect to login page.');
+        // In real app: window.location.href = 'login.html';
+    });
+    
+    // Add filter event listeners
+    document.getElementById('searchBooking').addEventListener('input', renderBookings);
+    document.getElementById('statusFilter').addEventListener('change', renderBookings);
+    
+    // Initial render
+    renderBookings();
+</script>
+</body>
+</html>

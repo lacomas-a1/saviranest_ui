@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SaviraNest | My Travel Dashboard + Support</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Aptos';
+            src: url('/Aptos/Aptos.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --ocean-blue: #1E88E5;
+            --deep-navy: #0B1F3A;
+            --sand-beige: #F4E7D3;
+            --orange: #E07C3C;
+            --sunrise-gold: #F9A826;
+            --support-green: #059669;
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+            --sidebar-width: 280px;
+            --header-height: 70px;
+        }
+
+        body {
+            font-family: 'Aptos', 'Inter', sans-serif;
+            background: #f1f5f9;
+            color: var(--deep-navy);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .admin-wrapper {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .admin-sidebar {
+            width: var(--sidebar-width);
+            background: var(--white);
+            border-right: 1px solid #e2e8f0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.02);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem 1.5rem 1rem;
+            border-bottom: 1px solid #eef2ff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .brand-logo i {
+            font-size: 2rem;
+            color: var(--sunrise-gold);
+        }
+
+        .sidebar-header h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin: 0;
+        }
+
+        .sidebar-header .tag {
+            font-size: 0.7rem;
+            color: #64748b;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-header img {
+            height: 55px;
+            margin-bottom: 8px;
+        }
+
+        .login-persona {
+            background: #f8fafc;
+            border-radius: 28px;
+            padding: 12px 16px;
+            margin: 16px;
+            text-align: center;
+            border: 1px solid #eef2ff;
+        }
+
+        .login-persona .avatar-sm {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--sunrise-gold), var(--orange));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .login-persona .name {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--deep-navy);
+        }
+
+        .login-persona .role {
+            font-size: 0.7rem;
+            color: var(--orange);
+            background: #fff0e6;
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-top: 6px;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid #e2e8f0;
+            border-radius: 40px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #e07c3c;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        .logout-btn:hover {
+            background: #fef2e8;
+            border-color: var(--orange);
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 1.5rem 1rem;
+        }
+
+        .nav-item-admin {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link-admin {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.75rem 1rem;
+            border-radius: 16px;
+            color: #475569;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .nav-link-admin i {
+            width: 24px;
+            font-size: 1.2rem;
+            color: var(--ocean-blue);
+        }
+
+        .nav-link-admin:hover,
+        .nav-link-admin.active {
+            background: rgba(30, 136, 229, 0.08);
+            color: var(--ocean-blue);
+        }
+
+        .nav-link-admin.active {
+            background: rgba(30, 136, 229, 0.12);
+            font-weight: 600;
+        }
+
+        .admin-main {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-y: auto;
+            background: #f1f5f9;
+        }
+
+        .admin-topbar {
+            background: var(--white);
+            padding: 0 2rem;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--deep-navy);
+            cursor: pointer;
+            margin-right: auto;
+        }
+
+        .dashboard-content {
+            padding: 2rem;
+        }
+
+        .welcome-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eef2ff;
+            transition: transform 0.2s;
+        }
+
+        .row-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-panel {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 1px solid #eef2ff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .badge-status {
+            background: #e6f7e6;
+            color: var(--support-green);
+            padding: 4px 10px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .badge-pending {
+            background: #fff3e0;
+            color: #e67e22;
+        }
+
+        .badge-open {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .badge-inprogress {
+            background: #fff3e0;
+            color: #e67e22;
+        }
+
+        .badge-resolved {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+
+        .rec-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0f2f5;
+            padding: 12px 0;
+        }
+
+        .btn-sm-outline {
+            background: transparent;
+            border: 1px solid var(--ocean-blue);
+            border-radius: 40px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--ocean-blue);
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-sm-outline:hover {
+            background: var(--ocean-blue);
+            color: white;
+        }
+
+        .quick-action-btn {
+            text-align: left;
+            width: 100%;
+            margin-bottom: 8px;
+            background: #f8fafc;
+            border: 1px solid #eef2ff;
+        }
+
+        /* support specific */
+        .ticket-table {
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        .ticket-table th,
+        .ticket-table td {
+            padding: 14px 8px;
+            border-bottom: 1px solid #eef2ff;
+        }
+
+        .message-thread {
+            max-height: 320px;
+            overflow-y: auto;
+            background: #f9fafb;
+            border-radius: 24px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+
+        .message-bubble {
+            background: white;
+            border-radius: 20px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid var(--sunrise-gold);
+        }
+
+        .modal-content {
+            border-radius: 28px;
+            border: none;
+        }
+
+        .modal-header {
+            background: var(--deep-navy);
+            color: white;
+            border-radius: 28px 28px 0 0;
+        }
+
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 40px;
+            padding: 10px 18px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-primary-travel {
+            background-color: var(--sunrise-gold);
+            color: var(--deep-navy);
+            border: 2px solid var(--sunrise-gold);
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .btn-primary-travel:hover {
+            background-color: transparent;
+            color: var(--sunrise-gold);
+        }
+
+        @media (max-width: 992px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+                z-index: 1050;
+            }
+
+            .admin-sidebar.open {
+                transform: translateX(0);
+            }
+
+            .admin-main {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .row-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1040;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-wrapper">
+        <aside class="admin-sidebar" id="userSidebar">
+            <div class="sidebar-header">
+                <img src="../assets/image/savira_nest_logo.png" alt="SaviraNest Logo"
+                    onerror="this.src='https://placehold.co/60x60?text=SN'">
+                <h4>SaviraNest User</h4>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item-admin">
+                    <a href="#" class="nav-link-admin"><i class="fas fa-tachometer-alt"></i>
+                        Dashboard</a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="#" class="nav-link-admin"><i class="fas fa-calendar-check"></i> My
+                        Bookings</a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="#" class="nav-link-admin"><i class="fas fa-heart"></i> Wishlist</a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="#" class="nav-link-admin"><i class="fas fa-compass"></i> Experiences</a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="#" class="nav-link-admin"><i class="fas fa-user-circle"></i> Profile</a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="#" class="nav-link-admin"><i class="fas fa-cog"></i> Account Settings</a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="#" class="nav-link-admin" id="navSupportLink"><i class="fas fa-headset"></i> Support</a>
+                </div>
+            </div>
+            <div class="login-persona">
+                <div class="avatar-sm">AJ</div>
+                <div class="name">Alex Johnson</div>
+                <div class="role">✨ Gold Explorer · 1,280 pts</div>
+                <button class="logout-btn" id="userLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-topbar">
+                <button class="menu-toggle" id="menuToggleBtn"><i class="fas fa-bars"></i></button>
+            </div>
+
+            <div class="dashboard-content" id="dashboardContentWrapper">
+
+                <!-- SUPPORT TICKET VIEW (initially hidden) -->
+                <div id="supportView" style="display: none;">
+                    <div class="welcome-header">
+                        <h2><i class="fas fa-headset"></i> My Support Tickets</h2>
+                        <button class="btn-primary-travel" id="newTicketBtn"><i class="fas fa-plus"></i> New
+                            Ticket</button>
+                    </div>
+                    <div class="card-panel" style="overflow-x: auto;">
+                        <table class="ticket-table" id="userTicketsTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Subject</th>
+                                    <th>Status</th>
+                                    <th>Created</th>
+                                    <th>Last Updated</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ticketsTableBody">
+                                <tr>
+                                    <td colspan="6" class="text-center">Loading tickets...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="overlay" id="sidebarOverlay"></div>
+
+    <!-- New Ticket Modal -->
+    <div class="modal fade" id="newTicketModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-paper-plane"></i> Submit Support Request</h5><button
+                        type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="userTicketForm">
+                        <div class="mb-3"><label class="form-label">Subject *</label><input type="text" id="newSubject"
+                                class="form-control" required></div>
+                        <div class="mb-3"><label class="form-label">Description (details) *</label><textarea
+                                id="newDescription" rows="4" class="form-control" required></textarea></div>
+                    </form>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline"
+                        data-bs-dismiss="modal">Cancel</button><button type="button" id="confirmNewTicketBtn"
+                        class="btn-primary-travel">Create Ticket</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View/Reply Ticket Modal -->
+    <div class="modal fade" id="viewTicketModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ticket Details</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="viewTicketModalBody">
+                    <div id="ticketDetailHeader"></div>
+                    <hr>
+                    <h6><i class="fas fa-comments"></i> Conversation</h6>
+                    <div id="ticketMessagesContainer" class="message-thread"></div>
+                    <div class="mt-3"><label class="form-label">Your Reply</label><textarea id="replyMessageText"
+                            class="form-control" rows="2" placeholder="Write your reply..."></textarea>
+                        <div class="mt-2 text-end"><button id="sendUserReplyBtn" class="btn-primary-travel btn-sm">Send
+                                Reply</button></div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline"
+                        data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // -------------------- USER CONTEXT --------------------
+        const currentUser = { id: "user_101", name: "Alex Johnson", email: "alex.johnson@saviranest.com" };
+        let allTickets = [];    // Store tickets for this user only
+        let nextTicketId = 200;
+        const STORAGE_KEY = "savira_user_tickets_alex";
+
+        // Load or initialize tickets from localStorage (only this user)
+        function loadUserTickets() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                allTickets = JSON.parse(stored);
+                nextTicketId = Math.max(...allTickets.map(t => t.id), 199) + 1;
+            } else {
+                // Seed sample tickets relevant to Alex
+                const now = new Date();
+                const formatDate = (d) => d.toISOString().split('T')[0];
+                const todayStr = formatDate(now);
+                allTickets = [
+                    { id: 201, subject: "Booking modification for Watamu Beach Resort", status: "In Progress", createdAt: "2025-06-01", updatedAt: "2025-06-02", messages: [{ author: "Alex Johnson", text: "I need to change my check-in date from June 12 to June 15.", timestamp: "2025-06-01 10:23" }, { author: "SaviraNest Support", text: "Hello Alex, we are checking availability. Will update you shortly.", timestamp: "2025-06-02 14:15" }] },
+                    { id: 202, subject: "Payment issue with M-Pesa", status: "Open", createdAt: "2025-06-10", updatedAt: "2025-06-10", messages: [{ author: "Alex Johnson", text: "Paid via M-Pesa but booking not confirmed. Reference: QWERTY123.", timestamp: "2025-06-10 09:45" }] },
+                    { id: 203, subject: "Request late checkout - Mara Serena", status: "Resolved", createdAt: "2025-05-20", updatedAt: "2025-05-22", messages: [{ author: "Alex Johnson", text: "Can I get a late checkout at 2PM?", timestamp: "2025-05-20 16:20" }, { author: "SaviraNest Support", text: "Approved! Late checkout confirmed at no extra cost.", timestamp: "2025-05-22 09:05" }] }
+                ];
+                nextTicketId = 204;
+                saveTicketsToLocal();
+            }
+        }
+
+        function saveTicketsToLocal() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(allTickets));
+        }
+
+        function getStatusBadge(status) {
+            if (status === 'Open') return '<span class="badge-status badge-open">Open</span>';
+            if (status === 'In Progress') return '<span class="badge-status badge-inprogress">In Progress</span>';
+            if (status === 'Resolved') return '<span class="badge-status badge-resolved">Resolved</span>';
+            return '<span class="badge-status">' + status + '</span>';
+        }
+
+        function renderSupportTicketList() {
+            const tbody = document.getElementById('ticketsTableBody');
+            if (!tbody) return;
+            if (allTickets.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center">No tickets yet. Create your first support request.</td></tr>';
+                return;
+            }
+            const sorted = [...allTickets].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+            tbody.innerHTML = '';
+            sorted.forEach(t => {
+                const row = tbody.insertRow();
+                row.insertCell(0).innerText = t.id;
+                row.insertCell(1).innerHTML = `<strong>${escapeHtml(t.subject)}</strong>`;
+                row.insertCell(2).innerHTML = getStatusBadge(t.status);
+                row.insertCell(3).innerText = t.createdAt;
+                row.insertCell(4).innerText = t.updatedAt;
+                row.insertCell(5).innerHTML = `<button class="btn-sm-outline view-ticket-btn" data-id="${t.id}" style="padding:4px 12px;"><i class="fas fa-eye"></i> View</button>`;
+            });
+            document.querySelectorAll('.view-ticket-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = parseInt(btn.dataset.id);
+                    openViewTicketModal(id);
+                });
+            });
+        }
+
+        function escapeHtml(str) { return str.replace(/[&<>]/g, function (m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
+
+        // Create new ticket
+        document.getElementById('confirmNewTicketBtn')?.addEventListener('click', () => {
+            const subject = document.getElementById('newSubject').value.trim();
+            const description = document.getElementById('newDescription').value.trim();
+            if (!subject || !description) { alert('Please fill subject and description.'); return; }
+            const nowDate = new Date().toISOString().split('T')[0];
+            const nowTime = new Date().toLocaleString();
+            const newTicket = {
+                id: nextTicketId++,
+                subject: subject,
+                status: "Open",
+                createdAt: nowDate,
+                updatedAt: nowDate,
+                messages: [{ author: currentUser.name, text: description, timestamp: nowTime }]
+            };
+            allTickets.push(newTicket);
+            saveTicketsToLocal();
+            renderSupportTicketList();
+            bootstrap.Modal.getInstance(document.getElementById('newTicketModal')).hide();
+            document.getElementById('userTicketForm').reset();
+            alert('Ticket submitted successfully! Support will respond soon.');
+        });
+
+        let activeTicketId = null;
+        function openViewTicketModal(ticketId) {
+            const ticket = allTickets.find(t => t.id === ticketId);
+            if (!ticket) return;
+            activeTicketId = ticketId;
+            const headerHtml = `<div class="row"><div class="col-md-4"><strong>ID:</strong> ${ticket.id}</div><div class="col-md-8"><strong>Subject:</strong> ${escapeHtml(ticket.subject)}</div><div class="col-md-4"><strong>Status:</strong> ${getStatusBadge(ticket.status)}</div><div class="col-md-4"><strong>Created:</strong> ${ticket.createdAt}</div><div class="col-md-4"><strong>Last update:</strong> ${ticket.updatedAt}</div></div>`;
+            document.getElementById('ticketDetailHeader').innerHTML = headerHtml;
+            const container = document.getElementById('ticketMessagesContainer');
+            container.innerHTML = '';
+            if (ticket.messages && ticket.messages.length) {
+                ticket.messages.forEach(msg => {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = 'message-bubble';
+                    msgDiv.innerHTML = `<div class="message-meta"><span class="message-author">${escapeHtml(msg.author)}</span><span>${escapeHtml(msg.timestamp)}</span></div><div class="message-text">${escapeHtml(msg.text)}</div>`;
+                    container.appendChild(msgDiv);
+                });
+            } else {
+                container.innerHTML = '<div class="text-muted">No messages.</div>';
+            }
+            container.scrollTop = container.scrollHeight;
+            const replyTextarea = document.getElementById('replyMessageText');
+            replyTextarea.value = '';
+            const modal = new bootstrap.Modal(document.getElementById('viewTicketModal'));
+            modal.show();
+        }
+
+        // Reply to ticket (user sends message)
+        document.getElementById('sendUserReplyBtn')?.addEventListener('click', () => {
+            if (!activeTicketId) return;
+            const replyMsg = document.getElementById('replyMessageText').value.trim();
+            if (!replyMsg) { alert('Please type a reply.'); return; }
+            const ticket = allTickets.find(t => t.id === activeTicketId);
+            if (ticket) {
+                const nowTime = new Date().toLocaleString();
+                const nowDate = new Date().toISOString().split('T')[0];
+                ticket.messages = ticket.messages || [];
+                ticket.messages.push({ author: currentUser.name, text: replyMsg, timestamp: nowTime });
+                ticket.updatedAt = nowDate;
+                if (ticket.status === "Resolved") {
+                    if (confirm("This ticket is resolved. Replying will reopen it as 'In Progress'.")) ticket.status = "In Progress";
+                } else if (ticket.status === "Open") {
+                    // keep open or stays
+                }
+                saveTicketsToLocal();
+                renderSupportTicketList();
+                // update modal with fresh messages
+                const container = document.getElementById('ticketMessagesContainer');
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'message-bubble';
+                msgDiv.innerHTML = `<div class="message-meta"><span class="message-author">${escapeHtml(currentUser.name)}</span><span>${escapeHtml(nowTime)}</span></div><div class="message-text">${escapeHtml(replyMsg)}</div>`;
+                container.appendChild(msgDiv);
+                document.getElementById('replyMessageText').value = '';
+                container.scrollTop = container.scrollHeight;
+                // update header status display
+                const statusSpan = document.querySelector('#ticketDetailHeader .badge-status')?.outerHTML || getStatusBadge(ticket.status);
+                if (document.getElementById('ticketDetailHeader')) {
+                    document.getElementById('ticketDetailHeader').innerHTML = `<div class="row"><div class="col-md-4"><strong>ID:</strong> ${ticket.id}</div><div class="col-md-8"><strong>Subject:</strong> ${escapeHtml(ticket.subject)}</div><div class="col-md-4"><strong>Status:</strong> ${getStatusBadge(ticket.status)}</div><div class="col-md-4"><strong>Created:</strong> ${ticket.createdAt}</div><div class="col-md-4"><strong>Last update:</strong> ${ticket.updatedAt}</div></div>`;
+                }
+                alert('Reply sent to support team.');
+            }
+        });
+
+        // UI: toggle between dashboard & support view
+        const defaultView = document.getElementById('defaultDashboardView');
+        const supportView = document.getElementById('supportView');
+        const navDashboard = document.getElementById('navDashboardLink');
+        const navSupport = document.getElementById('navSupportLink');
+        const navBookings = document.getElementById('navMyBookingsLink');
+        // function showDashboard() {
+        //     defaultView.style.display = 'block';
+        //     supportView.style.display = 'none';
+        //     document.querySelectorAll('.nav-link-admin').forEach(link => link.classList.remove('active'));
+        //     navDashboard.classList.add('active');
+        // }
+        // function showSupport() {
+        //     defaultView.style.display = 'none';
+        //     supportView.style.display = 'block';
+        //     document.querySelectorAll('.nav-link-admin').forEach(link => link.classList.remove('active'));
+        //     navSupport.classList.add('active');
+        //     renderSupportTicketList(); // refresh tickets when switching
+        // }
+        navDashboard.addEventListener('click', (e) => { e.preventDefault(); showDashboard(); });
+        navSupport.addEventListener('click', (e) => { e.preventDefault(); showSupport(); });
+        navBookings.addEventListener('click', (e) => { e.preventDefault(); alert("📅 My Bookings section: coming soon. For demo, check support."); });
+        document.getElementById('quickSupportBtn')?.addEventListener('click', () => showSupport());
+        document.getElementById('newTicketBtn')?.addEventListener('click', () => {
+            const modal = new bootstrap.Modal(document.getElementById('newTicketModal'));
+            modal.show();
+        });
+
+        // Sidebar toggle
+        const menuBtn = document.getElementById('menuToggleBtn');
+        const sidebar = document.getElementById('userSidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
+        function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; }
+        menuBtn.addEventListener('click', openSidebar);
+        overlay.addEventListener('click', closeSidebar);
+        window.addEventListener('resize', () => { if (window.innerWidth > 992 && sidebar.classList.contains('open')) closeSidebar(); });
+        document.getElementById('userLogoutBtn').addEventListener('click', () => alert('🚪 You have been logged out (demo).'));
+        document.getElementById('viewAllBookingsBtn')?.addEventListener('click', (e) => { e.preventDefault(); alert("Full booking history demo: 8 total bookings."); });
+
+        // Chart init
+        const ctx = document.getElementById('userBookingChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line', data: { labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'], datasets: [{ label: 'My bookings', data: [1, 2, 3, 5, 4, 2], borderColor: '#F9A826', backgroundColor: 'rgba(249,168,38,0.1)', borderWidth: 3, tension: 0.3, fill: true }] },
+            options: { responsive: true, maintainAspectRatio: true }
+        });
+
+        loadUserTickets();
+        renderSupportTicketList();
+        
+    </script>
+</body>
+
+</html>

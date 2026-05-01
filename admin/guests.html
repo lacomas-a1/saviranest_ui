@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SaviraNest Admin | Manage Guests</title>
+
+    <link rel="icon" href="assets/logo/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Aptos';
+            src: url('/Aptos/Aptos.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --ocean-blue: #1E88E5;
+            --deep-navy: #0B1F3A;
+            --sand-beige: #F4E7D3;
+            --orange: #E07C3C;
+            --sunrise-gold: #F9A826;
+            --support-green: #059669;
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+            --sidebar-width: 280px;
+            --header-height: 70px;
+        }
+
+        body {
+            font-family: 'Aptos', 'Inter', sans-serif;
+            background: #f1f5f9;
+            color: var(--deep-navy);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .admin-wrapper {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .admin-sidebar {
+            width: var(--sidebar-width);
+            background: var(--white);
+            border-right: 1px solid #e2e8f0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.02);
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem 1.5rem 1rem;
+            border-bottom: 1px solid #eef2ff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar-header img {
+            height: 55px;
+            margin-bottom: 8px;
+        }
+
+        .sidebar-header h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--deep-navy);
+            margin-bottom: 12px;
+        }
+
+        .login-persona {
+            background: #f8fafc;
+            border-radius: 28px;
+            padding: 12px 16px;
+            margin: 16px;
+            text-align: center;
+        }
+
+        .login-persona .avatar-sm {
+            width: 48px;
+            height: 48px;
+            background: var(--sunrise-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--deep-navy);
+        }
+
+        .login-persona .name {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .login-persona .role {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid #e2e8f0;
+            border-radius: 40px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #e07c3c;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
+        }
+
+        .logout-btn:hover {
+            background: #fef2e8;
+            border-color: var(--orange);
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 1.5rem 1rem;
+        }
+
+        .nav-item-admin {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link-admin {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.75rem 1rem;
+            border-radius: 16px;
+            color: #475569;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .nav-link-admin i {
+            width: 24px;
+            font-size: 1.2rem;
+            color: var(--ocean-blue);
+        }
+
+        .nav-link-admin:hover,
+        .nav-link-admin.active {
+            background: rgba(30, 136, 229, 0.08);
+            color: var(--ocean-blue);
+        }
+
+        .nav-link-admin.active {
+            background: rgba(30, 136, 229, 0.12);
+            font-weight: 600;
+            color: var(--ocean-blue);
+        }
+
+        .admin-main {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow-y: auto;
+            background: #f1f5f9;
+        }
+
+        .admin-topbar {
+            background: var(--white);
+            padding: 0 2rem;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--deep-navy);
+            cursor: pointer;
+            margin-right: auto;
+        }
+
+        .dashboard-content {
+            padding: 2rem;
+        }
+
+        .actions-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .search-filter {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .search-filter input {
+            padding: 10px 16px;
+            border-radius: 40px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            font-family: inherit;
+            width: 250px;
+        }
+
+        .btn-primary-admin {
+            background: var(--sunrise-gold);
+            border: none;
+            color: var(--deep-navy);
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .btn-primary-admin:hover {
+            background: #e6950e;
+        }
+
+        .data-table {
+            width: 100%;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #eef2ff;
+        }
+
+        .data-table th {
+            background: #f8fafc;
+            font-weight: 600;
+        }
+
+        .data-table tr:hover {
+            background: #fefce8;
+        }
+
+        .btn-icon {
+            background: transparent;
+            border: none;
+            color: var(--ocean-blue);
+            cursor: pointer;
+            margin: 0 4px;
+            font-size: 1rem;
+        }
+
+        .btn-icon.delete {
+            color: #e07c3c;
+        }
+
+        .btn-icon:hover {
+            opacity: 0.7;
+        }
+
+        .modal-content {
+            border-radius: 28px;
+            border: none;
+        }
+
+        .modal-header {
+            background: var(--deep-navy);
+            color: white;
+            border-radius: 28px 28px 0 0;
+        }
+
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 40px;
+            padding: 10px 18px;
+            border: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 992px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+                z-index: 1050;
+            }
+
+            .admin-sidebar.open {
+                transform: translateX(0);
+            }
+
+            .admin-main {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .data-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .actions-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-filter input {
+                width: 100%;
+            }
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1040;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-wrapper">
+        <!-- Sidebar (fixed) -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <img src="../assets/image/savira_nest_logo.png" alt="SaviraNest Logo">
+                <h4>SaviraNest Admin</h4>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item-admin">
+                    <a href="dashboard.html" class="nav-link-admin">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="stay.html" class="nav-link-admin">
+                        <i class="fas fa-building"></i> Stays
+                    </a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="experience.html" class="nav-link-admin">
+                        <i class="fas fa-compass"></i> Experiences
+                    </a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="bookings.html" class="nav-link-admin">
+                        <i class="fas fa-calendar-check"></i> Bookings
+                    </a>
+                </div>
+                <div class="nav-item-admin">
+                    <a href="guests.html" class="nav-link-admin active">
+                        <i class="fas fa-users"></i> Guests
+                    </a>
+                </div>
+                <div class="nav-item-admin"><a href="transactions.html" class="nav-link-admin"><i
+                            class="fas fa-credit-card"></i> Transactions</a></div>
+                <div class="nav-item-admin"><a href="reports.html" class="nav-link-admin"><i
+                            class="fas fa-chart-line"></i> Reports</a></div>
+                <div class="nav-item-admin">
+                    <a href="settings.html" class="nav-link-admin">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                </div>
+            </div>
+            <div class="login-persona">
+                <div class="avatar-sm">MA</div>
+                <div class="name">Michael Amadi</div>
+                <div class="role">Super Administrator</div>
+                <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="admin-main">
+            <div class="admin-topbar">
+                <button class="menu-toggle" id="menuToggleBtn"><i class="fas fa-bars"></i></button>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="actions-bar">
+                    <h2>Manage Guests</h2>
+                    <div style="display: flex; gap: 12px;">
+                        <div class="search-filter">
+                            <input type="text" id="searchInput" placeholder="Search by name or email...">
+                        </div>
+                        <button class="btn-primary-admin" data-bs-toggle="modal" data-bs-target="#addGuestModal">
+                            <i class="fas fa-plus"></i> Add New Guest
+                        </button>
+                    </div>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="data-table" id="guestsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Total Stays</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="guestsTableBody">
+                            <!-- Data loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="overlay" id="sidebarOverlay"></div>
+
+    <!-- Add Guest Modal -->
+    <div class="modal fade" id="addGuestModal" tabindex="-1" aria-labelledby="addGuestModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-plus-circle"></i> Add New Guest</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addGuestForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="guestName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="guestEmail" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" id="guestPhone">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Total Stays (optional)</label>
+                                <input type="number" class="form-control" id="guestStays" value="0">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-primary-travel" id="saveGuestBtn">Save Guest</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Guest Modal -->
+    <div class="modal fade" id="editGuestModal" tabindex="-1" aria-labelledby="editGuestModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-edit"></i> Edit Guest</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editGuestForm">
+                        <input type="hidden" id="editGuestId">
+                        <div class="row g-3">
+                            <div class="col-md-6"><label>Full Name</label><input type="text" class="form-control"
+                                    id="editName"></div>
+                            <div class="col-md-6"><label>Email</label><input type="email" class="form-control"
+                                    id="editEmail"></div>
+                            <div class="col-md-6"><label>Phone</label><input type="text" class="form-control"
+                                    id="editPhone"></div>
+                            <div class="col-md-6"><label>Total Stays</label><input type="number" class="form-control"
+                                    id="editStays"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn-primary-travel" id="updateGuestBtn">Update Guest</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample initial guests data
+        let guests = [
+            { id: 1, name: "James K.", email: "james@example.com", phone: "+254712345678", totalStays: 3 },
+            { id: 2, name: "Sarah M.", email: "sarah@example.com", phone: "+254723456789", totalStays: 2 },
+            { id: 3, name: "David O.", email: "david@example.com", phone: "+254734567890", totalStays: 1 },
+            { id: 4, name: "Linda W.", email: "linda@example.com", phone: "+254745678901", totalStays: 4 },
+            { id: 5, name: "Michael K.", email: "michael@example.com", phone: "+254756789012", totalStays: 2 },
+        ];
+        let nextGuestId = 6;
+
+        // Render table
+        function renderGuests() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = guests.filter(g =>
+                g.name.toLowerCase().includes(searchTerm) ||
+                g.email.toLowerCase().includes(searchTerm)
+            );
+            const tbody = document.getElementById('guestsTableBody');
+            tbody.innerHTML = '';
+            filtered.forEach(g => {
+                const row = tbody.insertRow();
+                row.insertCell(0).innerText = g.id;
+                row.insertCell(1).innerHTML = `<strong>${g.name}</strong>`;
+                row.insertCell(2).innerText = g.email;
+                row.insertCell(3).innerText = g.phone || '—';
+                row.insertCell(4).innerText = g.totalStays;
+                const actions = row.insertCell(5);
+                actions.innerHTML = `<button class="btn-icon edit-btn" data-id="${g.id}"><i class="fas fa-edit"></i></button>
+                                     <button class="btn-icon delete-btn" data-id="${g.id}"><i class="fas fa-trash-alt"></i></button>`;
+            });
+            // attach event listeners
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', () => editGuest(parseInt(btn.dataset.id)));
+            });
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.dataset.id);
+                    if (confirm('Delete this guest permanently?')) {
+                        guests = guests.filter(g => g.id !== id);
+                        renderGuests();
+                        alert('Guest deleted.');
+                    }
+                });
+            });
+        }
+
+        function editGuest(id) {
+            const guest = guests.find(g => g.id === id);
+            if (!guest) return;
+            document.getElementById('editGuestId').value = guest.id;
+            document.getElementById('editName').value = guest.name;
+            document.getElementById('editEmail').value = guest.email;
+            document.getElementById('editPhone').value = guest.phone || '';
+            document.getElementById('editStays').value = guest.totalStays;
+            const editModal = new bootstrap.Modal(document.getElementById('editGuestModal'));
+            editModal.show();
+        }
+
+        // Add guest
+        document.getElementById('saveGuestBtn').addEventListener('click', () => {
+            const name = document.getElementById('guestName').value.trim();
+            const email = document.getElementById('guestEmail').value.trim();
+            const phone = document.getElementById('guestPhone').value.trim();
+            const totalStays = parseInt(document.getElementById('guestStays').value) || 0;
+            if (!name || !email) {
+                alert('Please fill Name and Email fields.');
+                return;
+            }
+            const newGuest = { id: nextGuestId++, name, email, phone, totalStays };
+            guests.push(newGuest);
+            renderGuests();
+            document.getElementById('addGuestForm').reset();
+            bootstrap.Modal.getInstance(document.getElementById('addGuestModal')).hide();
+            alert('Guest added successfully!');
+        });
+
+        // Update guest
+        document.getElementById('updateGuestBtn').addEventListener('click', () => {
+            const id = parseInt(document.getElementById('editGuestId').value);
+            const index = guests.findIndex(g => g.id === id);
+            if (index !== -1) {
+                guests[index].name = document.getElementById('editName').value;
+                guests[index].email = document.getElementById('editEmail').value;
+                guests[index].phone = document.getElementById('editPhone').value;
+                guests[index].totalStays = parseInt(document.getElementById('editStays').value) || 0;
+                renderGuests();
+                bootstrap.Modal.getInstance(document.getElementById('editGuestModal')).hide();
+                alert('Guest updated.');
+            }
+        });
+
+        // Search filter
+        document.getElementById('searchInput').addEventListener('input', renderGuests);
+
+        // Sidebar and logout
+        const menuBtn = document.getElementById('menuToggleBtn');
+        const sidebar = document.getElementById('adminSidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
+        function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; }
+        menuBtn.addEventListener('click', openSidebar);
+        overlay.addEventListener('click', closeSidebar);
+        window.addEventListener('resize', () => { if (window.innerWidth > 992 && sidebar.classList.contains('open')) closeSidebar(); });
+        document.getElementById('logoutBtn').addEventListener('click', () => alert('Logout demo'));
+
+        // Initial render
+        renderGuests();
+    </script>
+    <style>
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--orange);
+            color: var(--orange);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: var(--orange);
+            color: white;
+        }
+
+        .btn-primary-travel {
+            background-color: var(--sunrise-gold);
+            color: var(--deep-navy);
+            border: 2px solid var(--sunrise-gold);
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .btn-primary-travel:hover {
+            background-color: transparent;
+            color: var(--sunrise-gold);
+        }
+    </style>
+</body>
+
+</html>
