@@ -732,7 +732,7 @@ footer {
 
 /* Index Page */
 .hero-section {
-    background: url('../image/main-bg.png') no-repeat;
+    background: url('../image/main-bg.webp') no-repeat;
     background-size: auto 100%;
     background-position: calc(50% + 350px) center;
     background-repeat: no-repeat;
