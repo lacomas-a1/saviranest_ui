@@ -36,6 +36,7 @@
                                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                                     <li class="nav-item"><a class="nav-link" href="acc.html">Stays</a></li>
                                     <li class="nav-item"><a class="nav-link" href="experiences.html">Experiences</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="rentals.html" >Rentals</a></li>
                                     <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
                                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                                 </ul>
@@ -283,7 +284,7 @@
         <div class="container">
             <div class="footer-grid">
                 <img src="assets/image/savira_nest_logo.webp" alt="Savira Nest Logo"
-                    style="background: #f0f2f5; border-radius: 12px; padding: 0 10px; max-width: 260px;">
+                    style="background: #f0f2f5; border-radius: 12px; padding: 0 10px;">
                 <div class="footer-col">
                     <h5>SaviraNest</h5>
                     <p>We connect travelers with extraordinary homes — from bustling city apartments to wild safari
@@ -304,9 +305,10 @@
                 <div class="footer-col">
                     <h5>Policies</h5>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Booking Terms</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Conditions</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#cancellationModal">Cancellation Policy</a>
-                    <a href="#">Travel Guide</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#cookieModal">Cookie Policy</a>
+                    <!-- <a href="#" data-bs-toggle="modal" data-bs-target="#bookingModal">Booking Terms</a>-->
                 </div>
             </div>
             <div class="footer-bottom">
@@ -353,49 +355,183 @@
         </div>
     </div>
 
-    <!-- Modals -->
-    <div class="modal fade" id="privacyModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
+    <!-- Modals (Privacy, Terms, Cancellation) unchanged -->
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Privacy Policy</h5><button type="button" class="btn-close"
-                        data-bs-dismiss="modal"></button>
+                        data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>SaviraNest protects your data. We never share without consent.</p>
+                    <p><small class="text-muted">Last updated: <span id="privacyDate"></span></small></p>
+
+                    <p><strong>SaviraNest</strong> is committed to protecting your privacy while delivering a seamless
+                        and trusted booking experience.</p>
+
+                    <h3 class="h6 mt-4">1. Information We Collect</h3>
+                    <ul>
+                        <li>Personal details (name, email, phone number)</li>
+                        <li>Booking and accommodation preferences</li>
+                        <li>Payment and billing information</li>
+                        <li>Device and browsing data</li>
+                    </ul>
+
+                    <h3 class="h6 mt-4">2. How We Use Your Data</h3>
+                    <ul>
+                        <li>To process bookings and reservations</li>
+                        <li>To personalize your stay recommendations</li>
+                        <li>To improve our platform and services</li>
+                        <li>To communicate important updates</li>
+                    </ul>
+
+                    <h3 class="h6 mt-4">3. Data Protection</h3>
+                    <p>We implement secure technologies and restricted access to protect your personal data.</p>
+
+                    <h3 class="h6 mt-4">4. Your Rights</h3>
+                    <p>You may request access, correction, or deletion of your data at any time.</p>
+
+                    <h3 class="h6 mt-4">5. Contact</h3>
+                    <p>Email: support@saviranest.com</p>
+
+                    <div class="alert alert-info mt-4">
+                        Your trust is at the heart of SaviraNest.
+                    </div>
                 </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="termsModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
+
                 <div class="modal-header">
-                    <h5 class="modal-title">Booking Terms</h5><button type="button" class="btn-close"
-                        data-bs-dismiss="modal"></button>
+                    <h5 class="modal-title">Terms & Conditions</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
                 <div class="modal-body">
-                    <p>Clear terms for guests and hosts. Cancellation policies vary per property.</p>
+                    <p><small class="text-muted">Last updated: <span id="termsDate"></span></small></p>
+
+                    <p>By using <strong>SaviraNest</strong>, you agree to the following terms.</p>
+
+                    <h3 class="h6 mt-4">1. Booking</h3>
+                    <p>All bookings are subject to availability and confirmation.</p>
+
+                    <h3 class="h6 mt-4">2. Payments</h3>
+                    <p>Payments must be completed before check-in unless stated otherwise.</p>
+
+                    <h3 class="h6 mt-4">3. User Responsibility</h3>
+                    <ul>
+                        <li>Provide accurate information</li>
+                        <li>Respect property rules</li>
+                        <li>Avoid damages</li>
+                    </ul>
+
+                    <h3 class="h6 mt-4">4. Liability</h3>
+                    <p>SaviraNest is not liable for third-party property issues.</p>
+
+                    <h3 class="h6 mt-4">5. Platform Use</h3>
+                    <p>Misuse of the platform may result in account suspension.</p>
+
+                    <div class="alert alert-info mt-4">
+                        By booking, you accept these terms.
+                    </div>
                 </div>
+
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="cancellationModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal fade" id="cancellationModal" tabindex="-1" aria-labelledby="cancellationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
+
                 <div class="modal-header">
                     <h5 class="modal-title">Cancellation Policy</h5><button type="button" class="btn-close"
-                        data-bs-dismiss="modal"></button>
+                        data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+
                 <div class="modal-body">
-                    <p>Flexible cancellation options. Full details at booking.</p>
+                    <p><small class="text-muted">Last updated: <span id="cancelDate"></span></small></p>
+
+                    <h3 class="h6 mt-4">1. Flexible Bookings</h3>
+                    <p>Some listings allow free cancellation within a specified period.</p>
+
+                    <h3 class="h6 mt-4">2. Standard Policy</h3>
+                    <ul>
+                        <li>48+ hours: Full refund</li>
+                        <li>24–48 hours: 50% refund</li>
+                        <li>Less than 24 hours: No refund</li>
+                    </ul>
+
+                    <h3 class="h6 mt-4">3. Property-Specific Rules</h3>
+                    <p>Each listing may have unique cancellation terms.</p>
+
+                    <h3 class="h6 mt-4">4. Refund Processing</h3>
+                    <p>Refunds are processed within 5–10 business days.</p>
                 </div>
+
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="cookieModal" tabindex="-1" aria-labelledby="cookieModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Cookie Policy</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p><small class="text-muted">Last updated: <span id="cookieDate"></span></small></p>
+
+                    <h3 class="h6 mt-4">1. What Are Cookies?</h3>
+                    <p>Cookies help improve your browsing experience on SaviraNest.</p>
+
+                    <h3 class="h6 mt-4">2. How We Use Them</h3>
+                    <ul>
+                        <li>Session management</li>
+                        <li>Analytics</li>
+                        <li>User preferences</li>
+                    </ul>
+
+                    <h3 class="h6 mt-4">3. Control</h3>
+                    <p>You can disable cookies in your browser settings.</p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
             </div>
         </div>
     </div>
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentDate = new Date().toLocaleDateString('en-US', {
+                timeZone: 'Africa/Nairobi',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            const ids = ['privacyDate', 'termsDate', 'cookieDate', 'cancelDate'];
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.textContent = currentDate;
+            });
+        });
+
         // Fade-up observer
         const fadeElements = document.querySelectorAll('.fade-up');
         const observer = new IntersectionObserver((entries) => {

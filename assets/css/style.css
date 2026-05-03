@@ -1,7 +1,7 @@
 /* Base styles (original design kept intact) */
 @font-face {
     font-family: 'Aptos';
-    src: url('/Aptos/Aptos.ttf') format('truetype');
+    src: url('../../../Aptos/Aptos.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -210,6 +210,10 @@ body.nav-fixed-padding {
 }
 
 /* Hero */
+.hero-content {
+    margin-top: 30px;
+}
+
 .hero-title {
     font-size: 2.8rem;
     margin-bottom: 0.75rem;
@@ -494,6 +498,10 @@ footer {
 }
 
 /* Modals */
+.modal {
+    z-index: 1100;
+}
+
 .modal-content {
     border-radius: 24px;
 }
@@ -1269,11 +1277,11 @@ footer {
     /* background: var(--white); */
     border-radius: 28px;
     padding: 32px;
-    width: 280px;
+    width: 250px;
     text-align: center;
     /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); */
     transition: all 0.2s;
-    /* border: 1px solid #feeacd; */
+    border: 1px solid #feeacd;
 }
 
 .feature-card:hover {
@@ -1296,7 +1304,7 @@ footer {
 .why-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 28px;
+    gap: 30px;
     justify-content: center;
     margin-bottom: 60px;
 }
@@ -1304,8 +1312,8 @@ footer {
 .why-card {
     background: var(--white);
     border-radius: 28px;
-    padding: 28px;
-    width: 260px;
+    padding: 32px;
+    width: 250px;
     text-align: center;
     border: 1px solid #feeacd;
     transition: 0.2s;
@@ -1325,51 +1333,6 @@ footer {
 .why-card h4 {
     font-size: 1.2rem;
     margin-bottom: 10px;
-}
-
-/* FAQ Accordion */
-.faq-item {
-    background: white;
-    border-radius: 28px;
-    border: 1px solid #e2e8f0;
-    overflow: hidden;
-    margin-bottom: 1rem;
-}
-
-.faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 1.5rem;
-    cursor: pointer;
-    font-weight: 600;
-    background: white;
-}
-
-.faq-question:hover {
-    background: #fffbee;
-}
-
-.faq-icon {
-    transition: transform 0.3s;
-}
-
-.faq-item.open .faq-icon {
-    transform: rotate(45deg);
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s ease;
-    padding: 0 1.5rem;
-    color: #475569;
-    line-height: 1.6;
-}
-
-.faq-item.open .faq-answer {
-    max-height: 300px;
-    padding: 0 1.5rem 1.5rem 1.5rem;
 }
 
 /* CTA Block */
@@ -1461,7 +1424,7 @@ footer {
 
 .pricing-card {
     flex: 1;
-    min-width: 260px;
+    min-width: 250px;
     background: var(--white);
     border-radius: 32px;
     padding: 32px 24px;
@@ -1578,41 +1541,6 @@ footer {
     background: #e6950e;
 }
 
-/* Why Choose Us */
-.why-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 28px;
-    justify-content: center;
-    margin-bottom: 60px;
-}
-
-.why-card {
-    background: var(--white);
-    border-radius: 28px;
-    padding: 28px;
-    width: 260px;
-    text-align: center;
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.03);
-    border: 1px solid #feeacd;
-    transition: all 0.2s;
-}
-
-.why-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--sunrise-gold);
-}
-
-.why-card i {
-    font-size: 2.2rem;
-    color: var(--sunrise-gold);
-    margin-bottom: 18px;
-}
-
-.why-card h4 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
 
 /* FAQ Accordion */
 .faq-item {
@@ -1677,7 +1605,7 @@ footer {
     background: linear-gradient(rgba(30, 58, 138, 0.82), rgba(30, 58, 138, 0.82)),
         url('https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-4.0.3') no-repeat center center;
     background-size: cover;
-    min-height: 35vh;
+    min-height: 38vh;
     color: var(--white);
     display: flex;
     flex-direction: column;
@@ -1834,7 +1762,7 @@ footer {
 
 /* Pricing / Hero Header (repurposed for resort) */
 .stay-details-header {
-    background: linear-gradient(rgba(11, 31, 58, 0.85), rgba(11, 31, 58, 0.85)),
+    background: linear-gradient(rgba(30, 58, 138, 0.82), rgba(30, 58, 138, 0.82)),
         url('https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?ixlib=rb-4.0.3') no-repeat center center;
     background-size: cover;
     min-height: 42vh;
@@ -2227,7 +2155,7 @@ footer {
 
 .room-image-col img {
     width: 100%;
-    height: 220px;
+    height: 270px;
     object-fit: cover;
     border-radius: 20px;
 }
@@ -2262,6 +2190,8 @@ footer {
     display: inline-block;
     margin-top: 8px;
 }
+
+/* .book-now-avail */
 
 /* Reviews */
 .review-card {
@@ -2362,16 +2292,16 @@ footer {
 /* Experiences */
 /* Hero Section */
 .experiences-header {
-    background: linear-gradient(rgba(11, 31, 58, 0.75), rgba(11, 31, 58, 0.75)),
+    background: linear-gradient(rgba(30, 58, 138, 0.82), rgba(30, 58, 138, 0.82)),
         url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center;
     background-size: cover;
-    min-height: 45vh;
+    min-height: 38vh;
     color: var(--white);
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-top: 50px;
-    padding-bottom: 60px;
+    padding-bottom: 40px;
     text-align: center;
 }
 
@@ -2513,6 +2443,28 @@ footer {
     border-color: var(--sunrise-gold);
 }
 
+.btn-acc-book {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    background-color: var(--sunrise-gold);
+    text-decoration: none;
+    color: var(--white);
+    border: 2px solid var(--sunrise-gold);
+    padding: 0.4rem 1.25rem;
+    border-radius: 40px;
+    font-weight: 600;
+    transition: all 0.25s;
+}
+
+.btn-acc-book:hover {
+    text-decoration: none;
+    background-color: transparent;
+    color: var(--sunrise-gold);
+    border-color: var(--sunrise-gold);
+}
+
+
 /* How It Works Steps */
 .steps-container {
     display: flex;
@@ -2526,7 +2478,7 @@ footer {
     background: var(--white);
     border-radius: 28px;
     padding: 32px 24px;
-    width: 260px;
+    width: 250px;
     text-align: center;
     border: 1px solid #feeacd;
     transition: 0.2s;
@@ -2559,4 +2511,198 @@ footer {
 .step-card p {
     font-size: 0.85rem;
     color: #475569;
+}
+
+
+/* Rental */
+
+/* Header Hero */
+.rental-header {
+    background: linear-gradient(rgba(30, 58, 138, 0.82), rgba(30, 58, 138, 0.82)),
+        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') no-repeat center center;
+    background-size: cover;
+    min-height: 38vh;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+/* Category Filter Bar */
+.category-bar {
+    background: var(--white);
+    border-radius: 60px;
+    padding: 0.5rem 1rem;
+    margin: -30px 0 2rem 0;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    color: var(--deep-navy);
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: var(--sunrise-gold);
+    color: white;
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+}
+
+.filter-btn:hover:not(.active) {
+    background: #eef2ff;
+    color: var(--ocean-blue);
+}
+
+/* Cards Grid for Rentals */
+.rental-grid-section {
+    padding: 1rem 0 4rem 0;
+    background: var(--light);
+}
+
+.rental-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.rental-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 36px -12px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+    transition: transform 0.4s;
+}
+
+.rental-card:hover .card-img-top {
+    transform: scale(1.03);
+}
+
+.img-holder {
+    overflow: hidden;
+}
+
+.card-body {
+    padding: 1.3rem 1.2rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.location-text {
+    font-size: 0.8rem;
+    color: var(--deep-navy);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.desc-text {
+    font-size: 0.85rem;
+    color: var(--deep-navy);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.price-block {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--support-green);
+    margin-bottom: 1rem;
+}
+
+.rental-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 0.75rem;
+    color: #5b6e8c;
+    margin-bottom: 1rem;
+}
+
+.card-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 0.5rem;
+}
+
+.card-buttons .btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 40px;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-outline-accent {
+    background: transparent;
+    border: 1.5px solid var(--sunrise-gold);
+    color: var(--sunrise-gold);
+}
+
+.btn-outline-accent:hover {
+    background: var(--sunrise-gold);
+    color: white;
+}
+
+.btn-inquire {
+    background: var(--ocean-blue);
+    border: none;
+    color: white;
+}
+
+.btn-inquire:hover {
+    background: #0f6bb3;
+    color: white;
+}
+
+.benefit-icon {
+    font-size: 2.2rem;
+    color: var(--sunrise-gold);
+    margin-bottom: 0.8rem;
+}
+
+@media (max-width: 576px) {
+    .card-buttons {
+        flex-direction: column;
+    }
 }

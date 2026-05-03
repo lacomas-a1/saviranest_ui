@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SaviraNest | Outdoor Rentals – Tents, Gear & Safari Packages</title>
+
+    <meta name="description"
+        content="Rent premium safari tents, camping gear, and complete adventure packages along Kenya's coast. Quality equipment for your safari, beach camping, or outdoor exploration.">
+    <meta name="keywords"
+        content="safari tents rental, camping gear kenya, outdoor equipment, full safari packages, kilifi rentals, watamu camping">
+
+    <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="assets/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <header class="rental-header">
+        <div class="container">
+            <div class="navbar-wrapper" id="navbarWrapper">
+                <div class="custom-navbar">
+                    <nav class="navbar navbar-expand-lg navbar-light p-0">
+                        <div class="container-fluid px-0 navbar-content">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="assets/image/savira_nest_logo.webp" alt="Savira Nest Logo" class="travel-logo">
+                            </a>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="acc.html">Stays</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="experiences.html">Experiences</a></li>
+                                    <li class="nav-item"><a class="nav-link active" href="rentals.html" >Rentals</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-right">
+                                <a href="#" class="btn-primary-travel">Login / Sign Up</a>
+                            </div>
+
+                            <!-- Mobile Hamburger (triggers offcanvas) -->
+                            <button class="mobile-menu-toggle" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" id="mobileMenuBtn">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="hero-content container">
+            <h1 class="hero-title">Rent Gear. Explore Wild.</h1>
+            <p class="hero-subtitle">Premium safari tents, camping essentials & all-in-one adventure packages — delivered to your coastal base.</p>
+        </div>
+    </header>
+
+    <!-- Category Filter -->
+    <div class="container">
+        <div class="category-bar">
+            <button class="filter-btn active" data-filter="all">All Rentals</button>
+            <button class="filter-btn" data-filter="tents">Safari Tents</button>
+            <button class="filter-btn" data-filter="gear">Camping Gear</button>
+            <button class="filter-btn" data-filter="fullpackages">Full Packages</button>
+        </div>
+    </div>
+
+    <!-- Rental Cards Grid -->
+    <section class="rental-grid-section">
+        <div class="container">
+            <div class="row g-4" id="rentalsGrid">
+                <!-- SAFARI TENTS (category: tents) -->
+                <div class="col-lg-4 col-md-6 rental-item" data-category="tents">
+                    <div class="rental-card">
+                        <div class="img-holder"><img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&h=400&fit=crop" class="card-img-top" alt="Stargazer Dome Tent"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Stargazer Dome Tent</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt" style="color: var(--sunrise-gold);"></i> 2-person · Lightweight</div>
+                            <p class="desc-text">Mesh ceiling for star views, rainfly & groundsheet. Perfect for beach camping & short safaris.</p>
+                            <div class="price-block">KES 1,200 <small>/night</small></div>
+                            <div class="rental-meta"><span><i class="fas fa-users"></i> 2 pax</span><span><i class="fas fa-weight-hanging"></i> 2.5kg</span></div>
+                            <div class="card-buttons"><a href="#" class="btn btn-outline-accent rent-now"><i class="fas fa-calendar-alt"></i> Rent</a><a href="#" class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 rental-item" data-category="tents">
+                    <div class="rental-card">
+                        <div class="img-holder"><img src="https://images.unsplash.com/photo-1559521783-1d1599583485?w=600&h=400&fit=crop" class="card-img-top" alt="Luxury Canvas Safari Tent"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Luxury Canvas Safari Tent</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"></i> Glamping ready</div>
+                            <p class="desc-text">Spacious 3m canvas, cot beds with mattresses, interior lighting. Safari comfort.</p>
+                            <div class="price-block">KES 2,500 <small>/night</small></div>
+                            <div class="rental-meta"><span><i class="fas fa-bed"></i> 2-3 pax</span><span><i class="fas fa-wind"></i> Ventilated</span></div>
+                            <div class="card-buttons"><a href="#" class="btn btn-outline-accent rent-now">Rent</a><a href="#" class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 rental-item" data-category="tents">
+                    <div class="rental-card">
+                        <div class="img-holder"><img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&h=400&fit=crop" class="card-img-top" alt="Family Expedition Tent"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Family Expedition Tent (4P)</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"></i> Two rooms</div>
+                            <p class="desc-text">Cabin-style tent with divider, mesh windows, heavy-duty zippers. Ideal for families.</p>
+                            <div class="price-block">KES 3,500 <small>/night</small></div>
+                            <div class="rental-meta"><span><i class="fas fa-users"></i> 4 adults</span><span><i class="fas fa-shield-alt"></i> Waterproof</span></div>
+                            <div class="card-buttons"><a href="#" class="btn btn-outline-accent rent-now">Rent</a><a href="#" class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- CAMPING GEAR -->
+                <div class="col-lg-4 col-md-6 rental-item" data-category="gear">
+                    <div class="rental-card">
+                        <div class="img-holder"><img src="https://images.unsplash.com/photo-1537905569824-f89f14cceb68?w=600&h=400&fit=crop" class="card-img-top" alt="Insulated Sleeping Bag"></div>
+                        <div class="card-body"><h5 class="card-title">Insulated Sleeping Bag</h5><p class="desc-text">Rated -5°C, compact compression sack. Microfiber lining for chilly savannah nights.</p><div class="price-block">KES 400 <small>/night</small></div><div class="card-buttons"><a href="#" class="btn btn-outline-accent rent-now">Rent</a><a href="#" class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 rental-item" data-category="gear">
+                    <div class="rental-card">
+                        <div class="img-holder"><img src="https://unsplash.com/photos/stainless-steel-kettle-on-fire-P9sJ73DHCDQ?w=600&h=400&fit=crop" class="card-img-top" alt="Camp Stove"></div>
+                        <div class="card-body"><h5 class="card-title">Dual-Burner Camp Stove</h5><p class="desc-text">Portable butane stove + gas canister. Stable stand, windscreen. Group cooking ready.</p><div class="price-block">KES 300 <small>/night</small></div><div class="card-buttons"><a href="#" class="btn btn-outline-accent rent-now">Rent</a><a href="#" class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 rental-item" data-category="gear">
+                    <div class="rental-card">
+                        <div class="img-holder"><img src="https://images.unsplash.com/photo-1622306193015-b4c7c9ffb58b?w=600&h=400&fit=crop" class="card-img-top" alt="Camp Chair Table Set"></div>
+                        <div class="card-body"><h5 class="card-title">Camp Chair + Roll Table Set</h5><p class="desc-text">2 lightweight chairs + foldable aluminum table. Sunset dinners at campsite.</p><div class="price-block">KES 500 <small>/night</small></div><div class="card-buttons"><a href="#" class="btn btn-outline-accent rent-now">Rent</a><a href="#" class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div></div>
+                    </div>
+                </div>
+                <!-- FULL PACKAGES -->
+                <div class="col-lg-4 col-md-6 rental-item" data-category="fullpackages">
+                    <div class="rental-card">
+                        <div class="img-holder"><img src="https://images.unsplash.com/photo-1537565266759-34bbc16be345?w=600&h=400&fit=crop" class="card-img-top" alt="Complete Safari Duo"></div>
+                        <div class="card-body"><h5 class="card-title">Complete Safari Duo Package</h5><p class="desc-text">2-person dome tent + 2 sleeping bags + stove + chairs + lantern. All for two nights!</p><div class="price-block">KES 3,000 <small>/night</small></div><div class="card-buttons"><a href="#" class="btn btn-outline-accent rent-now">Rent</a><a href="#" class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 rental-item" data-category="fullpackages">
+                    <div class="rental-card">
+                        <div class="img-holder"><img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&h=400&fit=crop" class="card-img-top" alt="Family Adventure Kit"></div>
+                        <div class="card-body"><h5 class="card-title">Family Adventure Package (4P)</h5><p class="desc-text">4-person cabin tent, sleeping pads, camp kitchen set, large cooler & LED lantern.</p><div class="price-block">KES 5,500 <small>/night</small></div><div class="card-buttons"><a href="#" class="btn btn-outline-accent rent-now">Rent</a><a href="#" class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div></div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 rental-item" data-category="fullpackages">
+                    <div class="rental-card">
+                        <div class="img-holder"><img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=600&h=400&fit=crop" class="card-img-top" alt="Extended Safari Pro"></div>
+                        <div class="card-body"><h5 class="card-title">Extended Safari Pro Package</h5><p class="desc-text">Luxury canvas tent + premium beds, power station, camp chairs, cooler & dining tent.</p><div class="price-block">KES 7,200 <small>/night</small></div><div class="card-buttons"><a href="#" class="btn btn-outline-accent rent-now">Rent</a><a href="#" class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 BENEFIT CARDS (replacing the old bullet list, styled like step cards) -->
+    <div class="container">
+        <div class="section-title">Why Rent With Us</div>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="benefit-icon"><i class="fas fa-tree"></i></div>
+                <h4>Locally Tested Gear</h4>
+                <p>Built for Kenyan climate — dust, humidity, and rugged safari terrain.</p>
+            </div>
+            <div class="step-card">
+                <div class="benefit-icon"><i class="fas fa-calendar-alt"></i></div>
+                <h4>Flexible Rental</h4>
+                <p>Daily, weekly, or long-term discounts available to fit your journey.</p>
+            </div>
+            <div class="step-card">
+                <div class="benefit-icon"><i class="fas fa-truck"></i></div>
+                <h4>Delivery & Setup</h4>
+                <p>We drop off & pick up at your stay in Kilifi, Watamu, Malindi.</p>
+            </div>
+            <div class="step-card">
+                <div class="benefit-icon"><i class="fas fa-hand-sparkles"></i></div>
+                <h4>Sanitized After Every Rental</h4>
+                <p>Hygiene guaranteed — all equipment deep-cleaned before you receive it.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works (4 steps, original style) -->
+    <div class="container">
+        <div class="section-title">How Rental Works</div>
+        <div class="steps-container">
+            <div class="step-card"><div class="step-number">1</div><h4>Choose your gear</h4><p>Pick tents, gear or complete package for your dates.</p></div>
+            <div class="step-card"><div class="step-number">2</div><h4>Reserve & pay</h4><p>Secure rental with deposit, confirm delivery address.</p></div>
+            <div class="step-card"><div class="step-number">3</div><h4>Get equipped</h4><p>We deliver before your trip, show you setup (optional).</p></div>
+            <div class="step-card"><div class="step-number">4</div><h4>Return with ease</h4><p>We collect after your adventure — no stress.</p></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+     <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <img src="assets/image/savira_nest_logo.webp" alt="Savira Nest Logo"
+                    style="background: #f0f2f5; border-radius: 12px; padding: 0 10px;">
+                <div class="footer-col">
+                    <h5>SaviraNest</h5>
+                    <p>We connect travelers with extraordinary homes — from bustling city apartments to wild safari
+                        nooks. Every stay is curated for comfort, local charm, and unforgettable memories.</p>
+                    <div class="footer-social"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i
+                                class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-tiktok"></i></a><a
+                            href="https://wa.me/254712345678" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <p><i class="fas fa-phone-alt" style="color:var(--orange);margin-right:6px;"></i> +254 712 345 678
+                    </p>
+                    <p><i class="fas fa-map-marker-alt" style="color:var(--orange);margin-right:6px;"></i> Bofa Road,
+                        Kilifi Kenya</p>
+                    <p><i class="far fa-envelope" style="color:var(--orange);margin-right:6px;"></i>
+                        info@saviranest.co.ke</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Policies</h5><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy
+                        Policy</a><a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Booking Terms</a><a
+                        href="#" data-bs-toggle="modal" data-bs-target="#cancellationModal">Cancellation Policy</a><a
+                        href="#">FAQ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 SaviraNest — Your Nest Away From Home. Curated Stays For Modern Explorers.</p>
+                <p>Kilifi, Kenya 🌊</p>
+                <p>Design By: <strong>LacomasTech</strong>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/254712345678" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i
+            class="fab fa-whatsapp"></i></a>
+
+    <!-- OFF-CANVAS MOBILE MENU (inspired by reference images) -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
+        <div class="offcanvas-header">
+            <img src="assets/image/savira_nest_logo.webp" alt="Savira Nest Logo" class="offcanvas-logo"
+                style="height: 55px;">
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="mobile-nav-list">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="acc.html"><i class="fas fa-hotel"></i> Stays</a></li>
+                <li><a href="experiences.html"><i class="fas fa-water"></i> Experiences</a></li>
+                <li><a href="rentals.html"><i class="fas fa-hiking"></i> Outdoor Rentals</a></li>
+                <li><a href="pricing.html"><i class="fas fa-tag"></i> Pricing</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="mobile-action-buttons">
+                <a href="#" class="btn-mobile-book"><i class="fas fa-calendar-check"></i> Book Now</a>
+                <a href="https://wa.me/254712345678" target="_blank" class="btn-mobile-wa"><i
+                        class="fab fa-whatsapp"></i> WhatsApp Inquiry</a>
+            </div>
+            <div class="mobile-contact-info">
+                <p><i class="fas fa-phone-alt"></i> +254 712 345 678</p>
+                <p><i class="fas fa-map-marker-alt"></i> Bofa Road, Kilifi, Kenya</p>
+                <p><i class="far fa-envelope"></i> info@saviranest.co.ke</p>
+                <div class="mobile-social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.me/254712345678" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals (Privacy, Terms, Cancellation) unchanged -->
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Privacy Policy</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>SaviraNest Privacy Commitment</strong></p>
+                    <p>We collect personal information only to process bookings, improve stay experiences, and
+                        communicate offers. Your data is never shared with third parties without consent. We use
+                        industry encryption to protect payment details. By using our services, you agree to the
+                        collection and use of information in accordance with this policy.</p>
+                    <p>For any privacy inquiries, contact <strong>info@saviranest.co.ke</strong>.</p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Booking Terms & Conditions</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Reservations & Payments:</strong> A deposit of 30% is required to confirm any booking.
+                        Remainder due 14 days before arrival. Cancellations made 30+ days before arrival receive full
+                        refund minus admin fee. Cancellations within 14 days are non-refundable. Early check-in/late
+                        check-out subject to availability. Guests are responsible for their belongings.</p>
+                    <p>We reserve the right to modify bookings due to unforeseen events. Full terms provided upon
+                        confirmation.</p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="cancellationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cancellation Policy</h5><button type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Flexible cancellations:</strong> Free cancellation up to 30 days before check-in. 50%
+                        refund between 15-29 days. No refund for cancellations within 14 days of arrival. For groups
+                        larger than 6 rooms, different terms apply – please contact us directly. In case of a no-show,
+                        total amount is charged.</p>
+                    <p>In rare events like natural disasters, we offer travel credit or rescheduling at no extra cost.
+                    </p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const rentalItems = document.querySelectorAll('.rental-item');
+        function filterRentals(category) {
+            rentalItems.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterRentals(btn.getAttribute('data-filter'));
+            });
+        });
+        // dropdown filter links
+        document.querySelectorAll('[data-filter-nav]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = link.getAttribute('data-filter-nav');
+                const targetBtn = Array.from(filterBtns).find(btn => btn.getAttribute('data-filter') === category);
+                if (targetBtn) targetBtn.click();
+                else filterRentals(category);
+                document.getElementById('rentalsGrid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        // Sticky navbar
+        const navbarWrapper = document.getElementById('navbarWrapper');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                if (!navbarWrapper.classList.contains('sticky-nav')) {
+                    navbarWrapper.classList.add('sticky-nav');
+                    document.body.classList.add('nav-fixed-padding');
+                }
+            } else {
+                if (navbarWrapper.classList.contains('sticky-nav')) {
+                    navbarWrapper.classList.remove('sticky-nav');
+                    document.body.classList.remove('nav-fixed-padding');
+                }
+            }
+        });
+        // Hide navbar when offcanvas opens
+        const offcanvasEl = document.getElementById('mobileOffcanvas');
+        if (offcanvasEl) {
+            offcanvasEl.addEventListener('show.bs.offcanvas', () => { if (navbarWrapper) navbarWrapper.style.display = 'none'; });
+            offcanvasEl.addEventListener('hidden.bs.offcanvas', () => { if (navbarWrapper) navbarWrapper.style.display = ''; });
+        }
+    </script>
+</body>
+
+</html>

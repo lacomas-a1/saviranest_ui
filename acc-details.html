@@ -34,7 +34,9 @@
                                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                                     <li class="nav-item"><a class="nav-link active" href="acc.html">Stays</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="experiences.html">Experiences</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="experiences.html">Experiences</a>
+                                    </li>
+                                    <li class="nav-item"><a class="nav-link" href="rentals.html">Rentals</a></li>
                                     <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
                                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                                 </ul>
@@ -79,6 +81,10 @@
                                 WhatsApp</a>
                             <a href="tel:+254700123456" class="compact-btn compact-btn-phone"><i
                                     class="fas fa-phone"></i> Call</a>
+                            <a href="#" onclick="event.preventDefault(); showTab('availability', this);"
+                                class="compact-btn compact-btn-phone">
+                                <i class="fas fa-calendar-check"></i> Book
+                            </a>
                         </div>
                     </div>
 
@@ -86,14 +92,14 @@
                     <div class="custom-tabs">
                         <button class="tab-btn active" onclick="showTab('overview')"><i
                                 class="fas fa-home me-2"></i>Overview</button>
+                        <button class="tab-btn" onclick="showTab('availability'); initCalendarIfNeeded();"><i
+                                class="fas fa-calendar-alt me-2"></i>Availability</button>
                         <button class="tab-btn" onclick="showTab('rooms')"><i class="fas fa-bed me-2"></i>Rooms &
                             Suites</button>
                         <button class="tab-btn" onclick="showTab('amenities')"><i
                                 class="fas fa-concierge-bell me-2"></i>Amenities</button>
                         <button class="tab-btn" onclick="showTab('location')"><i
                                 class="fas fa-map-marker-alt me-2"></i>Location</button>
-                        <button class="tab-btn" onclick="showTab('availability'); initCalendarIfNeeded();"><i
-                                class="fas fa-calendar-alt me-2"></i>Availability</button>
                         <button class="tab-btn" onclick="showTab('reviews')"><i
                                 class="fas fa-star me-2"></i>Reviews</button>
                     </div>
@@ -162,66 +168,173 @@
                         <h3 class="mb-4">Luxurious Accommodations</h3>
                         <div class="room-card">
                             <div class="room-header" onclick="toggleRoom(this)">
-                                <h5><i class="fas fa-bed me-2"></i>Deluxe Ocean View Room</h5><i
-                                    class="fas fa-chevron-down toggle-icon"></i>
+                                <h5><i class="fas fa-bed me-2"></i>Deluxe Ocean View Room</h5>
+                                <i class="fas fa-chevron-down toggle-icon"></i>
                             </div>
+
                             <div class="room-content">
                                 <div class="room-row">
-                                    <div class="room-image-col"><img
-                                            src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3"
-                                            alt="Deluxe Room"></div>
+
+                                    <!-- Image -->
+                                    <div class="room-image-col">
+                                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3"
+                                            alt="Deluxe Ocean View Room">
+                                    </div>
+
+                                    <!-- Content -->
                                     <div class="room-text-col">
-                                        <p>Spacious 45m² room with king or twin beds, private balcony overlooking the
-                                            Indian Ocean.</p>
-                                        <div class="amenities-list"><span class="amenity-tag"><i
-                                                    class="fas fa-wifi"></i> WiFi</span><span class="amenity-tag"><i
-                                                    class="fas fa-hot-tub"></i> Rainfall shower</span><span
-                                                class="amenity-tag"><i class="fas fa-coffee"></i> Nespresso</span></div>
-                                        <div class="price-badge">From KES 8,500 per night</div>
+
+                                        <!-- Description -->
+                                        <p>
+                                            Spacious 45m² retreat featuring king or twin beds, a private balcony with
+                                            panoramic
+                                            Indian Ocean views and a calm, modern coastal design.
+                                        </p>
+
+                                        <!-- Amenities -->
+                                        <div class="amenities-list">
+                                            <span class="amenity-tag"><i class="fas fa-wifi"></i> WiFi</span>
+                                            <span class="amenity-tag"><i class="fas fa-hot-tub"></i> Rainfall
+                                                shower</span>
+                                            <span class="amenity-tag"><i class="fas fa-coffee"></i> Nespresso</span>
+                                            <span class="amenity-tag"><i class="fas fa-tv"></i> Smart TV</span>
+                                            <span class="amenity-tag"><i class="fas fa-snowflake"></i> AC</span>
+                                        </div>
+
+                                        <!-- Experience Highlights -->
+                                        <div class="mt-3">
+                                            <h6 class="mb-2"><i class="fas fa-star text-warning me-2"></i>Experience
+                                                Highlights</h6>
+                                            <ul class="small mb-2">
+                                                <li>Private balcony with ocean sunrise views</li>
+                                                <li>Direct beach access</li>
+                                                <li>Daily housekeeping service</li>
+                                                <li>Perfect for couples & relaxation stays</li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Price + CTA -->
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <div class="price-badge">From <strong>KES 8,500</strong> / night</div>
+                                            <a href="#" class="btn-acc-book">Book Now →</a>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="room-card">
                             <div class="room-header" onclick="toggleRoom(this)">
-                                <h5><i class="fas fa-users me-2"></i>Family Terrace Suite</h5><i
-                                    class="fas fa-chevron-down toggle-icon"></i>
+                                <h5><i class="fas fa-users me-2"></i>Family Terrace Suite</h5>
+                                <i class="fas fa-chevron-down toggle-icon"></i>
                             </div>
+
                             <div class="room-content">
                                 <div class="room-row">
-                                    <div class="room-image-col"><img
-                                            src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3"
-                                            alt="Family Suite"></div>
+
+                                    <!-- Image -->
+                                    <div class="room-image-col">
+                                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3"
+                                            alt="Family Terrace Suite">
+                                    </div>
+
+                                    <!-- Content -->
                                     <div class="room-text-col">
-                                        <p>70m² suite with separate living area, two bedrooms, and a large terrace.
-                                            Accommodates up to 5 guests.</p>
-                                        <div class="amenities-list"><span class="amenity-tag"><i
-                                                    class="fas fa-tshirt"></i> Laundry</span><span
-                                                class="amenity-tag"><i class="fas fa-baby-carriage"></i> Baby cot</span>
+
+                                        <!-- Description -->
+                                        <p>
+                                            Spacious 70m² family suite featuring two bedrooms, a separate living area,
+                                            and a large private terrace designed for comfort, bonding, and relaxation.
+                                            Perfect for families or small groups.
+                                        </p>
+
+                                        <!-- Amenities -->
+                                        <div class="amenities-list">
+                                            <span class="amenity-tag"><i class="fas fa-wifi"></i> WiFi</span>
+                                            <span class="amenity-tag"><i class="fas fa-couch"></i> Living area</span>
+                                            <span class="amenity-tag"><i class="fas fa-tshirt"></i> Laundry</span>
+                                            <span class="amenity-tag"><i class="fas fa-baby-carriage"></i> Baby
+                                                cot</span>
+                                            <span class="amenity-tag"><i class="fas fa-snowflake"></i> AC</span>
                                         </div>
-                                        <div class="price-badge">From KES 15,000 / night (up to 4 adults)</div>
+
+                                        <!-- Experience Highlights -->
+                                        <div class="mt-3">
+                                            <h6 class="mb-2"><i class="fas fa-star text-warning me-2"></i>Experience
+                                                Highlights</h6>
+                                            <ul class="small mb-2">
+                                                <li>Private terrace for family relaxation</li>
+                                                <li>Ideal for up to 5 guests</li>
+                                                <li>Spacious layout with separate living room</li>
+                                                <li>Perfect for long stays & group travel</li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Price + CTA -->
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <div class="price-badge">From <strong>KES 15,000</strong> / night</div>
+                                            <a href="#" class="btn-acc-book">Book Now →</a>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="room-card">
                             <div class="room-header" onclick="toggleRoom(this)">
-                                <h5><i class="fas fa-crown me-2"></i>Honeymoon Penthouse</h5><i
-                                    class="fas fa-chevron-down toggle-icon"></i>
+                                <h5><i class="fas fa-crown me-2"></i>Honeymoon Penthouse</h5>
+                                <i class="fas fa-chevron-down toggle-icon"></i>
                             </div>
+
                             <div class="room-content">
                                 <div class="room-row">
-                                    <div class="room-image-col"><img
-                                            src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3"
-                                            alt="Penthouse"></div>
+
+                                    <!-- Image -->
+                                    <div class="room-image-col">
+                                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3"
+                                            alt="Honeymoon Penthouse">
+                                    </div>
+
+                                    <!-- Content -->
                                     <div class="room-text-col">
-                                        <p>Top-floor suite with private plunge pool, panoramic ocean views, four-poster
-                                            bed, and butler service.</p>
-                                        <div class="amenities-list"><span class="amenity-tag"><i
-                                                    class="fas fa-champagne-glasses"></i> Champagne</span><span
-                                                class="amenity-tag"><i class="fas fa-hot-tub"></i> Plunge pool</span>
+
+                                        <!-- Description -->
+                                        <p>
+                                            Exclusive top-floor penthouse featuring a private plunge pool, panoramic
+                                            ocean views,
+                                            a romantic four-poster bed, and personalized butler service for a truly
+                                            unforgettable stay.
+                                        </p>
+
+                                        <!-- Amenities -->
+                                        <div class="amenities-list">
+                                            <span class="amenity-tag"><i class="fas fa-wifi"></i> WiFi</span>
+                                            <span class="amenity-tag"><i class="fas fa-hot-tub"></i> Plunge pool</span>
+                                            <span class="amenity-tag"><i class="fas fa-champagne-glasses"></i>
+                                                Champagne</span>
+                                            <span class="amenity-tag"><i class="fas fa-user-tie"></i> Butler
+                                                service</span>
+                                            <span class="amenity-tag"><i class="fas fa-snowflake"></i> AC</span>
                                         </div>
-                                        <div class="price-badge">From KES 22,000 / night (all-inclusive for two)</div>
+
+                                        <!-- Experience Highlights -->
+                                        <div class="mt-3">
+                                            <h6 class="mb-2"><i class="fas fa-star text-warning me-2"></i>Experience
+                                                Highlights</h6>
+                                            <ul class="small mb-2">
+                                                <li>Private plunge pool with ocean views</li>
+                                                <li>Romantic setup for couples & honeymooners</li>
+                                                <li>Top-floor privacy & exclusivity</li>
+                                                <li>All-inclusive luxury experience</li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Price + CTA -->
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <div class="price-badge">From <strong>KES 22,000</strong> / night</div>
+                                            <a href="#" class="btn-acc-book">Book Now →</a>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -312,9 +425,89 @@
                         <h3 class="mb-4">Check Availability & Book</h3>
                         <div id="calendarRoot" class="calendar-container"></div>
                         <div class="selection-info" id="selectionInfo">
-                            <p><strong>Selected dates:</strong> <span id="selectedRangeText">None</span></p>
-                            <button id="bookNowAvailBtn" class="book-now-avail btn-large"
-                                style="background: var(--sunrise-gold);">Book Now</button>
+                            <form id="bookingForm" class="booking-form mt-4">
+
+                                <h4 class="mb-3">Complete Your Booking</h4>
+
+                                <!-- Suite Selection -->
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Select Suite</label>
+                                        <select class="form-select" id="roomSelect" required>
+                                            <option value="">-- Choose Suite --</option>
+                                            <option value="Deluxe Ocean View Room">Deluxe Ocean View Room</option>
+                                            <option value="Family Terrace Suite">Family Terrace Suite</option>
+                                            <option value="Honeymoon Penthouse">Honeymoon Penthouse</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Guest Details -->
+                                    <!-- <div class="row"> -->
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="guestName" placeholder="John Doe"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="guestPhone" placeholder="+254..."
+                                            required>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="guestEmail"
+                                            placeholder="you@email.com" required>
+                                    </div>
+                                </div>
+
+                                <!-- Guests -->
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Adults</label>
+                                        <input type="number" class="form-control" id="adults" min="1" value="1"
+                                            required>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Children</label>
+                                        <input type="number" class="form-control" id="children" min="0" value="0">
+                                    </div>
+                                </div>
+
+                                <!-- Date Info (from your calendar) -->
+                                <div class="mb-3">
+                                    <label class="form-label">Selected Dates</label>
+                                    <input type="text" class="form-control" id="selectedRangeText" readonly
+                                        placeholder="Pick dates from calendar">
+                                </div>
+
+                                <!-- Special Requests -->
+                                <div class="mb-3">
+                                    <label class="form-label">Special Requests</label>
+                                    <textarea class="form-control" id="requests" rows="3"
+                                        placeholder="Anything we should prepare for your stay?"></textarea>
+                                </div>
+
+                                <!-- Price Summary -->
+                                <div class="alert alert-info">
+                                    <strong>Note:</strong> Booking requires a <strong>50% deposit</strong>.
+                                    Final price
+                                    will be calculated based on selected dates.
+                                </div>
+
+                                <!-- Submit -->
+                                <button type="submit" id="bookNowAvailBtn" class="btn-exp-book w-100">
+                                    <i class="fas fa-lock me-1"></i> Confirm Booking (Pay 50%) →
+                                </button>
+
+                            </form>
+                            <!-- <p><strong>Selected dates:</strong> <span id="selectedRangeText">None</span></p> -->
+                            <!-- <button id="bookNowAvailBtn" class="book-now-avail btn-large"
+                                style="background: var(--sunrise-gold);">Book Now</button> -->
                         </div>
                     </div>
 
@@ -497,6 +690,7 @@
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script>
+
         const offcanvasElement = document.getElementById('mobileOffcanvas');
         if (offcanvasElement) {
             // When offcanvas starts to show, hide the entire navbar wrapper (the bar with logo + menu button)
@@ -521,11 +715,26 @@
 
         function isBooked(date) { return bookedDates.includes(date.toISOString().split('T')[0]); }
         function clearSelection() { selectedStart = null; selectedEnd = null; renderCalendar(); updateSelectionText(); }
+        // function updateSelectionText() {
+        //     const span = document.getElementById('selectedRangeText');
+        //     if (selectedStart && selectedEnd) span.innerText = `${selectedStart.toDateString()} → ${selectedEnd.toDateString()}`;
+        //     else if (selectedStart) span.innerText = `${selectedStart.toDateString()} (select check-out)`;
+        //     else span.innerText = 'None';
+        // }
         function updateSelectionText() {
-            const span = document.getElementById('selectedRangeText');
-            if (selectedStart && selectedEnd) span.innerText = `${selectedStart.toDateString()} → ${selectedEnd.toDateString()}`;
-            else if (selectedStart) span.innerText = `${selectedStart.toDateString()} (select check-out)`;
-            else span.innerText = 'None';
+            const input = document.getElementById('selectedRangeText');
+
+            if (!input) return;
+
+            if (selectedStart && selectedEnd) {
+                input.value = `${selectedStart.toDateString()} → ${selectedEnd.toDateString()}`;
+            }
+            else if (selectedStart) {
+                input.value = `${selectedStart.toDateString()} (select check-out)`;
+            }
+            else {
+                input.value = '';
+            }
         }
         function renderCalendar() {
             const year = currentDate.getFullYear(), month = currentDate.getMonth();
@@ -593,6 +802,35 @@
         fadeElements.forEach(el => observer.observe(el));
         const navbarWrapper = document.getElementById('navbarWrapper');
         window.addEventListener('scroll', function () { if (window.scrollY > 20) { navbarWrapper.classList.add('sticky-nav'); document.body.classList.add('nav-fixed-padding'); } else { navbarWrapper.classList.remove('sticky-nav'); document.body.classList.remove('nav-fixed-padding'); } });
+        // function showTab(tabId, el = null) {
+
+        // hide all tabs
+        //     document.querySelectorAll('.tab-pane').forEach(tab => {
+        //         tab.classList.remove('active', 'show');
+        //     });
+
+        //     // remove active from all triggers (buttons + links)
+        //     document.querySelectorAll('.tab-btn, .compact-btn-phone, .nav-link').forEach(btn => {
+        //         btn.classList.remove('active');
+        //     });
+
+        //     // show selected tab
+        //     const target = document.getElementById(tabId);
+        //     if (!target) return;
+
+        //     target.classList.add('active');
+        //     target.classList.add('show'); // IMPORTANT for Bootstrap fade
+
+        //     // mark clicked element active (if exists)
+        //     if (el) {
+        //         el.classList.add('active');
+        //     }
+
+        //     // init calendar
+        //     if (tabId === 'availability') {
+        //         initCalendarIfNeeded();
+        //     }
+        // }
         function showTab(tabId) { document.querySelectorAll('.tab-pane').forEach(tab => tab.classList.remove('active')); document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active')); document.getElementById(tabId).classList.add('active'); event.target.closest('.tab-btn').classList.add('active'); if (tabId === 'availability') initCalendarIfNeeded(); }
         function toggleRoom(header) { header.classList.toggle('collapsed'); const content = header.nextElementSibling; if (content.style.display === 'none') content.style.display = 'block'; else content.style.display = 'none'; }
         document.querySelectorAll('.room-content').forEach(el => el.style.display = 'block');
