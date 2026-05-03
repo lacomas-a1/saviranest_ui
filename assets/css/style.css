@@ -1,7 +1,7 @@
 /* Base styles (original design kept intact) */
 @font-face {
     font-family: 'Aptos';
-    src: url('/../../Aptos/Aptos.ttf') format('truetype');
+    src: url('../../../Aptos/Aptos.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
