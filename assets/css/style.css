@@ -1,7 +1,7 @@
 /* Base styles (original design kept intact) */
 @font-face {
     font-family: 'Aptos';
-    src: url('../Aptos/Aptos.ttf') format('truetype');
+    src: url('/Aptos/Aptos.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -1784,7 +1784,7 @@ footer {
     margin-top: -50px;
     position: relative;
     z-index: 10;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 
 .tour-image {
@@ -1812,7 +1812,7 @@ footer {
     background: linear-gradient(135deg, var(--deep-navy), #1e3a5f);
     border-radius: 20px;
     padding: 0.8rem 1.5rem;
-    margin: 1rem 0 2rem 0;
+    margin: 0 0 2rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2270,7 +2270,7 @@ footer {
     background: #fff8ec;
     border-radius: 24px;
     padding: 1.2rem;
-    margin: 1.5rem 0;
+    margin: 0.5rem 0 1.5rem 0;
 }
 
 
@@ -2414,18 +2414,24 @@ footer {
     color: var(--ocean-blue);
 }
 
+.btn-book {
+    background: var(--sunrise-gold);
+    border: none;
+    color: white;
+}
+
+.btn-book:hover {
+    text-decoration: none;
+    background-color: transparent;
+    color: var(--sunrise-gold);
+    /* border-color: var(--sunrise-gold); */
+    border: 1px solid var(--sunrise-gold);
+}
+
 .btn-exp-book {
-    /* background: var(--sunrise-gold);
-    color: var(--deep-navy); */
     display: inline-block;
     width: 100%;
     text-align: center;
-    /* padding: 10px;
-    border-radius: 40px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: 0.2s; */
-
     background-color: var(--sunrise-gold);
     text-decoration: none;
     color: var(--white);
@@ -2705,4 +2711,81 @@ footer {
     .card-buttons {
         flex-direction: column;
     }
+}
+
+/* Experience Details */
+.exp-details-header {
+    background: linear-gradient(rgba(30, 58, 138, 0.82), rgba(30, 58, 138, 0.82)),
+        url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3') no-repeat center center;
+    background-size: cover;
+    min-height: 42vh;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.timeline-time {
+    flex: 0 0 110px;
+    font-weight: 700;
+    color: var(--sunrise-gold);
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-content h5 {
+    margin-bottom: 0.25rem;
+}
+
+@media (max-width: 768px) {
+    .timeline-item {
+        flex-direction: column;
+    }
+
+    .timeline-time {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.notes-section {
+    background: #fef9f0;
+    border-radius: 1rem;
+    padding: 1.2rem;
+    height: 100%;
+}
+
+.notes-section ul {
+    padding-left: 1.2rem;
+    margin: 0;
+}
+
+/* Rental Details */
+.rent-details-header {
+    background: linear-gradient(rgba(30, 58, 138, 0.82), rgba(30, 58, 138, 0.82)),
+        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3') no-repeat center center;
+    background-size: cover;
+    min-height: 42vh;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    text-align: center;
 }
