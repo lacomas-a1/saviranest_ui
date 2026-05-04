@@ -2,6 +2,7 @@
 @font-face {
     font-family: 'Aptos';
     src: url('../Aptos/Aptos.ttf') format('truetype');
+    src: url('/Aptos/Aptos.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -323,6 +324,10 @@ body.nav-fixed-padding {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.location-text i {
+    color: var(--sunrise-gold);
 }
 
 .rating-stars {
@@ -2788,4 +2793,306 @@ footer {
     padding-top: 50px;
     padding-bottom: 40px;
     text-align: center;
+}
+
+/* Logistics */
+.logistics-header {
+    background: linear-gradient(rgba(30, 58, 138, 0.82), rgba(30, 58, 138, 0.82)),
+        url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+    background-size: cover;
+    min-height: 38vh;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+/* Cards Grid */
+.logistics-grid-section {
+    padding: 1rem 0 2rem 0;
+    background: var(--light);
+}
+
+.logistics-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.logistics-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 36px -12px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+    transition: transform 0.4s;
+}
+
+.logistics-card:hover .card-img-top {
+    transform: scale(1.03);
+}
+
+.img-holder {
+    overflow: hidden;
+}
+
+.card-body {
+    padding: 1.3rem 1.2rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.location-text {
+    font-size: 0.8rem;
+    color: var(--deep-navy);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Vehicle specs row (replaces rating stars) */
+.vehicle-specs {
+    color: var(--ocean-blue);
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-top: 1px solid #edf2f7;
+    padding-top: 0.5rem;
+}
+
+.vehicle-specs i {
+    width: 18px;
+    color: var(--sunrise-gold);
+}
+
+.desc-text {
+    font-size: 0.85rem;
+    color: var(--deep-navy);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.price-block {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--support-green);
+    margin-bottom: 1rem;
+}
+
+/* .card-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .card-buttons .btn {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem 0.2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 40px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+            cursor: pointer;
+        } */
+
+/* .btn-outline-accent {
+            background: transparent;
+            border: 1.5px solid var(--sunrise-gold);
+            color: var(--sunrise-gold);
+        }
+
+        .btn-outline-accent:hover {
+            background: var(--sunrise-gold);
+            color: white;
+        }
+
+        .btn-inquire {
+            background: var(--ocean-blue);
+            border: none;
+            color: white;
+        }
+
+        .btn-inquire:hover {
+            background: #0f6bb3;
+            color: white;
+        } */
+
+/* Transfer cards (extra logistics section) */
+.transfer-section {
+    background: #F0F5FA;
+    border-radius: 40px;
+    padding: 2rem 1.5rem;
+    margin: 1.5rem 0 2rem;
+}
+
+.transfer-card {
+    background: white;
+    border-radius: 24px;
+    padding: 1.4rem;
+    text-align: center;
+    height: 100%;
+    transition: 0.2s;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef;
+}
+
+.transfer-card:hover {
+    transform: translateY(-5px);
+}
+
+.transfer-route {
+    font-weight: 800;
+    font-size: 1.2rem;
+    margin: 0.6rem 0;
+    color: var(--deep-navy);
+}
+
+.badge-driver {
+    background: #eef2ff;
+    color: #1e3a8a;
+    border-radius: 30px;
+    padding: 0.2rem 1rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Booking */
+/* Header Hero */
+.booking-header {
+    background: linear-gradient(rgba(11, 31, 58, 0.85), rgba(11, 31, 58, 0.85)),
+        url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+    background-size: cover;
+    min-height: 38vh;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+/* Booking Card */
+.booking-card {
+    background: var(--white);
+    border-radius: 32px;
+    box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
+    padding: 2rem 2rem;
+    margin-top: -3rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 20;
+}
+
+.toggle-booking-type {
+    display: flex;
+    gap: 1rem;
+    background: #F1F5F9;
+    border-radius: 60px;
+    padding: 0.4rem;
+    margin-bottom: 2rem;
+}
+
+.booking-type-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+    background: transparent;
+    border: none;
+    color: var(--deep-navy);
+}
+
+.booking-type-btn.active {
+    background: var(--sunrise-gold);
+    color: white;
+    box-shadow: 0 4px 12px rgba(249, 168, 38, 0.3);
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-label-custom {
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: var(--deep-navy);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.form-control-booking,
+.form-select-booking {
+    background: #F9FAFB;
+    border: 1px solid #E2E8F0;
+    border-radius: 20px;
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    width: 100%;
+    transition: 0.2s;
+}
+
+.form-control-booking:focus,
+.form-select-booking:focus {
+    border-color: var(--sunrise-gold);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(249, 168, 38, 0.2);
+}
+
+.price-summary {
+    background: #FEF9F0;
+    border-radius: 24px;
+    padding: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.btn-book-now {
+    background: linear-gradient(95deg, var(--support-green), #047857);
+    border: none;
+    padding: 14px;
+    width: 100%;
+    font-weight: 800;
+    border-radius: 50px;
+    color: white;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+.btn-book-now:hover {
+    transform: scale(1.01);
+    box-shadow: 0 10px 20px rgba(5, 150, 105, 0.3);
 }

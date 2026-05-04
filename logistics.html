@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Snorkeling & Dolphin Watch | SaviraNest – Ocean Safari Experience</title>
+    <title>SaviraNest | Logistics & Car Hire – Safari Vehicles, Shuttles & Transport</title>
 
     <meta name="description"
-        content="Snorkel vibrant coral gardens, swim with wild dolphins, and enjoy a picnic on a secluded sandbank. All gear included. Book your Watamu ocean adventure.">
+        content="Reliable car hire and transport logistics along Kenya's coast. Rent 4x4 safari vehicles, passenger vans, cargo trucks, and book airport transfers. Quality fleet with driver or self-drive options.">
     <meta name="keywords"
-        content="snorkeling Watamu, dolphin watching Kenya, ocean safari, marine adventure, sandbank picnic">
+        content="car hire kenya, safari vehicle rental, kilifi transport, watamu airport shuttle, 4x4 rental coast, logistics kenya, cargo truck kenya">
 
     <link rel="icon" href="assets/image/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -19,22 +19,25 @@
 </head>
 
 <body>
-    <header class="exp-details-header">
+    <header class="logistics-header">
         <div class="container">
             <div class="navbar-wrapper" id="navbarWrapper">
                 <div class="custom-navbar">
                     <nav class="navbar navbar-expand-lg navbar-light p-0">
                         <div class="container-fluid px-0 navbar-content">
                             <a class="navbar-brand" href="index.html">
-                                <img src="assets/image/savira_nest_logo.webp" alt="SaviraNest Logo" class="travel-logo">
+                                <img src="assets/image/savira_nest_logo.png" alt="Savira Nest Logo" class="travel-logo">
                             </a>
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
                                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>   
+                                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                                     <li class="nav-item"><a class="nav-link" href="acc.html">Stays</a></li>
-                                    <li class="nav-item"><a class="nav-link active"href="experiences.html">Experiences</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="experiences.html">Experiences</a>
+                                    </li>
                                     <li class="nav-item"><a class="nav-link" href="rentals.html">Rentals</a></li>
+                                    <li class="nav-item"><a class="nav-link active" href="logistics.html">Logistics &
+                                            Cars</a></li>
                                     <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
                                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                                 </ul>
@@ -42,8 +45,10 @@
                             <div class="nav-right">
                                 <a href="login.html" class="btn-primary-travel">Login / Sign Up</a>
                             </div>
+
+                            <!-- Mobile Hamburger (triggers offcanvas) -->
                             <button class="mobile-menu-toggle" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#mobileOffcanvas">
+                                data-bs-target="#mobileOffcanvas" aria-controls="mobileOffcanvas" id="mobileMenuBtn">
                                 <i class="fas fa-bars"></i>
                             </button>
                         </div>
@@ -52,363 +57,262 @@
             </div>
         </div>
         <div class="hero-content container">
-            <h1 class="hero-title">Snorkeling & Dolphin Watch</h1>
-            <p class="hero-subtitle">Explore coral gardens · Swim with wild dolphins · Sandbank picnic</p>
+            <h1 class="hero-title">Your Ride. Your Safari. Your Pace.</h1>
+            <p class="hero-subtitle">4x4 safari vehicles · Family vans · Cargo logistics · Airport transfers — with or
+                without driver</p>
         </div>
     </header>
 
-    <main>
+    <div class="container">
+        <div class="category-bar">
+            <button class="filter-btn active" data-filter="all">All Vehicles</button>
+            <button class="filter-btn" data-filter="4x4">4x4 Safari Jeeps</button>
+            <button class="filter-btn" data-filter="vans">Passenger Vans</button>
+            <button class="filter-btn" data-filter="logistics">Cargo & Logistics</button>
+        </div>
+    </div>
+
+    <section class="logistics-grid-section">
         <div class="container">
-            <div class="resort-card fade-up">
-                <div class="position-relative">
-                    <div class="tour-badge"><i class="fas fa-fish me-1"></i> Marine Adventure</div>
-                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=500&fit=crop"
-                        alt="Snorkeling Watamu" class="tour-image">
-                </div>
-                <div class="p-4 p-lg-5">
-                    <!-- Compact Action Bar -->
-                    <div class="compact-action-bar">
-                        <div class="d-flex flex-wrap gap-2">
-                            <span class="action-badge"><i class="fas fa-tag"></i> KES 4,200 / person</span>
-                            <span class="action-badge"><i class="fas fa-clock"></i> 4 hours</span>
-                            <span class="action-badge"><i class="fas fa-star"></i> 4.9/5 Rating</span>
+            <div class="row g-4" id="vehicleGrid">
+                <!-- 4x4: Land Cruiser -->
+                <div class="col-lg-4 col-md-6 vehicle-item" data-category="4x4">
+                    <div class="logistics-card">
+                        <div class="img-holder"><img
+                                src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=400&fit=crop"
+                                class="card-img-top" alt="Toyota Land Cruiser Safari"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Toyota Land Cruiser (4x4)</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"></i> Kilifi / Coastwide delivery
+                            </div>
+                            <div class="vehicle-specs"><span><i class="fas fa-users"></i> 6+1 seats</span> <span><i
+                                        class="fas fa-gas-pump"></i> Diesel</span> <span><i class="fas fa-road"></i>
+                                    Pop-up roof</span></div>
+                            <p class="desc-text">Fully equipped for safari: fridge box, off-road tires, and game-drive
+                                roof hatch. Perfect for Tsavo, Amboseli & coastal expeditions.</p>
+                            <div class="price-block">KES 9,500 <small>/day</small></div>
+                            <div class="card-buttons"><a href="rent-details.html" class="btn btn-outline-accent"><i
+                                        class="fas fa-info-circle"></i> Details</a><a href="#"
+                                    class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div>
                         </div>
-                        <div class="d-flex flex-wrap gap-2">
-                            <a href="#" class="compact-btn compact-btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#bookingModal"><i class="fas fa-calendar-check"></i> Book Now</a>
-                            <a href="https://wa.me/254712345678?text=I'm%20interested%20in%20Snorkeling%20%26%20Dolphin%20Watch"
-                                target="_blank" class="compact-btn compact-btn-whatsapp"><i class="fab fa-whatsapp"></i>
-                                WhatsApp</a>
-                            <a href="tel:+254712345678" class="compact-btn compact-btn-phone"><i
-                                    class="fas fa-phone"></i> Call</a>
-                        </div>
-                    </div>
-
-                    <!-- Tabs: Overview, Itinerary, Notes, Reviews, Location -->
-                    <div class="custom-tabs">
-                        <button class="tab-btn active" onclick="showTab('overview')"><i
-                                class="fas fa-water me-2"></i>Overview</button>
-                        <button class="tab-btn" onclick="showTab('itinerary')"><i
-                                class="fas fa-list-ol me-2"></i>Itinerary</button>
-                        <button class="tab-btn" onclick="showTab('notes')"><i
-                                class="fas fa-clipboard-list me-2"></i>Important Notes</button>
-                        <button class="tab-btn" onclick="showTab('location')"><i
-                                class="fas fa-map-marker-alt me-2"></i>Meeting Point</button>
-                        <button class="tab-btn" onclick="showTab('reviews')"><i
-                                class="fas fa-star me-2"></i>Reviews</button>
-                    </div>
-
-                    <!-- Overview Tab -->
-                    <div id="overview" class="tab-pane active">
-                        <h2 class="mb-3">Snorkeling & Dolphin Watch – Watamu Marine Park</h2>
-                        <div class="row mb-4">
-                            <div class="col-md-12">
-                                <p class="lead">Embark on a 4‑hour ocean safari to the pristine waters of Watamu Marine
-                                    National Park. Snorkel over kaleidoscopic coral reefs, swim alongside wild
-                                    bottlenose dolphins, and relax on a secluded sandbank with a tropical picnic.</p>
-                            </div>
-                        </div>
-                        <h3>Experience Highlights</h3>
-                        <div class="feature-grid">
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fas fa-fish"></i></div>
-                                <h5>Coral Gardens</h5>
-                                <p>Vibrant reefs with angelfish, parrotfish, and sea turtles</p>
-                            </div>
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fas fa-dolphin"></i></div>
-                                <h5>Dolphin Watching</h5>
-                                <p>Swim with friendly pods (seasonal & responsible)</p>
-                            </div>
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fas fa-umbrella-beach"></i></div>
-                                <h5>Sandbank Picnic</h5>
-                                <p>Fresh tropical fruits, juice & snacks on a private sandbar</p>
-                            </div>
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fas fa-mask"></i></div>
-                                <h5>All Gear Included</h5>
-                                <p>Mask, snorkel, fins, and life jackets provided</p>
-                            </div>
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fas fa-camera"></i></div>
-                                <h5>GoPro Rental</h5>
-                                <p>Capture underwater memories (optional add‑on)</p>
-                            </div>
-                            <div class="feature-card">
-                                <div class="feature-icon"><i class="fas fa-ship"></i></div>
-                                <h5>Boat with Shade</h5>
-                                <p>Comfortable 12‑seater, toilet & fresh water rinse</p>
-                            </div>
-                        </div>
-                        <p>Led by certified marine guides, this tour combines adventure with conservation. We follow
-                            strict dolphin‑watching ethics (no chasing, safe distance) and support local reef protection
-                            initiatives. Suitable for beginners and experienced snorkelers alike.</p>
-                    </div>
-
-                    <!-- Itinerary Tab -->
-                    <div id="itinerary" class="tab-pane">
-                        <h3 class="mb-4">Your Ocean Safari – Step by Step</h3>
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-time">08:00 – 08:30</div>
-                                <div class="timeline-content">
-                                    <h5>Pick‑up & Welcome</h5>
-                                    <p>Hotel pick‑up in Watamu/Kilifi. Briefing on safety, marine life, and responsible
-                                        dolphin interaction.</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-time">08:30 – 09:45</div>
-                                <div class="timeline-content">
-                                    <h5>Dolphin Search & Swim</h5>
-                                    <p>Cruise to dolphin hotspots. When a pod is located, you’ll have up to 45 minutes
-                                        to snorkel and observe them in their natural habitat (no touching or feeding).
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-time">09:45 – 11:00</div>
-                                <div class="timeline-content">
-                                    <h5>Coral Garden Snorkeling</h5>
-                                    <p>Two different reef sites – shallow and deep. Spot clownfish, moray eels, and if
-                                        lucky, a hawksbill turtle.</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-time">11:00 – 11:45</div>
-                                <div class="timeline-content">
-                                    <h5>Sandbank Picnic & Relaxation</h5>
-                                    <p>Step onto a pristine sandbar. Enjoy fresh coconut, mango, juice, and light snacks
-                                        while taking Insta‑worthy photos.</p>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-time">11:45 – 12:15</div>
-                                <div class="timeline-content">
-                                    <h5>Return Journey</h5>
-                                    <p>Leisurely cruise back, with stops for more dolphin sightings if time permits.
-                                        Drop‑off at your accommodation.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Important Notes Tab -->
-                    <div id="notes" class="tab-pane">
-                        <h3 class="mb-4">What You Should Know</h3>
-                        <div class="row g-4">
-                            <div class="col-md-6">
-                                <div class="notes-section">
-                                    <h5><i class="fas fa-check-circle text-success me-2"></i>Included</h5>
-                                    <ul>
-                                        <li>Hotel pick‑up/drop‑off (Watamu, Kilifi, Malindi)</li>
-                                        <li>Snorkeling gear (mask, snorkel, fins, life vest)</li>
-                                        <li>Professional marine guide</li>
-                                        <li>Bottled water, fresh fruit, juice & snacks</li>
-                                        <li>All marine park fees</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="notes-section">
-                                    <h5><i class="fas fa-hand-peace me-2"></i>What to Bring</h5>
-                                    <ul>
-                                        <li>Swimsuit & towel</li>
-                                        <li>Reef‑safe sunscreen (or wear a UV shirt)</li>
-                                        <li>Hat, sunglasses, camera</li>
-                                        <li>Cash for extra drinks or tips</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="notes-section">
-                                    <h5><i class="fas fa-exclamation-triangle text-warning me-2"></i>Restrictions</h5>
-                                    <ul>
-                                        <li>Not suitable for non‑swimmers without life jacket</li>
-                                        <li>Children under 6 must be accompanied by an adult</li>
-                                        <li>Dolphin sightings are wild – we cannot guarantee, but chances >85%</li>
-                                        <li>Weather dependent; free rescheduling or full refund</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="notes-section">
-                                    <h5><i class="fas fa-leaf me-2"></i>Sustainability Commitment</h5>
-                                    <ul>
-                                        <li>No touching corals or marine animals</li>
-                                        <li>Biodegradable sunscreen only</li>
-                                        <li>Part of proceeds fund local reef clean‑ups</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Meeting Point / Location Tab -->
-                    <div id="location" class="tab-pane">
-                        <h3 class="mb-4">Meeting & Departure Points</h3>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="notes-section">
-                                    <h5><i class="fas fa-ship"></i> Main Departure Jetty</h5>
-                                    <p><strong>Watamu Boat Yard</strong><br>Next to Ocean Sports Resort, Watamu.
-                                        <br>GPS: -3.3496, 40.0284
-                                    </p>
-                                    <p>Free parking available. Please arrive 15 minutes before departure.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="notes-section">
-                                    <h5><i class="fas fa-hotel"></i> Hotel Pick‑up</h5>
-                                    <p>We pick up from all major hotels in Watamu, Kilifi, and Malindi. Specific time
-                                        will be confirmed after booking (usually 07:40–08:10).</p>
-                                    <p><i class="fas fa-map-marker-alt"></i> Extra charge for Malindi hotels: KES 500
-                                        return.</p>
-                                </div>
-                            </div>
-                            <div class="col-12 mt-3">
-                                <div class="bg-light p-3 rounded-4 text-center">
-                                    <i class="fas fa-map fa-2x text-primary mb-2"></i>
-                                    <p><strong>Exact location link</strong> will be sent via WhatsApp/email after
-                                        confirmation.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Reviews Tab -->
-                    <div id="reviews" class="tab-pane">
-                        <h3 class="mb-4">Guest Reviews (4.9 ★)</h3>
-                        <div id="reviewsList">
-                            <div class="review-card">
-                                <div class="review-header d-flex justify-content-between"><strong>Lena
-                                        Schmidt</strong><span>February 2026</span></div>
-                                <div class="review-rating"><i class="fas fa-star text-warning"></i><i
-                                        class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
-                                        class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
-                                </div>
-                                <p>Absolutely magical! We swam with a pod of about 30 dolphins. The guide was very
-                                    respectful of the animals. Snorkeling sites were like aquariums. The sandbank picnic
-                                    was the cherry on top.</p>
-                                <div class="admin-reply"><strong>Tour Operator:</strong><br>Thank you Lena! We're
-                                    delighted you had such a wonderful encounter.</div>
-                                <div class="reply-form"><input type="text" class="reply-input"
-                                        placeholder="Write a reply..."><button class="reply-btn"
-                                        onclick="replyToReview(this)">Reply</button></div>
-                            </div>
-                            <div class="review-card">
-                                <div class="review-header d-flex justify-content-between"><strong>David & Anne
-                                        Mwangi</strong><span>January 2026</span></div>
-                                <div class="review-rating"><i class="fas fa-star text-warning"></i><i
-                                        class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i
-                                        class="fas fa-star text-warning"></i><i
-                                        class="fas fa-star-half-alt text-warning"></i></div>
-                                <p>Great value for money. Saw dolphins but they were shy – still amazing to watch from
-                                    the boat. Snorkeling gear was clean and new. The crew was very friendly.</p>
-                                <div class="admin-reply"><strong>Tour Operator:</strong><br>Asante sana! We always
-                                    respect the animals' space, but we're glad you enjoyed the reefs and service.</div>
-                                <div class="reply-form"><input type="text" class="reply-input"
-                                        placeholder="Write a reply..."><button class="reply-btn"
-                                        onclick="replyToReview(this)">Reply</button></div>
-                            </div>
-                        </div>
-                        <div class="add-review-form mt-5">
-                            <h5>Add Your Review</h5>
-                            <div class="row g-3">
-                                <div class="col-md-6"><input type="text" id="reviewerName" class="form-control"
-                                        placeholder="Your Name"></div>
-                                <div class="col-md-6"><select id="reviewRating" class="form-select">
-                                        <option value="5">★★★★★ (5)</option>
-                                        <option value="4">★★★★☆ (4)</option>
-                                        <option value="3">★★★☆☆ (3)</option>
-                                    </select></div>
-                                <div class="col-12"><textarea id="reviewText" class="form-control" rows="3"
-                                        placeholder="Write your review..."></textarea></div>
-                                <div class="col-12"><button class="btn btn-primary"
-                                        style="background:var(--support-green)" onclick="addNewReview()">Submit
-                                        Review</button></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Photo Gallery -->
-                    <h3 class="mt-5 mb-3">Photo Gallery</h3>
-                    <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active"><img
-                                    src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=400&fit=crop"
-                                    class="d-block w-100" alt="Dolphins Watamu"></div>
-                            <div class="carousel-item"><img
-                                    src="https://images.unsplash.com/photo-1560275619-4662e36fa65c?w=800&h=400&fit=crop"
-                                    class="d-block w-100" alt="Coral garden"></div>
-                            <div class="carousel-item"><img
-                                    src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=800&h=400&fit=crop"
-                                    class="d-block w-100" alt="Sandbank picnic"></div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel"
-                            data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel"
-                            data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
                     </div>
                 </div>
-            </div>
-
-            <div class="mt-2 mb-4 text-center">
-                <a href="experiences.html" class="btn-back-stays"><i class="fas fa-arrow-left me-2"></i>Back to
-                    Experiences</a>
+                <!-- 4x4: Ford Ranger Double Cab -->
+                <div class="col-lg-4 col-md-6 vehicle-item" data-category="4x4">
+                    <div class="logistics-card">
+                        <div class="img-holder"><img
+                                src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=600&h=400&fit=crop"
+                                class="card-img-top" alt="Ford Ranger 4x4"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Ford Ranger Double Cab 4x4</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"></i> Self-drive or with guide
+                            </div>
+                            <div class="vehicle-specs"><span><i class="fas fa-users"></i> 5 seats</span> <span><i
+                                        class="fas fa-boxes"></i> Lockable canopy</span> <span><i
+                                        class="fas fa-tachometer-alt"></i> 4x4 low range</span></div>
+                            <p class="desc-text">Heavy-duty pickup for remote camp access and gear transportation. Ideal
+                                for photographers & overland adventurers.</p>
+                            <div class="price-block">KES 7,800 <small>/day</small></div>
+                            <div class="card-buttons"><a href="rent-details.html" class="btn btn-outline-accent"><i
+                                        class="fas fa-info-circle"></i> Details</a><a href="#"
+                                    class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Passenger Van: Toyota Hiace 14-Seater -->
+                <div class="col-lg-4 col-md-6 vehicle-item" data-category="vans">
+                    <div class="logistics-card">
+                        <div class="img-holder"><img
+                                src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=400&fit=crop"
+                                class="card-img-top" alt="Toyota Hiace Shuttle"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Toyota Hiace (14-Seater)</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"></i> Airport & group travel
+                            </div>
+                            <div class="vehicle-specs"><span><i class="fas fa-user-friends"></i> 14 pax</span> <span><i
+                                        class="fas fa-wind"></i> A/C</span> <span><i class="fas fa-luggage-cart"></i>
+                                    Luggage space</span></div>
+                            <p class="desc-text">Comfortable shuttle for safari groups or family reunions. Available
+                                with experienced driver or self-drive (class B license).</p>
+                            <div class="price-block">KES 10,500 <small>/day</small></div>
+                            <div class="card-buttons"><a href="rent-details.html" class="btn btn-outline-accent"><i
+                                        class="fas fa-info-circle"></i> Details</a><a href="#"
+                                    class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Passenger Van: Toyota Noah Premium -->
+                <div class="col-lg-4 col-md-6 vehicle-item" data-category="vans">
+                    <div class="logistics-card">
+                        <div class="img-holder"><img
+                                src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=400&fit=crop"
+                                class="card-img-top" alt="Family Minivan"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Toyota Noah / Voxy (7-Seater)</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"></i> Ideal for families</div>
+                            <div class="vehicle-specs"><span><i class="fas fa-child"></i> 7 seats</span> <span><i
+                                        class="fas fa-shield-alt"></i> Full insurance</span> <span><i
+                                        class="fas fa-baby-carriage"></i> Child seat on request</span></div>
+                            <p class="desc-text">Smooth automatic, sliding doors, ample legroom. Great for coastal road
+                                trips from Watamu to Diani.</p>
+                            <div class="price-block">KES 5,800 <small>/day</small></div>
+                            <div class="card-buttons"><a href="rent-details.html" class="btn btn-outline-accent"><i
+                                        class="fas fa-info-circle"></i> Details</a><a href="#"
+                                    class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Logistics: 3-Tonne Box Truck -->
+                <div class="col-lg-4 col-md-6 vehicle-item" data-category="logistics">
+                    <div class="logistics-card">
+                        <div class="img-holder"><img
+                                src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=600&h=400&fit=crop"
+                                class="card-img-top" alt="Cargo Truck"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">3-Tonne Box Truck (Logistics)</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"></i> Cargo / Event transport
+                            </div>
+                            <div class="vehicle-specs"><span><i class="fas fa-weight-hanging"></i> 3,000kg load</span>
+                                <span><i class="fas fa-route"></i> Tail lift</span> <span><i class="fas fa-truck"></i>
+                                    Driver included</span>
+                            </div>
+                            <p class="desc-text">Moving equipment, safari gear, or event supplies. Reliable delivery
+                                along the coastal strip.</p>
+                            <div class="price-block">KES 12,000 <small>/day</small></div>
+                            <div class="card-buttons"><a href="rent-details.html" class="btn btn-outline-accent"><i
+                                        class="fas fa-info-circle"></i> Details</a><a href="#"
+                                    class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Logistics: Dual Sport Motorbike Adventure -->
+                <div class="col-lg-4 col-md-6 vehicle-item" data-category="logistics">
+                    <div class="logistics-card">
+                        <div class="img-holder"><img
+                                src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&h=400&fit=crop"
+                                class="card-img-top" alt="Adventure Motorbike"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">Dual Sport Motorcycle (Adventure)</h5>
+                            <div class="location-text"><i class="fas fa-map-marker-alt"></i> Explore remote beaches
+                            </div>
+                            <div class="vehicle-specs"><span><i class="fas fa-motorcycle"></i> 650cc</span> <span><i
+                                        class="fas fa-tools"></i> Panniers+helmet</span> <span><i
+                                        class="fas fa-road"></i> Off-road tyres</span></div>
+                            <p class="desc-text">Honda CRF / KLR 650. Perfect for solo adventurers & hidden coastal
+                                trails. Delivery to your doorstep.</p>
+                            <div class="price-block">KES 2,200 <small>/day</small></div>
+                            <div class="card-buttons"><a href="rent-details.html" class="btn btn-outline-accent"><i
+                                        class="fas fa-info-circle"></i> Details</a><a href="#"
+                                    class="btn btn-inquire wa-inquire"><i class="fab fa-whatsapp"></i> Inquire</a></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Booking Modal (simple) -->
-    <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header" style="background: var(--deep-navy); color: white;">
-                    <h5 class="modal-title">Book Snorkeling & Dolphin Watch</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+    <!-- Airport & Coastal Transfer Section (extra logistics) -->
+    <div class="container">
+        <div class="transfer-section">
+            <h3 class="text-center mb-4" style="color: var(--deep-navy);">Airport & Doorstep Transfers</h3>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="transfer-card">
+                        <i class="fas fa-plane-departure" style="font-size: 2.2rem; color: var(--orange);"></i>
+                        <div class="transfer-route">Mombasa (MBA) → Kilifi</div>
+                        <p class="small">Private sedan / 4x4 • Meet & greet • 1.5hr drive</p>
+                        <span class="badge-driver">Driver included</span>
+                        <div class="price-block mt-2">KES 6,500 <small>/one way</small></div>
+                        <a href="#"
+                            class="btn-outline-accent btn-sm mt-2 d-inline-block px-3 py-2 rounded-pill text-decoration-none wa-transfer">Book
+                            Transfer</a>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form id="experienceBookingForm">
-                        <div class="mb-3">
-                            <label class="form-label">Select Date</label>
-                            <input type="date" class="form-control" id="expDate" min="2026-05-05" required>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Adults (12+ yrs)</label>
-                                <input type="number" class="form-control" id="adultsCount" value="1" min="1" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Children (6-11 yrs)</label>
-                                <input type="number" class="form-control" id="childrenCount" value="0" min="0">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="guestFullName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">WhatsApp / Phone</label>
-                            <input type="tel" class="form-control" id="guestPhoneModal" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Hotel / Accommodation (for pick‑up)</label>
-                            <input type="text" class="form-control" id="hotelName"
-                                placeholder="e.g. Watamu Beach Resort">
-                        </div>
-                        <div class="alert alert-info small">Total price: KES <span id="totalPrice">4,200</span> (adults
-                            KES 4,200, children 6-11 half price: KES 2,100). A 30% deposit secures your slot.</div>
-                        <button type="submit" class="btn btn-primary w-100"
-                            style="background: var(--sunrise-gold); border: none;">Send Booking Request →</button>
-                    </form>
+                <div class="col-md-4">
+                    <div class="transfer-card">
+                        <i class="fas fa-umbrella-beach" style="font-size: 2.2rem; color: var(--orange);"></i>
+                        <div class="transfer-route">Malindi → Watamu</div>
+                        <p class="small">Shuttle or private car • 30 min scenic coastline</p>
+                        <span class="badge-driver">Flexible schedule</span>
+                        <div class="price-block mt-2">KES 2,800 <small>/one way (up to 4pax)</small></div>
+                        <a href="#"
+                            class="btn-outline-accent btn-sm mt-2 d-inline-block px-3 py-2 rounded-pill text-decoration-none wa-transfer">Request
+                            Transfer</a>
+                    </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="transfer-card">
+                        <i class="fas fa-mountain" style="font-size: 2.2rem; color: var(--orange);"></i>
+                        <div class="transfer-route">Kilifi → Vipingo / Takaungu</div>
+                        <p class="small">Hourly local trips, errands, or custom tours</p>
+                        <span class="badge-driver">On-demand</span>
+                        <div class="price-block mt-2">KES 1,500 <small>/hour (min 2h)</small></div>
+                        <a href="#"
+                            class="btn-outline-accent btn-sm mt-2 d-inline-block px-3 py-2 rounded-pill text-decoration-none wa-transfer">Contact
+                            Logistics</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4"><small class="text-muted"><i class="fas fa-hand-point-right"></i> Need
+                    multi-day hire with driver? Ask us for custom packages & group discounts.</small></div>
+        </div>
+    </div>
+
+    <!-- Benefit Cards: why rent vehicles with us -->
+    <div class="container">
+        <div class="section-title">Why Choose SaviraNest Logistics</div>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="benefit-icon"><i class="fas fa-car-side"></i></div>
+                <h4>Modern Fleet, Insured</h4>
+                <p>All vehicles fully comprehensive insurance, regular maintenance, and roadside assistance.</p>
+            </div>
+            <div class="step-card">
+                <div class="benefit-icon"><i class="fas fa-user-tie"></i></div>
+                <h4>Driver or Self-Drive</h4>
+                <p>Choose experienced local driver-guide or self-drive (with valid license).</p>
+            </div>
+            <div class="step-card">
+                <div class="benefit-icon"><i class="fas fa-map-marked-alt"></i></div>
+                <h4>Coastwide Delivery</h4>
+                <p>We deliver to your hotel, villa or camp in Kilifi, Watamu, Malindi and Mombasa.</p>
+            </div>
+            <div class="step-card">
+                <div class="benefit-icon"><i class="fas fa-clock"></i></div>
+                <h4>Flexible Rental Terms</h4>
+                <p>Daily, weekly, and long-term rates with no hidden mileage fees for local trips.</p>
             </div>
         </div>
     </div>
 
-    <!-- Footer (same as original) -->
+    <!-- How It Works -->
+    <div class="container">
+        <div class="section-title">How Vehicle Rental Works</div>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h4>Select your ride</h4>
+                <p>Choose 4x4, van, or cargo vehicle for your dates & destinations.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h4>Confirm & pay deposit</h4>
+                <p>Secure reservation online; we confirm availability & driver options.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h4>Delivery & briefing</h4>
+                <p>We bring the vehicle to your location with full orientation & checklist.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h4>Safari & return</h4>
+                <p>Enjoy your journey; we collect at agreed spot. Easy & seamless.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -446,7 +350,9 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/254712345678" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/254712345678" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i
+            class="fab fa-whatsapp"></i></a>
 
     <!-- OFF-CANVAS MOBILE MENU (inspired by reference images) -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileOffcanvas" aria-labelledby="mobileOffcanvasLabel">
@@ -462,14 +368,12 @@
                 <li><a href="acc.html"><i class="fas fa-hotel"></i> Stays</a></li>
                 <li><a href="experiences.html"><i class="fas fa-water"></i> Experiences</a></li>
                 <li><a href="rentals.html"><i class="fas fa-hiking"></i> Outdoor Rentals</a></li>
+                <li><a href="logistics.html"><i class="fas fa-truck"></i> Logistics & Cars</a></li>
                 <li><a href="pricing.html"><i class="fas fa-tag"></i> Pricing</a></li>
                 <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
             <div class="mobile-action-buttons">
                 <a href="login.html" class="btn-mobile-book"><i class="fas fa-user"></i> Login / Sign Up</a>
-                <!-- <a href="#" class="btn-mobile-book"><i class="fas fa-calendar-check"></i> Book Now</a>
-                <a href="https://wa.me/254712345678" target="_blank" class="btn-mobile-wa"><i
-                        class="fab fa-whatsapp"></i> WhatsApp Inquiry</a> -->
             </div>
             <div class="mobile-contact-info">
                 <p><i class="fas fa-phone-alt"></i> +254 712 345 678</p>
@@ -507,7 +411,7 @@
                         <li><strong>Identity data:</strong> Full name, date of birth, profile photo, and government ID
                             (for host verification)</li>
                         <li><strong>Contact data:</strong> Email address, phone number, and billing address</li>
-                        <li><strong>Booking data:</strong> Reservation history, accommodation preferences, travel dates,
+                        <li><strong>Booking data:</strong> Reservation history, logistics preferences, travel dates,
                             and guest count</li>
                         <li><strong>Payment data:</strong> Encrypted card details, mobile money numbers, and transaction
                             history processed via our PCI-DSS certified payment partners</li>
@@ -793,7 +697,7 @@
                     <ul>
                         <li><strong>More than 48 hours before check-in:</strong> Full refund of the total booking
                             amount, including the service fee</li>
-                        <li><strong>24 to 48 hours before check-in:</strong> 50% refund of the accommodation cost; the
+                        <li><strong>24 to 48 hours before check-in:</strong> 50% refund of the logistics cost; the
                             service fee is non-refundable</li>
                         <li><strong>Less than 24 hours before check-in:</strong> No refund — the full booking amount is
                             retained</li>
@@ -843,7 +747,7 @@
 
                     <h3 class="h6 mt-4">8. Host Cancellations</h3>
                     <p>If a host cancels a confirmed booking, the guest will receive a full refund including all service
-                        fees. SaviraNest will also assist the affected guest in finding alternative accommodation of
+                        fees. SaviraNest will also assist the affected guest in finding alternative logistics of
                         equal or greater value at no additional charge where possible. Hosts who cancel confirmed
                         bookings may face penalties including reduced listing visibility, financial penalties, or
                         account suspension depending on the frequency and circumstances of the cancellation.</p>
