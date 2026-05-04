@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SaviraNest | Book Stays & Experiences – Reserve Your Adventure</title>
+
+    <meta name="description"
+        content="Book your perfect stay or experience in Kenya. Choose from handpicked beach resorts, safari lodges, cultural tours, and more. Instant confirmation.">
+    <meta name="keywords"
+        content="booking Kenya, stay booking, experience booking, Diani resort, Masai Mara safari, Watamu snorkeling">
+
+    <link rel="icon" href="assets/logo/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Aptos';
+            src: url('/Aptos/Aptos.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --ocean-blue: #1E88E5;
+            --deep-navy: #0B1F3A;
+            --sand-beige: #F4E7D3;
+            --orange: #E07C3C;
+            --sunrise-gold: #F9A826;
+            --support-green: #059669;
+            --white: #FFFFFF;
+            --light: #F8F9FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Aptos', 'Plus Jakarta Sans', sans-serif;
+            color: var(--deep-navy);
+            background-color: var(--light);
+            line-height: 1.5;
+            font-size: 0.9rem;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Aptos', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Header Hero */
+        .booking-header {
+            background: linear-gradient(rgba(11, 31, 58, 0.85), rgba(11, 31, 58, 0.85)),
+                url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            min-height: 35vh;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 50px;
+            padding-bottom: 40px;
+            text-align: center;
+        }
+
+        /* Navbar Wrapper (sticky, same style) */
+        .navbar-wrapper {
+            position: relative;
+            z-index: 1100;
+            transition: all 0.3s ease;
+            margin-top: 0;
+            border-radius: 60px;
+            background: transparent;
+        }
+
+        .custom-navbar {
+            background: var(--white);
+            border-radius: 60px;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-wrapper.sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            margin: 0;
+            border-radius: 0;
+            z-index: 1100;
+            background: var(--white);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-wrapper.sticky-nav .custom-navbar {
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0.3rem 1rem;
+        }
+
+        body.nav-fixed-padding {
+            padding-top: 85px;
+        }
+
+        .travel-logo {
+            height: 70px;
+            transition: transform 0.2s;
+            max-width: 100%;
+        }
+
+        .custom-navbar .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .navbar-brand {
+            margin-right: 0;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .navbar-collapse {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar-nav {
+            display: flex;
+            flex-direction: row;
+            gap: 0.25rem;
+            margin: 0;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--ocean-blue);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--support-green);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .btn-primary-travel {
+            background-color: var(--sunrise-gold);
+            text-decoration: none;
+            color: var(--white);
+            border: 2px solid var(--sunrise-gold);
+            padding: 0.4rem 1.25rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.25s;
+        }
+
+        .btn-primary-travel:hover {
+            background-color: transparent;
+            color: var(--sunrise-gold);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--orange);
+            color: var(--orange);
+            padding: 8px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: var(--orange);
+            color: var(--white);
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.92;
+        }
+
+        /* Booking Card */
+        .booking-card {
+            background: var(--white);
+            border-radius: 32px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2);
+            padding: 2rem 2rem;
+            margin-top: -3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 20;
+        }
+
+        .toggle-booking-type {
+            display: flex;
+            gap: 1rem;
+            background: #F1F5F9;
+            border-radius: 60px;
+            padding: 0.4rem;
+            margin-bottom: 2rem;
+        }
+
+        .booking-type-btn {
+            flex: 1;
+            text-align: center;
+            padding: 0.75rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            background: transparent;
+            border: none;
+            color: var(--deep-navy);
+        }
+
+        .booking-type-btn.active {
+            background: var(--sunrise-gold);
+            color: white;
+            box-shadow: 0 4px 12px rgba(249, 168, 38, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label-custom {
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            color: var(--deep-navy);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-control-booking,
+        .form-select-booking {
+            background: #F9FAFB;
+            border: 1px solid #E2E8F0;
+            border-radius: 20px;
+            padding: 0.7rem 1rem;
+            font-size: 0.9rem;
+            width: 100%;
+            transition: 0.2s;
+        }
+
+        .form-control-booking:focus,
+        .form-select-booking:focus {
+            border-color: var(--sunrise-gold);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(249, 168, 38, 0.2);
+        }
+
+        .price-summary {
+            background: #FEF9F0;
+            border-radius: 24px;
+            padding: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-book-now {
+            background: linear-gradient(95deg, var(--support-green), #047857);
+            border: none;
+            padding: 14px;
+            width: 100%;
+            font-weight: 800;
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .btn-book-now:hover {
+            transform: scale(1.01);
+            box-shadow: 0 10px 20px rgba(5, 150, 105, 0.3);
+        }
+
+        /* footer same as site */
+        footer {
+            background: var(--deep-navy);
+            color: var(--white);
+            padding: 56px 0 28px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h5 {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            font-size: 13px;
+            color: var(--light);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-col a:hover {
+            color: var(--orange);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .footer-social a {
+            width: 34px;
+            height: 34px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #CFDCD8;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--sunrise-gold);
+            padding-top: 22px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #25D366;
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            z-index: 1000;
+            text-decoration: none;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #20b359;
+        }
+
+        /* Mobile offcanvas */
+        .mobile-menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--ocean-blue);
+        }
+
+        @media (max-width: 991px) {
+            .navbar-collapse,
+            .nav-right {
+                display: none !important;
+            }
+            .mobile-menu-toggle {
+                display: block;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .mobile-menu-toggle {
+                display: none !important;
+            }
+        }
+
+        .offcanvas {
+            background: var(--white);
+            width: 85% !important;
+            max-width: 350px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="booking-header">
+        <div class="container">
+            <div class="navbar-wrapper" id="navbarWrapper">
+                <div class="custom-navbar">
+                    <nav class="navbar navbar-expand-lg navbar-light p-0">
+                        <div class="container-fluid px-0 navbar-content">
+                            <a class="navbar-brand" href="index.html">
+                                <img src="assets/image/savira_nest_logo.png" alt="Savira Nest Logo" class="travel-logo">
+                            </a>
+                            <div class="collapse navbar-collapse">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="tours.html">Safari Tours</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="acc.html">Stays</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="plan-trip.html">Plan Trip</a></li>
+                                    <li class="nav-item"><a class="nav-link active" href="booking.html">Book Now</a></li>
+                                </ul>
+                            </div>
+                            <div class="nav-right">
+                                <a href="https://wa.me/254712345678" class="btn-outline" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                                <a href="#" class="btn-primary-travel">My Bookings</a>
+                            </div>
+                            <button class="mobile-menu-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"><i class="fas fa-bars"></i></button>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="hero-content container">
+            <h1 class="hero-title">Book Your Stay or Experience</h1>
+            <p class="hero-subtitle">Secure your dream accommodation or adventure in Kenya — instant confirmation</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="booking-card">
+            <!-- Toggle between Stay and Experience -->
+            <div class="toggle-booking-type">
+                <button type="button" id="stayTypeBtn" class="booking-type-btn active"><i class="fas fa-bed me-2"></i> Book a Stay</button>
+                <button type="button" id="experienceTypeBtn" class="booking-type-btn"><i class="fas fa-hiking me-2"></i> Book an Experience</button>
+            </div>
+
+            <!-- Main Booking Form -->
+            <form id="bookingForm">
+                <!-- Hidden field to store booking type -->
+                <input type="hidden" id="bookingType" value="stay">
+
+                <!-- STAY SPECIFIC FIELDS (visible by default) -->
+                <div id="stayFields">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label-custom"><i class="fas fa-hotel text-warning"></i> Select Property *</label>
+                            <select id="stayProperty" class="form-select-booking" required>
+                                <option value="">-- Choose a stay --</option>
+                                <option value="Watamu Beach Resort" data-price="8500">Watamu Beach Resort – KES 8,500/night</option>
+                                <option value="Diani Reef Beach Resort" data-price="12000">Diani Reef Beach Resort – KES 12,000/night</option>
+                                <option value="Sarova Whitesands Beach Resort" data-price="10500">Sarova Whitesands – KES 10,500/night</option>
+                                <option value="Masai Mara Sopa Lodge" data-price="18000">Masai Mara Sopa Lodge – KES 18,000/night (FB)</option>
+                                <option value="The Sands at Nomad" data-price="14000">The Sands at Nomad – KES 14,000/night</option>
+                                <option value="Lamu Swahili House" data-price="9500">Lamu Swahili House – KES 9,500/night</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label-custom"><i class="fas fa-tag"></i> Room Type</label>
+                            <select id="roomType" class="form-select-booking">
+                                <option value="Standard">Standard Room</option>
+                                <option value="Deluxe">Deluxe / Ocean View</option>
+                                <option value="Suite">Suite / Private Villa</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label-custom"><i class="fas fa-calendar-check"></i> Check-in Date *</label>
+                            <input type="date" id="checkin" class="form-control-booking" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label-custom"><i class="fas fa-calendar-day"></i> Check-out Date *</label>
+                            <input type="date" id="checkout" class="form-control-booking" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 form-group">
+                            <label class="form-label-custom"><i class="fas fa-user-friends"></i> Adults</label>
+                            <input type="number" id="adults" class="form-control-booking" value="2" min="1" max="10">
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label class="form-label-custom"><i class="fas fa-child"></i> Children</label>
+                            <input type="number" id="children" class="form-control-booking" value="0" min="0" max="6">
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label class="form-label-custom"><i class="fas fa-bed"></i> Nights *</label>
+                            <input type="number" id="nights" class="form-control-booking" placeholder="Auto-calculated" readonly style="background:#eef2ff;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXPERIENCE SPECIFIC FIELDS (hidden initially) -->
+                <div id="experienceFields" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label class="form-label-custom"><i class="fas fa-tree"></i> Select Experience *</label>
+                            <select id="experienceItem" class="form-select-booking">
+                                <option value="">-- Choose an adventure --</option>
+                                <option value="Masai Mara Full Day Safari" data-price="12500">Masai Mara Full Day Safari (incl. lunch) – KES 12,500 p.p</option>
+                                <option value="Diani Snorkeling & Wasini Island" data-price="5500">Diani Snorkeling & Wasini Island – KES 5,500 p.p</option>
+                                <option value="Watamu Marine Park & Mida Creek" data-price="4800">Watamu Marine Park & Mida Creek – KES 4,800 p.p</option>
+                                <option value="Lamu Dhow Sunset Cruise" data-price="3200">Lamu Dhow Sunset Cruise – KES 3,200 p.p</option>
+                                <option value="Hell's Gate Cycling & Hiking" data-price="3900">Hell's Gate Cycling & Hiking – KES 3,900 p.p</option>
+                                <option value="Coffee Farm & Kiambethu Tea Tour" data-price="4500">Farm-to-Table Coffee Tour – KES 4,500 p.p</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label-custom"><i class="fas fa-calendar-alt"></i> Preferred Date *</label>
+                            <input type="date" id="experienceDate" class="form-control-booking">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label-custom"><i class="fas fa-users"></i> Number of Participants *</label>
+                            <input type="number" id="participants" class="form-control-booking" value="2" min="1" max="20">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label-custom"><i class="fas fa-clock"></i> Preferred Time Slot</label>
+                        <select id="timeSlot" class="form-select-booking">
+                            <option value="Morning (8:00 AM)">Morning (8:00 AM)</option>
+                            <option value="Afternoon (1:00 PM)">Afternoon (1:00 PM)</option>
+                            <option value="Full Day">Full Day</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Common Guest Information -->
+                <div class="row mt-3">
+                    <div class="col-md-6 form-group">
+                        <label class="form-label-custom"><i class="fas fa-user"></i> Full Name *</label>
+                        <input type="text" id="guestName" class="form-control-booking" placeholder="John Mwangi" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label class="form-label-custom"><i class="fas fa-envelope"></i> Email *</label>
+                        <input type="email" id="guestEmail" class="form-control-booking" placeholder="hello@example.com" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label class="form-label-custom"><i class="fas fa-phone-alt"></i> Phone (WhatsApp) *</label>
+                        <input type="tel" id="guestPhone" class="form-control-booking" placeholder="+2547XXXXXXXX" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label class="form-label-custom"><i class="fas fa-comment"></i> Special Requests</label>
+                        <input type="text" id="specialRequests" class="form-control-booking" placeholder="Dietary, accessibility, etc.">
+                    </div>
+                </div>
+
+                <!-- Price Summary & Booking Button -->
+                <div class="price-summary" id="priceSummary">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span><strong>Total estimated price:</strong></span>
+                        <span id="totalAmountDisplay" class="fw-bold fs-5" style="color: var(--support-green);">KES 0</span>
+                    </div>
+                    <div class="small text-muted mt-1" id="breakdownText">Select options above to see total</div>
+                </div>
+
+                <button type="submit" class="btn-book-now mt-3"><i class="fas fa-lock me-2"></i> Confirm & Proceed to Payment</button>
+                <div class="text-center small text-muted mt-2">✔️ No booking fees | Free cancellation up to 14 days</div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer (short version as per site) -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div><img src="assets/image/savira_nest_logo.png" alt="Logo" style="max-height: 60px; background:#fff; border-radius:12px; padding:0 8px;"></div>
+                <div class="footer-col"><h5>SaviraNest</h5><p>Curated stays & authentic experiences across Kenya. Book with confidence.</p><div class="footer-social"><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div>
+                <div class="footer-col"><h5>Contact</h5><p><i class="fas fa-phone-alt"></i> +254 712 345 678</p><p><i class="fas fa-map-marker-alt"></i> Bofa Road, Kilifi Kenya</p><p><i class="far fa-envelope"></i> bookings@saviranest.co.ke</p></div>
+                <div class="footer-col"><h5>Support</h5><a href="#">FAQs</a><a href="#">Cancellation Policy</a><a href="#">Privacy</a></div>
+            </div>
+            <div class="footer-bottom"><p>© 2026 SaviraNest — Book Stays & Adventures. All rights reserved.</p><p>Design By LacomasTech</p></div>
+        </div>
+    </footer>
+    <a href="https://wa.me/254712345678" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+
+    <!-- Mobile Offcanvas -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+        <div class="offcanvas-header"><img src="assets/image/savira_nest_logo.png" style="height: 45px;"><button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button></div>
+        <div class="offcanvas-body">
+            <ul class="list-unstyled mt-3">
+                <li class="mb-2"><a href="index.html" class="text-dark text-decoration-none fw-semibold"><i class="fas fa-home me-2"></i> Home</a></li>
+                <li class="mb-2"><a href="about.html" class="text-dark text-decoration-none"><i class="fas fa-info-circle me-2"></i> About</a></li>
+                <li class="mb-2"><a href="tours.html" class="text-dark text-decoration-none"><i class="fas fa-binoculars me-2"></i> Tours</a></li>
+                <li class="mb-2"><a href="acc.html" class="text-dark text-decoration-none"><i class="fas fa-bed me-2"></i> Stays</a></li>
+                <li class="mb-2"><a href="booking.html" class="text-dark text-decoration-none active"><i class="fas fa-bookmark me-2"></i> Book Now</a></li>
+            </ul>
+            <hr><a href="https://wa.me/254712345678" class="btn btn-success w-100"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // DOM elements
+        const stayTypeBtn = document.getElementById('stayTypeBtn');
+        const expTypeBtn = document.getElementById('experienceTypeBtn');
+        const stayFields = document.getElementById('stayFields');
+        const expFields = document.getElementById('experienceFields');
+        const bookingTypeInput = document.getElementById('bookingType');
+        
+        // Stay specific inputs
+        const stayProperty = document.getElementById('stayProperty');
+        const checkin = document.getElementById('checkin');
+        const checkout = document.getElementById('checkout');
+        const nightsInput = document.getElementById('nights');
+        const adults = document.getElementById('adults');
+        const children = document.getElementById('children');
+        
+        // Experience inputs
+        const experienceItem = document.getElementById('experienceItem');
+        const participantsInput = document.getElementById('participants');
+        
+        // Common price display
+        const totalSpan = document.getElementById('totalAmountDisplay');
+        const breakdownSpan = document.getElementById('breakdownText');
+        
+        // Toggle between Stay and Experience
+        function setBookingType(type) {
+            if (type === 'stay') {
+                stayTypeBtn.classList.add('active');
+                expTypeBtn.classList.remove('active');
+                stayFields.style.display = 'block';
+                expFields.style.display = 'none';
+                bookingTypeInput.value = 'stay';
+                // Mark required attributes for stay fields, remove for experience
+                document.getElementById('stayProperty').required = true;
+                document.getElementById('checkin').required = true;
+                document.getElementById('checkout').required = true;
+                if(experienceItem) experienceItem.required = false;
+                if(document.getElementById('experienceDate')) document.getElementById('experienceDate').required = false;
+            } else {
+                expTypeBtn.classList.add('active');
+                stayTypeBtn.classList.remove('active');
+                stayFields.style.display = 'none';
+                expFields.style.display = 'block';
+                bookingTypeInput.value = 'experience';
+                document.getElementById('stayProperty').required = false;
+                document.getElementById('checkin').required = false;
+                document.getElementById('checkout').required = false;
+                if(experienceItem) experienceItem.required = true;
+                if(document.getElementById('experienceDate')) document.getElementById('experienceDate').required = true;
+            }
+            updateTotal();
+        }
+        
+        stayTypeBtn.addEventListener('click', () => setBookingType('stay'));
+        expTypeBtn.addEventListener('click', () => setBookingType('experience'));
+        
+        // Calculate nights for stay
+        function calculateNights() {
+            if (checkin.value && checkout.value) {
+                const start = new Date(checkin.value);
+                const end = new Date(checkout.value);
+                if (end > start) {
+                    const diffTime = Math.abs(end - start);
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    nightsInput.value = diffDays;
+                    return diffDays;
+                } else if (end.getTime() === start.getTime()) {
+                    nightsInput.value = 1;
+                    return 1;
+                } else {
+                    nightsInput.value = 0;
+                    return 0;
+                }
+            }
+            return 0;
+        }
+        
+        function updateTotal() {
+            const type = bookingTypeInput.value;
+            if (type === 'stay') {
+                const selectedOption = stayProperty.options[stayProperty.selectedIndex];
+                let pricePerNight = 0;
+                if (selectedOption && selectedOption.dataset.price) {
+                    pricePerNight = parseInt(selectedOption.dataset.price);
+                }
+                let nights = calculateNights();
+                if (isNaN(nights)) nights = 0;
+                let adultCount = parseInt(adults.value) || 1;
+                let childCount = parseInt(children.value) || 0;
+                // simple pricing: extra adult over 2 adds 25%? but for simplicity: base * nights
+                let total = pricePerNight * nights;
+                // minor adjustment for extra guests: each extra adult +20% of nightly rate per night
+                if (adultCount > 2) {
+                    let extra = adultCount - 2;
+                    total += (pricePerNight * 0.2) * nights * extra;
+                }
+                if (childCount > 0) {
+                    total += (pricePerNight * 0.1) * nights * childCount;
+                }
+                if (pricePerNight === 0 || nights === 0) {
+                    totalSpan.innerText = 'KES 0';
+                    breakdownSpan.innerText = 'Select property and dates to see total.';
+                } else {
+                    totalSpan.innerText = `KES ${total.toLocaleString()}`;
+                    breakdownSpan.innerText = `${nights} night(s) at KES ${pricePerNight}/night + extra guest fees if any.`;
+                }
+            } else { // experience
+                const selectedExp = experienceItem.options[experienceItem.selectedIndex];
+                let pricePerPerson = 0;
+                if (selectedExp && selectedExp.dataset.price) {
+                    pricePerPerson = parseInt(selectedExp.dataset.price);
+                }
+                let participants = parseInt(participantsInput.value) || 1;
+                let total = pricePerPerson * participants;
+                if (pricePerPerson === 0 || !selectedExp.value) {
+                    totalSpan.innerText = 'KES 0';
+                    breakdownSpan.innerText = 'Select an experience to see price.';
+                } else {
+                    totalSpan.innerText = `KES ${total.toLocaleString()}`;
+                    breakdownSpan.innerText = `${participants} participant(s) × KES ${pricePerPerson} per person`;
+                }
+            }
+        }
+        
+        // attach listeners
+        stayProperty.addEventListener('change', updateTotal);
+        checkin.addEventListener('change', () => { calculateNights(); updateTotal(); });
+        checkout.addEventListener('change', () => { calculateNights(); updateTotal(); });
+        adults.addEventListener('input', updateTotal);
+        children.addEventListener('input', updateTotal);
+        experienceItem.addEventListener('change', updateTotal);
+        participantsInput.addEventListener('input', updateTotal);
+        
+        // Set default stay property listener
+        calculateNights();
+        updateTotal();
+        
+        // Form submission
+        const bookingForm = document.getElementById('bookingForm');
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const type = bookingTypeInput.value;
+            let isValid = true;
+            const guestName = document.getElementById('guestName').value.trim();
+            const guestEmail = document.getElementById('guestEmail').value.trim();
+            const guestPhone = document.getElementById('guestPhone').value.trim();
+            
+            if (!guestName || !guestEmail || !guestPhone) {
+                alert('Please fill in your full name, email and phone number.');
+                isValid = false;
+            }
+            if (type === 'stay') {
+                if (!stayProperty.value || !checkin.value || !checkout.value) {
+                    alert('Please select a property and check-in/out dates.');
+                    isValid = false;
+                }
+                const nights = calculateNights();
+                if (nights <= 0) {
+                    alert('Check-out date must be after check-in date.');
+                    isValid = false;
+                }
+            } else {
+                if (!experienceItem.value || !document.getElementById('experienceDate').value) {
+                    alert('Please select an experience and preferred date.');
+                    isValid = false;
+                }
+            }
+            if (!isValid) return;
+            
+            // Build summary message
+            let details = '';
+            if (type === 'stay') {
+                details = `🏨 Stay: ${stayProperty.options[stayProperty.selectedIndex]?.text}\n📅 ${checkin.value} to ${checkout.value} (${nightsInput.value} nights)\n👥 ${adults.value} Adults, ${children.value} Children\n💰 Total: ${totalSpan.innerText}`;
+            } else {
+                details = `🎒 Experience: ${experienceItem.options[experienceItem.selectedIndex]?.text}\n📅 Date: ${document.getElementById('experienceDate').value}\n⏰ Timeslot: ${document.getElementById('timeSlot').value}\n👤 Participants: ${participantsInput.value}\n💰 Total: ${totalSpan.innerText}`;
+            }
+            const message = `✅ Booking Request Received!\n\nGuest: ${guestName}\nEmail: ${guestEmail}\nPhone: ${guestPhone}\n\n${details}\n\nSpecial Requests: ${document.getElementById('specialRequests').value || 'None'}\n\nA confirmation email will be sent shortly. Our team will contact you for payment.`;
+            alert(message);
+            // In real scenario: redirect to payment or store in DB. For demo, reset some fields optionally.
+            bookingForm.reset();
+            // reset to default stay view
+            setBookingType('stay');
+            document.getElementById('guestName').value = '';
+            document.getElementById('guestEmail').value = '';
+            document.getElementById('guestPhone').value = '';
+            updateTotal();
+        });
+        
+        // Sticky navbar
+        const navWrap = document.getElementById('navbarWrapper');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                if (!navWrap.classList.contains('sticky-nav')) navWrap.classList.add('sticky-nav');
+                document.body.classList.add('nav-fixed-padding');
+            } else {
+                if (navWrap.classList.contains('sticky-nav')) navWrap.classList.remove('sticky-nav');
+                document.body.classList.remove('nav-fixed-padding');
+            }
+        });
+        const offcanvasMobile = document.getElementById('mobileMenu');
+        if (offcanvasMobile) {
+            offcanvasMobile.addEventListener('show.bs.offcanvas', () => { if(navWrap) navWrap.style.display = 'none'; });
+            offcanvasMobile.addEventListener('hidden.bs.offcanvas', () => { if(navWrap) navWrap.style.display = ''; });
+        }
+    </script>
+</body>
+</html>
