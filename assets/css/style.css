@@ -1270,21 +1270,21 @@ footer {
 }
 
 /* Features Grid */
-.features-grid {
+/* .features-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
     margin-bottom: 60px;
-}
+} */
 
-.feature-card {
-    /* background: var(--white); */
+/* .feature-card {
+    background: var(--white);
     border-radius: 28px;
     padding: 32px;
     width: 250px;
     text-align: center;
-    /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
     transition: all 0.2s;
     border: 1px solid #feeacd;
 }
@@ -1298,11 +1298,44 @@ footer {
     font-size: 2.8rem;
     color: var(--sunrise-gold);
     margin-bottom: 20px;
-}
+} */
 
-.feature-card h4 {
+/* .feature-card h4 {
     font-size: 1.3rem;
     margin-bottom: 12px;
+} */
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+/* Limit to max 4 cards per row on large screens */
+@media (min-width: 1200px) {
+    .features-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.feature-card {
+    border-radius: 28px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.2s;
+    border: 1px solid #feeacd;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--sunrise-gold);
+}
+
+.feature-icon {
+    font-size: 2.8rem;
+    color: var(--sunrise-gold);
+    margin-bottom: 20px;
 }
 
 /* Why Choose Us Grid */
@@ -1794,7 +1827,7 @@ footer {
 
 .tour-image {
     width: 100%;
-    height: 420px;
+    height: 330px;
     object-fit: cover;
 }
 
@@ -2184,6 +2217,10 @@ footer {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+}
+
+.amenity-tag .fas{
+    color: var(--sunrise-gold);
 }
 
 .price-badge {
@@ -3095,4 +3132,8 @@ footer {
 .btn-book-now:hover {
     transform: scale(1.01);
     box-shadow: 0 10px 20px rgba(5, 150, 105, 0.3);
+}
+
+.desc {
+    font-size: 16px;
 }

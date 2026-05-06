@@ -5,416 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>SaviraNest Admin | Manage Stays</title>
-
     <link rel="icon" href="assets/logo/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        @font-face {
-            font-family: 'Aptos';
-            src: url('/Aptos/Aptos.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        :root {
-            --ocean-blue: #1E88E5;
-            --deep-navy: #0B1F3A;
-            --sand-beige: #F4E7D3;
-            --orange: #E07C3C;
-            --sunrise-gold: #F9A826;
-            --support-green: #059669;
-            --white: #FFFFFF;
-            --light: #F8F9FA;
-            --sidebar-width: 280px;
-            --header-height: 70px;
-        }
-
-        body {
-            font-family: 'Aptos', 'Inter', sans-serif;
-            background: #f1f5f9;
-            color: var(--deep-navy);
-            overflow: hidden;
-            height: 100vh;
-        }
-
-        /* ADMIN LAYOUT */
-        .admin-wrapper {
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* SIDEBAR - FIXED POSITION */
-        .admin-sidebar {
-            width: var(--sidebar-width);
-            background: var(--white);
-            border-right: 1px solid #e2e8f0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            z-index: 100;
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.02);
-            overflow-y: auto;
-        }
-
-        .sidebar-header {
-            padding: 1.5rem 1.5rem 1rem;
-            border-bottom: 1px solid #eef2ff;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .sidebar-header img {
-            height: 55px;
-            margin-bottom: 8px;
-        }
-
-        .sidebar-header h4 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--deep-navy);
-            margin-bottom: 12px;
-        }
-
-        .login-persona {
-            background: #f8fafc;
-            border-radius: 28px;
-            padding: 12px 16px;
-            margin: 16px;
-            text-align: center;
-        }
-
-        .login-persona .avatar-sm {
-            width: 48px;
-            height: 48px;
-            background: var(--sunrise-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 8px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--deep-navy);
-        }
-
-        .login-persona .name {
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .login-persona .role {
-            font-size: 0.7rem;
-            color: #64748b;
-            margin-bottom: 8px;
-        }
-
-        .logout-btn {
-            background: transparent;
-            border: 1px solid #e2e8f0;
-            border-radius: 40px;
-            padding: 6px 12px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #e07c3c;
-            cursor: pointer;
-            transition: 0.2s;
-            width: 100%;
-        }
-
-        .logout-btn:hover {
-            background: #fef2e8;
-            border-color: var(--orange);
-        }
-
-        .sidebar-nav {
-            flex: 1;
-            padding: 1.5rem 1rem;
-        }
-
-        .nav-item-admin {
-            margin-bottom: 0.5rem;
-        }
-
-        .nav-link-admin {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 0.75rem 1rem;
-            border-radius: 16px;
-            color: #475569;
-            font-weight: 500;
-            transition: all 0.2s;
-            text-decoration: none;
-        }
-
-        .nav-link-admin i {
-            width: 24px;
-            font-size: 1.2rem;
-            color: var(--ocean-blue);
-        }
-
-        .nav-link-admin:hover,
-        .nav-link-admin.active {
-            background: rgba(30, 136, 229, 0.08);
-            color: var(--ocean-blue);
-        }
-
-        .nav-link-admin.active {
-            background: rgba(30, 136, 229, 0.12);
-            font-weight: 600;
-            color: var(--ocean-blue);
-        }
-
-        /* MAIN CONTENT - scrollable */
-        .admin-main {
-            flex: 1;
-            margin-left: var(--sidebar-width);
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow-y: auto;
-            background: #f1f5f9;
-        }
-
-        .admin-topbar {
-            background: var(--white);
-            padding: 0 2rem;
-            height: var(--header-height);
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            border-bottom: 1px solid #e2e8f0;
-            position: sticky;
-            top: 0;
-            z-index: 99;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--deep-navy);
-            cursor: pointer;
-            margin-right: auto;
-        }
-
-        .dashboard-content {
-            padding: 2rem;
-        }
-
-        /* Table & filters */
-        .actions-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .search-filter {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .search-filter input,
-        .search-filter select {
-            padding: 10px 16px;
-            border-radius: 40px;
-            border: 1px solid #e2e8f0;
-            background: white;
-            font-family: inherit;
-        }
-
-        .btn-primary-admin {
-            background: var(--sunrise-gold);
-            border: none;
-            color: var(--deep-navy);
-            padding: 10px 24px;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-
-        .btn-primary-admin:hover {
-            background: #e6950e;
-        }
-
-        .stay-table {
-            width: 100%;
-            background: white;
-            border-radius: 28px;
-            overflow: hidden;
-            border-collapse: collapse;
-        }
-
-        .stay-table th,
-        .stay-table td {
-            padding: 16px;
-            text-align: left;
-            border-bottom: 1px solid #eef2ff;
-        }
-
-        .stay-table th {
-            background: #f8fafc;
-            font-weight: 600;
-        }
-
-        .stay-table tr:hover {
-            background: #fefce8;
-        }
-
-        .btn-icon {
-            background: transparent;
-            border: none;
-            color: var(--ocean-blue);
-            cursor: pointer;
-            margin: 0 4px;
-            font-size: 1rem;
-        }
-
-        .btn-icon.delete {
-            color: #e07c3c;
-        }
-
-        .btn-icon:hover {
-            opacity: 0.7;
-        }
-
-        /* Modal */
-        .modal-content {
-            border-radius: 28px;
-            border: none;
-        }
-
-        .modal-header {
-            background: var(--deep-navy);
-            color: white;
-            border-radius: 28px 28px 0 0;
-        }
-
-        .modal-header .btn-close {
-            filter: brightness(0) invert(1);
-        }
-
-        .form-control,
-        .form-select {
-            border-radius: 40px;
-            padding: 10px 18px;
-            border: 1px solid #e2e8f0;
-        }
-
-        @media (max-width: 992px) {
-            .admin-sidebar {
-                transform: translateX(-100%);
-                position: fixed;
-                z-index: 1050;
-            }
-
-            .admin-sidebar.open {
-                transform: translateX(0);
-            }
-
-            .admin-main {
-                margin-left: 0;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .stay-table {
-                display: block;
-                overflow-x: auto;
-            }
-
-            .actions-bar {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1040;
-        }
-
-        .overlay.show {
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/admin-css.css">
 </head>
 
 <body>
     <div class="admin-wrapper">
-        <!-- Sidebar (fixed) -->
         <aside class="admin-sidebar" id="adminSidebar">
             <div class="sidebar-header">
                 <img src="../assets/image/savira_nest_logo.png" alt="SaviraNest Logo">
                 <h4>SaviraNest Admin</h4>
             </div>
             <div class="sidebar-nav">
-                <div class="nav-item-admin">
-                    <a href="dashboard.html" class="nav-link-admin">
-                        <i class="fas fa-tachometer-alt"></i> Dashboard
-                    </a>
-                </div>
-                <div class="nav-item-admin">
-                    <a href="stay.html" class="nav-link-admin active">
-                        <i class="fas fa-building"></i> Stays
-                    </a>
-                </div>
-                <div class="nav-item-admin">
-                    <a href="experience.html" class="nav-link-admin">
-                        <i class="fas fa-compass"></i> Experiences
-                    </a>
-                </div>
-                <div class="nav-item-admin">
-                    <a href="bookings.html" class="nav-link-admin">
-                        <i class="fas fa-calendar-check"></i> Bookings
-                    </a>
-                </div>
-                <div class="nav-item-admin">
-                    <a href="guests.html" class="nav-link-admin">
-                        <i class="fas fa-users"></i> Guests
-                    </a>
-                </div>
+                <div class="nav-item-admin"><a href="dashboard.html" class="nav-link-admin"><i
+                            class="fas fa-tachometer-alt"></i> Dashboard</a></div>
+                <div class="nav-item-admin"><a href="stay.html" class="nav-link-admin active"><i
+                            class="fas fa-building"></i> Stays</a></div>
+                <div class="nav-item-admin"><a href="experience.html" class="nav-link-admin"><i
+                            class="fas fa-compass"></i> Experiences</a></div>
+                <div class="nav-item-admin"><a href="bookings.html" class="nav-link-admin"><i
+                            class="fas fa-calendar-check"></i> Bookings</a></div>
+                <div class="nav-item-admin"><a href="guests.html" class="nav-link-admin"><i class="fas fa-users"></i>
+                        Guests</a></div>
                 <div class="nav-item-admin"><a href="transactions.html" class="nav-link-admin"><i
                             class="fas fa-credit-card"></i> Transactions</a></div>
                 <div class="nav-item-admin"><a href="reports.html" class="nav-link-admin"><i
                             class="fas fa-chart-line"></i> Reports</a></div>
-                <div class="nav-item-admin">
-                    <a href="settings.html" class="nav-link-admin">
-                        <i class="fas fa-cog"></i> Settings
-                    </a>
-                </div>
+                <div class="nav-item-admin"><a href="settings.html" class="nav-link-admin"><i class="fas fa-cog"></i>
+                        Settings</a></div>
             </div>
             <div class="login-persona">
                 <div class="avatar-sm">MA</div>
@@ -424,13 +45,26 @@
             </div>
         </aside>
 
-        <!-- Main content -->
         <main class="admin-main">
             <div class="admin-topbar">
                 <button class="menu-toggle" id="menuToggleBtn"><i class="fas fa-bars"></i></button>
             </div>
-
             <div class="dashboard-content">
+                <div class="stats-row" id="statsContainer">
+                    <div class="stat-card coast">
+                        <div class="stat-title">Coast / Beach</div>
+                        <div class="stat-count" id="coastCount">5</div>
+                    </div>
+                    <div class="stat-card safari">
+                        <div class="stat-title">Safari Lodges</div>
+                        <div class="stat-count" id="safariCount">1</div>
+                    </div>
+                    <div class="stat-card lake">
+                        <div class="stat-title">Lake & Highlands</div>
+                        <div class="stat-count" id="lakeCount">0</div>
+                    </div>
+                </div>
+
                 <div class="actions-bar">
                     <h2>Manage Stays</h2>
                     <div style="display: flex; gap: 12px;">
@@ -448,7 +82,6 @@
                         </button>
                     </div>
                 </div>
-
                 <div style="overflow-x: auto;">
                     <table class="stay-table" id="staysTable">
                         <thead>
@@ -463,7 +96,84 @@
                             </tr>
                         </thead>
                         <tbody id="staysTableBody">
-                            <!-- Data will be loaded via JS -->
+                            <tr data-id="1" data-category="coast" data-price="8500" data-rating="4.6"
+                                data-description="Oceanfront paradise with infinity pool and Swahili spa. Perfect for couples and families seeking tranquility."
+                                data-image="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=600&h=400&fit=crop">
+                                <td>1</td>
+                                <td><strong>Watamu Beach Resort</strong></td>
+                                <td>Watamu, Coast Region</td>
+                                <td>Coast / Beach</td>
+                                <td>KES 8,500</td>
+                                <td>4.6</td>
+                                <td><button class="btn-icon"><i class="fas fa-eye"></i></button><button
+                                        class="btn-icon"><i class="fas fa-edit"></i></button><button class="btn-icon"><i
+                                            class="fas fa-trash-alt"></i></button></td>
+                            </tr>
+                            <tr data-id="2" data-category="coast" data-price="12000" data-rating="4.8"
+                                data-description="Luxury villas with private plunge pools & premier diving. Spectacular ocean views and world-class service."
+                                data-image="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop">
+                                <td>2</td>
+                                <td><strong>Diani Reef Beach Resort</strong></td>
+                                <td>Diani Beach, South Coast</td>
+                                <td>Coast / Beach</td>
+                                <td>KES 12,000</td>
+                                <td>4.8</td>
+                                <td><button class="btn-icon"><i class="fas fa-eye"></i></button><button
+                                        class="btn-icon"><i class="fas fa-edit"></i></button><button class="btn-icon"><i
+                                            class="fas fa-trash-alt"></i></button></td>
+                            </tr>
+                            <tr data-id="3" data-category="coast" data-price="10500" data-rating="4.4"
+                                data-description="Five pools, lush gardens, family-friendly resort with kids club and water sports."
+                                data-image="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&h=400&fit=crop">
+                                <td>3</td>
+                                <td><strong>Sarova Whitesands</strong></td>
+                                <td>Bamburi, Mombasa</td>
+                                <td>Coast / Beach</td>
+                                <td>KES 10,500</td>
+                                <td>4.4</td>
+                                <td><button class="btn-icon"><i class="fas fa-eye"></i></button><button
+                                        class="btn-icon"><i class="fas fa-edit"></i></button><button class="btn-icon"><i
+                                            class="fas fa-trash-alt"></i></button></td>
+                            </tr>
+                            <tr data-id="4" data-category="safari" data-price="18000" data-rating="4.5"
+                                data-description="Perched on the slopes overlooking the plains, wildebeest views. Authentic safari experience."
+                                data-image="https://images.unsplash.com/photo-1549366021-9f761d450615?w=600&h=400&fit=crop">
+                                <td>4</td>
+                                <td><strong>Masai Mara Sopa Lodge</strong></td>
+                                <td>Masai Mara, Narok</td>
+                                <td>Safari Lodges</td>
+                                <td>KES 18,000</td>
+                                <td>4.5</td>
+                                <td><button class="btn-icon"><i class="fas fa-eye"></i></button><button
+                                        class="btn-icon"><i class="fas fa-edit"></i></button><button class="btn-icon"><i
+                                            class="fas fa-trash-alt"></i></button></td>
+                            </tr>
+                            <tr data-id="5" data-category="coast" data-price="14000" data-rating="4.9"
+                                data-description="Boutique chic, oceanfront suites, farm-to-table dining. Eco-luxury at its finest."
+                                data-image="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&h=400&fit=crop">
+                                <td>5</td>
+                                <td><strong>The Sands at Nomad</strong></td>
+                                <td>Diani Beach, South Coast</td>
+                                <td>Coast / Beach</td>
+                                <td>KES 14,000</td>
+                                <td>4.9</td>
+                                <td><button class="btn-icon"><i class="fas fa-eye"></i></button><button
+                                        class="btn-icon"><i class="fas fa-edit"></i></button><button class="btn-icon"><i
+                                            class="fas fa-trash-alt"></i></button></td>
+                            </tr>
+                            <tr data-id="6" data-category="coast" data-price="9500" data-rating="4.5"
+                                data-description="Restored 18th-century Swahili mansion with rooftop sea views. Cultural heritage meets comfort."
+                                data-image="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&h=400&fit=crop">
+                                <td>6</td>
+                                <td><strong>Lamu Swahili House</strong></td>
+                                <td>Lamu Island</td>
+                                <td>Coast / Beach</td>
+                                <td>KES 9,500</td>
+                                <td>4.5</td>
+                                <td><button class="btn-icon"><i class="fas fa-eye"></i></button><button
+                                        class="btn-icon"><i class="fas fa-edit"></i></button><button class="btn-icon"><i
+                                            class="fas fa-trash-alt"></i></button></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -472,61 +182,45 @@
     </div>
     <div class="overlay" id="sidebarOverlay"></div>
 
-    <!-- Add Stay Modal -->
+    <!-- Add Stay Modal (static, no JS) -->
     <div class="modal fade" id="addStayModal" tabindex="-1" aria-labelledby="addStayModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addStayModalLabel"><i class="fas fa-plus-circle"></i> Add New Stay</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title"><i class="fas fa-plus-circle"></i> Add New Stay</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="addStayForm">
                         <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label">Property Title *</label>
-                                <input type="text" class="form-control" id="stayTitle" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Location *</label>
-                                <input type="text" class="form-control" id="stayLocation" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Category *</label>
-                                <select class="form-select" id="stayCategory" required>
+                            <div class="col-md-6"><label class="form-label">Property Title *</label><input type="text"
+                                    class="form-control" id="stayTitle"></div>
+                            <div class="col-md-6"><label class="form-label">Location *</label><input type="text"
+                                    class="form-control" id="stayLocation"></div>
+                            <div class="col-md-6"><label class="form-label">Category *</label><select
+                                    class="form-select" id="stayCategory">
                                     <option value="coast">Coast / Beach</option>
                                     <option value="safari">Safari Lodges</option>
                                     <option value="lake">Lake & Highlands</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Price (KES/night) *</label>
-                                <input type="number" class="form-control" id="stayPrice" required>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Short Description *</label>
-                                <textarea class="form-control" id="stayDesc" rows="2" required></textarea>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Rating (0-5) *</label>
-                                <input type="number" step="0.1" class="form-control" id="stayRating" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Image URL</label>
-                                <input type="text" class="form-control" id="stayImage" placeholder="https://...">
-                            </div>
+                                </select></div>
+                            <div class="col-md-6"><label class="form-label">Price (KES/night) *</label><input
+                                    type="number" class="form-control" id="stayPrice"></div>
+                            <div class="col-12"><label class="form-label">Short Description *</label><textarea
+                                    class="form-control" id="stayDesc" rows="2"></textarea></div>
+                            <div class="col-md-6"><label class="form-label">Rating (0-5) *</label><input type="number"
+                                    step="0.1" class="form-control" id="stayRating"></div>
+                            <div class="col-md-6"><label class="form-label">Image URL</label><input type="text"
+                                    class="form-control" id="stayImage" placeholder="https://..."></div>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn-primary-travel" id="saveStayBtn">Save Stay</button>
-                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button><button type="button"
+                        class="btn-primary-travel">Save Stay</button></div>
             </div>
         </div>
     </div>
 
-    <!-- Edit Modal (simplified for demo, could reuse same) -->
+    <!-- Edit Stay Modal (static) -->
     <div class="modal fade" id="editStayModal" tabindex="-1" aria-labelledby="editStayModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -543,11 +237,11 @@
                             <div class="col-md-6"><label>Location</label><input type="text" class="form-control"
                                     id="editLocation"></div>
                             <div class="col-md-6"><label>Category</label><select class="form-select" id="editCategory">
-                                    <option value="coast">Coast</option>
-                                    <option value="safari">Safari</option>
-                                    <option value="lake">Lake</option>
+                                    <option value="coast">Coast / Beach</option>
+                                    <option value="safari">Safari Lodges</option>
+                                    <option value="lake">Lake & Highlands</option>
                                 </select></div>
-                            <div class="col-md-6"><label>Price</label><input type="number" class="form-control"
+                            <div class="col-md-6"><label>Price (KES)</label><input type="number" class="form-control"
                                     id="editPrice"></div>
                             <div class="col-12"><label>Description</label><textarea class="form-control" id="editDesc"
                                     rows="2"></textarea></div>
@@ -558,177 +252,52 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn-primary-travel" id="updateStayBtn">Update Stay</button>
-                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button><button type="button"
+                        class="btn-primary-travel">Update Stay</button></div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Sample initial stays data
-        let stays = [
-            { id: 1, title: "Watamu Beach Resort", location: "Watamu, Coast Region", category: "coast", price: 8500, description: "Oceanfront paradise with infinity pool and Swahili spa.", rating: 4.6, image: "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=600&h=400&fit=crop" },
-            { id: 2, title: "Diani Reef Beach Resort", location: "Diani Beach, South Coast", category: "coast", price: 12000, description: "Luxury villas with private plunge pools & premier diving.", rating: 4.8, image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop" },
-            { id: 3, title: "Sarova Whitesands", location: "Bamburi, Mombasa", category: "coast", price: 10500, description: "Five pools, lush gardens, family-friendly resort.", rating: 4.4, image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&h=400&fit=crop" },
-            { id: 4, title: "Masai Mara Sopa Lodge", location: "Masai Mara, Narok", category: "safari", price: 18000, description: "Perched on the slopes overlooking the plains, wildebeest views.", rating: 4.5, image: "https://images.unsplash.com/photo-1549366021-9f761d450615?w=600&h=400&fit=crop" },
-            { id: 5, title: "The Sands at Nomad", location: "Diani Beach, South Coast", category: "coast", price: 14000, description: "Boutique chic, oceanfront suites, farm-to-table dining.", rating: 4.9, image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&h=400&fit=crop" },
-            { id: 6, title: "Lamu Swahili House", location: "Lamu Island", category: "coast", price: 9500, description: "Restored 18th-century Swahili mansion with rooftop sea views.", rating: 4.5, image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=600&h=400&fit=crop" },
-        ];
-
-        let nextId = 7;
-
-        // Render table
-        function renderStays() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const categoryFilter = document.getElementById('categoryFilter').value;
-            const filtered = stays.filter(s => {
-                const matchSearch = s.title.toLowerCase().includes(searchTerm) || s.location.toLowerCase().includes(searchTerm);
-                const matchCategory = categoryFilter === 'all' || s.category === categoryFilter;
-                return matchSearch && matchCategory;
-            });
-            const tbody = document.getElementById('staysTableBody');
-            tbody.innerHTML = '';
-            filtered.forEach(s => {
-                const row = tbody.insertRow();
-                row.insertCell(0).innerText = s.id;
-                row.insertCell(1).innerHTML = `<strong>${s.title}</strong>`;
-                row.insertCell(2).innerText = s.location;
-                row.insertCell(3).innerText = s.category.charAt(0).toUpperCase() + s.category.slice(1);
-                row.insertCell(4).innerText = `KES ${s.price.toLocaleString()}`;
-                row.insertCell(5).innerText = s.rating;
-                const actions = row.insertCell(6);
-                actions.innerHTML = `<button class="btn-icon edit-btn" data-id="${s.id}"><i class="fas fa-edit"></i></button>
-                                     <button class="btn-icon delete-btn" data-id="${s.id}"><i class="fas fa-trash-alt"></i></button>`;
-            });
-            // attach event listeners to edit/delete buttons
-            document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(btn.getAttribute('data-id'));
-                    editStay(id);
-                });
-            });
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = parseInt(btn.getAttribute('data-id'));
-                    if (confirm('Delete this stay permanently?')) {
-                        stays = stays.filter(s => s.id !== id);
-                        renderStays();
-                        alert('Stay deleted.');
-                    }
-                });
-            });
-        }
-
-        function editStay(id) {
-            const stay = stays.find(s => s.id === id);
-            if (!stay) return;
-            document.getElementById('editStayId').value = stay.id;
-            document.getElementById('editTitle').value = stay.title;
-            document.getElementById('editLocation').value = stay.location;
-            document.getElementById('editCategory').value = stay.category;
-            document.getElementById('editPrice').value = stay.price;
-            document.getElementById('editDesc').value = stay.description;
-            document.getElementById('editRating').value = stay.rating;
-            document.getElementById('editImage').value = stay.image || '';
-            const editModal = new bootstrap.Modal(document.getElementById('editStayModal'));
-            editModal.show();
-        }
-
-        // Add stay
-        document.getElementById('saveStayBtn').addEventListener('click', () => {
-            const title = document.getElementById('stayTitle').value.trim();
-            const location = document.getElementById('stayLocation').value.trim();
-            const category = document.getElementById('stayCategory').value;
-            const price = parseFloat(document.getElementById('stayPrice').value);
-            const desc = document.getElementById('stayDesc').value.trim();
-            const rating = parseFloat(document.getElementById('stayRating').value);
-            const image = document.getElementById('stayImage').value.trim() || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop';
-            if (!title || !location || !price || !desc || isNaN(rating)) {
-                alert('Please fill all required fields.');
-                return;
-            }
-            const newStay = {
-                id: nextId++,
-                title, location, category, price, description: desc, rating, image
-            };
-            stays.push(newStay);
-            renderStays();
-            // reset form and close modal
-            document.getElementById('addStayForm').reset();
-            bootstrap.Modal.getInstance(document.getElementById('addStayModal')).hide();
-            alert('Stay added successfully!');
-        });
-
-        // Update stay
-        document.getElementById('updateStayBtn').addEventListener('click', () => {
-            const id = parseInt(document.getElementById('editStayId').value);
-            const index = stays.findIndex(s => s.id === id);
-            if (index !== -1) {
-                stays[index].title = document.getElementById('editTitle').value;
-                stays[index].location = document.getElementById('editLocation').value;
-                stays[index].category = document.getElementById('editCategory').value;
-                stays[index].price = parseFloat(document.getElementById('editPrice').value);
-                stays[index].description = document.getElementById('editDesc').value;
-                stays[index].rating = parseFloat(document.getElementById('editRating').value);
-                stays[index].image = document.getElementById('editImage').value;
-                renderStays();
-                bootstrap.Modal.getInstance(document.getElementById('editStayModal')).hide();
-                alert('Stay updated.');
-            }
-        });
-
-        // Filters
-        document.getElementById('searchInput').addEventListener('input', renderStays);
-        document.getElementById('categoryFilter').addEventListener('change', renderStays);
-
-        // Sidebar and logout
-        const menuBtn = document.getElementById('menuToggleBtn');
-        const sidebar = document.getElementById('adminSidebar');
-        const overlay = document.getElementById('sidebarOverlay');
-        function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
-        function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; }
-        menuBtn.addEventListener('click', openSidebar);
-        overlay.addEventListener('click', closeSidebar);
-        window.addEventListener('resize', () => { if (window.innerWidth > 992 && sidebar.classList.contains('open')) closeSidebar(); });
-        document.getElementById('logoutBtn').addEventListener('click', () => alert('Logout demo'));
-
-        // Initial render
-        renderStays();
-    </script>
-    <style>
-        .btn-outline {
-            background: transparent;
-            border: 1.5px solid var(--orange);
-            color: var(--orange);
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-
-        .btn-outline:hover {
-            background: var(--orange);
-            color: white;
-        }
-
-        .btn-primary-travel {
-            background-color: var(--sunrise-gold);
-            color: var(--deep-navy);
-            border: 2px solid var(--sunrise-gold);
-            padding: 8px 24px;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: 0.25s;
-        }
-
-        .btn-primary-travel:hover {
-            background-color: transparent;
-            color: var(--sunrise-gold);
-        }
-    </style>
+    <!-- View Stay Modal (static read-only) -->
+    <div class="modal fade" id="viewStayModal" tabindex="-1" aria-labelledby="viewStayModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-info-circle"></i> Stay Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-3">
+                        <img id="viewImage" class="view-detail-img" src="" alt="Stay image"
+                            style="max-height: 280px; object-fit: cover; width: 100%; border-radius: 24px;">
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6"><label class="form-label fw-semibold">Property Title</label>
+                            <div class="readonly-field" id="viewTitle">-</div>
+                        </div>
+                        <div class="col-md-6"><label class="form-label fw-semibold">Location</label>
+                            <div class="readonly-field" id="viewLocation">-</div>
+                        </div>
+                        <div class="col-md-4"><label class="form-label fw-semibold">Category</label>
+                            <div class="readonly-field" id="viewCategory">-</div>
+                        </div>
+                        <div class="col-md-4"><label class="form-label fw-semibold">Price (KES/night)</label>
+                            <div class="readonly-field" id="viewPrice">-</div>
+                        </div>
+                        <div class="col-md-4"><label class="form-label fw-semibold">Rating ⭐</label>
+                            <div class="readonly-field" id="viewRating">-</div>
+                        </div>
+                        <div class="col-12"><label class="form-label fw-semibold">Description</label>
+                            <div class="readonly-field" id="viewDescription" style="white-space: pre-wrap;">-</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/admin-main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

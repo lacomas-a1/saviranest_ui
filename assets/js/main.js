@@ -211,31 +211,31 @@ function renderCalendar() {
         else if (selectedStart && selectedEnd && dateObj > selectedStart && dateObj < selectedEnd && !booked) classes += ' in-range';
         html += `<div class="${classes}" data-date="${dateStr}" data-timestamp="${dateObj.getTime()}">${dayNum}</div>`;
     }
-    html += `</div><div class="mt-3"><button class="btn btn-sm btn-outline-danger" onclick="clearSelection()">Clear selection</button></div>`;
+    // html += `</div><div class="mt-3"><button class="btn btn-sm btn-outline-danger" onclick="clearSelection()">Clear selection</button></div>`;
     calendarDiv.innerHTML = html;
     attachCalendarEvents();
 }
-function attachCalendarEvents() {
-    document.querySelectorAll('.calendar-day.selectable:not(.booked)').forEach(el => {
-        el.addEventListener('click', (e) => {
-            const timestamp = parseInt(el.dataset.timestamp);
-            const clickedDate = new Date(timestamp);
-            if (!selectedStart || (selectedStart && selectedEnd)) { selectedStart = clickedDate; selectedEnd = null; }
-            else if (selectedStart && !selectedEnd) {
-                if (clickedDate > selectedStart) {
-                    let hasBooked = false;
-                    for (let d = new Date(selectedStart); d <= clickedDate; d.setDate(d.getDate() + 1)) {
-                        if (isBooked(new Date(d))) { hasBooked = true; break; }
-                    }
-                    if (hasBooked) alert('Selected range includes a booked date. Please choose another range.');
-                    else { selectedEnd = clickedDate; }
-                } else { selectedStart = clickedDate; selectedEnd = null; }
-            }
-            renderCalendar();
-            updateSelectionText();
-        });
-    });
-}
+// function attachCalendarEvents() {
+//     document.querySelectorAll('.calendar-day.selectable:not(.booked)').forEach(el => {
+//         el.addEventListener('click', (e) => {
+//             const timestamp = parseInt(el.dataset.timestamp);
+//             const clickedDate = new Date(timestamp);
+//             if (!selectedStart || (selectedStart && selectedEnd)) { selectedStart = clickedDate; selectedEnd = null; }
+//             else if (selectedStart && !selectedEnd) {
+//                 if (clickedDate > selectedStart) {
+//                     let hasBooked = false;
+//                     for (let d = new Date(selectedStart); d <= clickedDate; d.setDate(d.getDate() + 1)) {
+//                         if (isBooked(new Date(d))) { hasBooked = true; break; }
+//                     }
+//                     if (hasBooked) alert('Selected range includes a booked date. Please choose another range.');
+//                     else { selectedEnd = clickedDate; }
+//                 } else { selectedStart = clickedDate; selectedEnd = null; }
+//             }
+//             renderCalendar();
+//             updateSelectionText();
+//         });
+//     });
+// }
 function changeMonth(delta) {
     currentDate.setMonth(currentDate.getMonth() + delta);
     renderCalendar();
@@ -256,188 +256,369 @@ window.initCalendarIfNeeded = initCalendarIfNeeded;
 
 // Booking
 // DOM elements
-const stayTypeBtn = document.getElementById('stayTypeBtn');
-const expTypeBtn = document.getElementById('experienceTypeBtn');
-const stayFields = document.getElementById('stayFields');
-const expFields = document.getElementById('experienceFields');
-const bookingTypeInput = document.getElementById('bookingType');
+// const stayTypeBtn = document.getElementById('stayTypeBtn');
+// const expTypeBtn = document.getElementById('experienceTypeBtn');
+// const stayFields = document.getElementById('stayFields');
+// const expFields = document.getElementById('experienceFields');
+// const bookingTypeInput = document.getElementById('bookingType');
 
 // Stay specific inputs
-const stayProperty = document.getElementById('stayProperty');
-const checkin = document.getElementById('checkin');
-const checkout = document.getElementById('checkout');
-const nightsInput = document.getElementById('nights');
-const adults = document.getElementById('adults');
-const children = document.getElementById('children');
+// const stayProperty = document.getElementById('stayProperty');
+// const checkin = document.getElementById('checkin');
+// const checkout = document.getElementById('checkout');
+// const nightsInput = document.getElementById('nights');
+// const adults = document.getElementById('adults');
+// const children = document.getElementById('children');
 
 // Experience inputs
-const experienceItem = document.getElementById('experienceItem');
-const participantsInput = document.getElementById('participants');
+// const experienceItem = document.getElementById('experienceItem');
+// const participantsInput = document.getElementById('participants');
 
 // Common price display
-const totalSpan = document.getElementById('totalAmountDisplay');
-const breakdownSpan = document.getElementById('breakdownText');
+// const totalSpan = document.getElementById('totalAmountDisplay');
+// const breakdownSpan = document.getElementById('breakdownText');
 
 // Toggle between Stay and Experience
-function setBookingType(type) {
-    if (type === 'stay') {
-        stayTypeBtn.classList.add('active');
-        expTypeBtn.classList.remove('active');
-        stayFields.style.display = 'block';
-        expFields.style.display = 'none';
-        bookingTypeInput.value = 'stay';
-        // Mark required attributes for stay fields, remove for experience
-        document.getElementById('stayProperty').required = true;
-        document.getElementById('checkin').required = true;
-        document.getElementById('checkout').required = true;
-        if (experienceItem) experienceItem.required = false;
-        if (document.getElementById('experienceDate')) document.getElementById('experienceDate').required = false;
-    } else {
-        expTypeBtn.classList.add('active');
-        stayTypeBtn.classList.remove('active');
-        stayFields.style.display = 'none';
-        expFields.style.display = 'block';
-        bookingTypeInput.value = 'experience';
-        document.getElementById('stayProperty').required = false;
-        document.getElementById('checkin').required = false;
-        document.getElementById('checkout').required = false;
-        if (experienceItem) experienceItem.required = true;
-        if (document.getElementById('experienceDate')) document.getElementById('experienceDate').required = true;
-    }
-    updateTotal();
-}
+// function setBookingType(type) {
+//     if (type === 'stay') {
+//         stayTypeBtn.classList.add('active');
+//         expTypeBtn.classList.remove('active');
+//         stayFields.style.display = 'block';
+//         expFields.style.display = 'none';
+//         bookingTypeInput.value = 'stay';
+// Mark required attributes for stay fields, remove for experience
+//         document.getElementById('stayProperty').required = true;
+//         document.getElementById('checkin').required = true;
+//         document.getElementById('checkout').required = true;
+//         if (experienceItem) experienceItem.required = false;
+//         if (document.getElementById('experienceDate')) document.getElementById('experienceDate').required = false;
+//     } else {
+//         expTypeBtn.classList.add('active');
+//         stayTypeBtn.classList.remove('active');
+//         stayFields.style.display = 'none';
+//         expFields.style.display = 'block';
+//         bookingTypeInput.value = 'experience';
+//         document.getElementById('stayProperty').required = false;
+//         document.getElementById('checkin').required = false;
+//         document.getElementById('checkout').required = false;
+//         if (experienceItem) experienceItem.required = true;
+//         if (document.getElementById('experienceDate')) document.getElementById('experienceDate').required = true;
+//     }
+//     updateTotal();
+// }
 
-stayTypeBtn.addEventListener('click', () => setBookingType('stay'));
-expTypeBtn.addEventListener('click', () => setBookingType('experience'));
+// stayTypeBtn.addEventListener('click', () => setBookingType('stay'));
+// expTypeBtn.addEventListener('click', () => setBookingType('experience'));
 
 // Calculate nights for stay
-function calculateNights() {
-    if (checkin.value && checkout.value) {
-        const start = new Date(checkin.value);
-        const end = new Date(checkout.value);
-        if (end > start) {
-            const diffTime = Math.abs(end - start);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            nightsInput.value = diffDays;
-            return diffDays;
-        } else if (end.getTime() === start.getTime()) {
-            nightsInput.value = 1;
-            return 1;
-        } else {
-            nightsInput.value = 0;
-            return 0;
-        }
-    }
-    return 0;
-}
+// function calculateNights() {
+//     if (checkin.value && checkout.value) {
+//         const start = new Date(checkin.value);
+//         const end = new Date(checkout.value);
+//         if (end > start) {
+//             const diffTime = Math.abs(end - start);
+//             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+//             nightsInput.value = diffDays;
+//             return diffDays;
+//         } else if (end.getTime() === start.getTime()) {
+//             nightsInput.value = 1;
+//             return 1;
+//         } else {
+//             nightsInput.value = 0;
+//             return 0;
+//         }
+//     }
+//     return 0;
+// }
 
-function updateTotal() {
-    const type = bookingTypeInput.value;
-    if (type === 'stay') {
-        const selectedOption = stayProperty.options[stayProperty.selectedIndex];
-        let pricePerNight = 0;
-        if (selectedOption && selectedOption.dataset.price) {
-            pricePerNight = parseInt(selectedOption.dataset.price);
-        }
-        let nights = calculateNights();
-        if (isNaN(nights)) nights = 0;
-        let adultCount = parseInt(adults.value) || 1;
-        let childCount = parseInt(children.value) || 0;
-        // simple pricing: extra adult over 2 adds 25%? but for simplicity: base * nights
-        let total = pricePerNight * nights;
-        // minor adjustment for extra guests: each extra adult +20% of nightly rate per night
-        if (adultCount > 2) {
-            let extra = adultCount - 2;
-            total += (pricePerNight * 0.2) * nights * extra;
-        }
-        if (childCount > 0) {
-            total += (pricePerNight * 0.1) * nights * childCount;
-        }
-        if (pricePerNight === 0 || nights === 0) {
-            totalSpan.innerText = 'KES 0';
-            breakdownSpan.innerText = 'Select property and dates to see total.';
-        } else {
-            totalSpan.innerText = `KES ${total.toLocaleString()}`;
-            breakdownSpan.innerText = `${nights} night(s) at KES ${pricePerNight}/night + extra guest fees if any.`;
-        }
-    } else { // experience
-        const selectedExp = experienceItem.options[experienceItem.selectedIndex];
-        let pricePerPerson = 0;
-        if (selectedExp && selectedExp.dataset.price) {
-            pricePerPerson = parseInt(selectedExp.dataset.price);
-        }
-        let participants = parseInt(participantsInput.value) || 1;
-        let total = pricePerPerson * participants;
-        if (pricePerPerson === 0 || !selectedExp.value) {
-            totalSpan.innerText = 'KES 0';
-            breakdownSpan.innerText = 'Select an experience to see price.';
-        } else {
-            totalSpan.innerText = `KES ${total.toLocaleString()}`;
-            breakdownSpan.innerText = `${participants} participant(s) × KES ${pricePerPerson} per person`;
-        }
-    }
-}
+// function updateTotal() {
+//     const type = bookingTypeInput.value;
+//     if (type === 'stay') {
+//         const selectedOption = stayProperty.options[stayProperty.selectedIndex];
+//         let pricePerNight = 0;
+//         if (selectedOption && selectedOption.dataset.price) {
+//             pricePerNight = parseInt(selectedOption.dataset.price);
+//         }
+//         let nights = calculateNights();
+//         if (isNaN(nights)) nights = 0;
+//         let adultCount = parseInt(adults.value) || 1;
+//         let childCount = parseInt(children.value) || 0;
+// simple pricing: extra adult over 2 adds 25%? but for simplicity: base * nights
+// let total = pricePerNight * nights;
+// minor adjustment for extra guests: each extra adult +20% of nightly rate per night
+// if (adultCount > 2) {
+//     let extra = adultCount - 2;
+//     total += (pricePerNight * 0.2) * nights * extra;
+// }
+// if (childCount > 0) {
+//     total += (pricePerNight * 0.1) * nights * childCount;
+// }
+// if (pricePerNight === 0 || nights === 0) {
+//     totalSpan.innerText = 'KES 0';
+//     breakdownSpan.innerText = 'Select property and dates to see total.';
+//         } else {
+//             totalSpan.innerText = `KES ${total.toLocaleString()}`;
+//             breakdownSpan.innerText = `${nights} night(s) at KES ${pricePerNight}/night + extra guest fees if any.`;
+//         }
+//     } else { // experience
+//         const selectedExp = experienceItem.options[experienceItem.selectedIndex];
+//         let pricePerPerson = 0;
+//         if (selectedExp && selectedExp.dataset.price) {
+//             pricePerPerson = parseInt(selectedExp.dataset.price);
+//         }
+//         let participants = parseInt(participantsInput.value) || 1;
+//         let total = pricePerPerson * participants;
+//         if (pricePerPerson === 0 || !selectedExp.value) {
+//             totalSpan.innerText = 'KES 0';
+//             breakdownSpan.innerText = 'Select an experience to see price.';
+//         } else {
+//             totalSpan.innerText = `KES ${total.toLocaleString()}`;
+//             breakdownSpan.innerText = `${participants} participant(s) × KES ${pricePerPerson} per person`;
+//         }
+//     }
+// }
 
 // attach listeners
-stayProperty.addEventListener('change', updateTotal);
-checkin.addEventListener('change', () => { calculateNights(); updateTotal(); });
-checkout.addEventListener('change', () => { calculateNights(); updateTotal(); });
-adults.addEventListener('input', updateTotal);
-children.addEventListener('input', updateTotal);
-experienceItem.addEventListener('change', updateTotal);
-participantsInput.addEventListener('input', updateTotal);
+// stayProperty.addEventListener('change', updateTotal);
+// checkin.addEventListener('change', () => { calculateNights(); updateTotal(); });
+// checkout.addEventListener('change', () => { calculateNights(); updateTotal(); });
+// adults.addEventListener('input', updateTotal);
+// children.addEventListener('input', updateTotal);
+// experienceItem.addEventListener('change', updateTotal);
+// participantsInput.addEventListener('input', updateTotal);
 
 // Set default stay property listener
-calculateNights();
-updateTotal();
+// calculateNights();
+// updateTotal();
+
+// // Form submission
+// const bookingForm = document.getElementById('bookingForm');
+// bookingForm.addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     const type = bookingTypeInput.value;
+//     let isValid = true;
+//     const guestName = document.getElementById('guestName').value.trim();
+//     const guestEmail = document.getElementById('guestEmail').value.trim();
+//     const guestPhone = document.getElementById('guestPhone').value.trim();
+
+// if (!guestName || !guestEmail || !guestPhone) {
+//     alert('Please fill in your full name, email and phone number.');
+//     isValid = false;
+// }
+// if (type === 'stay') {
+//     if (!stayProperty.value || !checkin.value || !checkout.value) {
+//         alert('Please select a property and check-in/out dates.');
+//         isValid = false;
+//     }
+//     const nights = calculateNights();
+//     if (nights <= 0) {
+//         alert('Check-out date must be after check-in date.');
+//         isValid = false;
+//     }
+// } else {
+//     if (!experienceItem.value || !document.getElementById('experienceDate').value) {
+//         alert('Please select an experience and preferred date.');
+//         isValid = false;
+//     }
+// }
+// if (!isValid) return;
+
+// // Build summary message
+// let details = '';
+// if (type === 'stay') {
+//     details = `🏨 Stay: ${stayProperty.options[stayProperty.selectedIndex]?.text}\n📅 ${checkin.value} to ${checkout.value} (${nightsInput.value} nights)\n👥 ${adults.value} Adults, ${children.value} Children\n💰 Total: ${totalSpan.innerText}`;
+// } else {
+//     details = `🎒 Experience: ${experienceItem.options[experienceItem.selectedIndex]?.text}\n📅 Date: ${document.getElementById('experienceDate').value}\n⏰ Timeslot: ${document.getElementById('timeSlot').value}\n👤 Participants: ${participantsInput.value}\n💰 Total: ${totalSpan.innerText}`;
+// }
+// const message = `✅ Booking Request Received!\n\nGuest: ${guestName}\nEmail: ${guestEmail}\nPhone: ${guestPhone}\n\n${details}\n\nSpecial Requests: ${document.getElementById('specialRequests').value || 'None'}\n\nA confirmation email will be sent shortly. Our team will contact you for payment.`;
+// alert(message);
+// // In real scenario: redirect to payment or store in DB. For demo, reset some fields optionally.
+// bookingForm.reset();
+// // reset to default stay view
+// setBookingType('stay');
+// document.getElementById('guestName').value = '';
+// document.getElementById('guestEmail').value = '';
+// document.getElementById('guestPhone').value = '';
+// updateTotal();
+// });
+
+// Pre-booked dates per property (simulated)
+const bookedDatesMap = {
+    "Watamu Beach Resort": ["2026-05-10", "2026-05-11", "2026-05-12", "2026-05-20", "2026-05-21", "2026-06-05", "2026-06-06"],
+    "Diani Reef Beach Resort": ["2026-05-15", "2026-05-16", "2026-05-17", "2026-05-25", "2026-05-26"],
+    "Sarova Whitesands Beach Resort": ["2026-05-18", "2026-05-19", "2026-06-01", "2026-06-02"],
+    "Masai Mara Sopa Lodge": ["2026-05-22", "2026-05-23", "2026-06-10", "2026-06-11", "2026-06-12"],
+    "The Sands at Nomad": ["2026-05-08", "2026-05-09", "2026-05-28", "2026-05-29"],
+    "Lamu Swahili House": ["2026-05-14", "2026-05-15", "2026-06-07", "2026-06-08"]
+};
+
+let flatpickrInstance = null;
+
+function getStayPrice() {
+    const select = document.getElementById('stayProperty');
+    const opt = select.options[select.selectedIndex];
+    return opt && opt.value ? parseInt(opt.getAttribute('data-price')) || 0 : 0;
+}
+
+// Returns booked dates that are in the future (today or later)
+function getFutureBookedDatesForCurrentProperty() {
+    const select = document.getElementById('stayProperty');
+    const property = select.value;
+    if (!property) return [];
+    const booked = bookedDatesMap[property] || [];
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return booked.filter(d => new Date(d) >= today);
+}
+
+function initDateRangePicker() {
+    const picker = document.getElementById('dateRangePicker');
+    if (!picker) return;
+    if (flatpickrInstance) flatpickrInstance.destroy();
+    const disabledBooked = getFutureBookedDatesForCurrentProperty();
+    flatpickrInstance = flatpickr(picker, {
+        mode: "range",
+        dateFormat: "Y-m-d",
+        minDate: "today",           // disables all past dates
+        disable: disabledBooked,    // disables pre‑booked future dates
+        onChange: function (selectedDates) {
+            if (selectedDates.length === 2) {
+                const start = selectedDates[0];
+                const end = selectedDates[1];
+                const nights = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+                document.getElementById('nights').value = nights;
+                updateStayTotal();
+            } else {
+                document.getElementById('nights').value = '';
+                updateStayTotal();
+            }
+        },
+        onReady: function () {
+            if (flatpickrInstance) flatpickrInstance.clear();
+        }
+    });
+}
+
+function updateStayTotal() {
+    const nights = parseInt(document.getElementById('nights').value) || 0;
+    const price = getStayPrice();
+    const total = nights * price;
+    const totalSpan = document.getElementById('totalAmountDisplay');
+    const breakdownDiv = document.getElementById('breakdownText');
+    if (total > 0 && nights > 0 && price > 0) {
+        totalSpan.innerText = `KES ${total.toLocaleString()}`;
+        breakdownDiv.innerText = `${nights} night(s) × KES ${price.toLocaleString()} = KES ${total.toLocaleString()}`;
+    } else {
+        totalSpan.innerText = `KES 0`;
+        breakdownDiv.innerText = 'Select property and a valid available date range (no blocked dates)';
+    }
+}
+
+function updateExperienceTotal() {
+    const expSelect = document.getElementById('experienceItem');
+    const opt = expSelect.options[expSelect.selectedIndex];
+    const pricePer = opt && opt.value ? parseInt(opt.getAttribute('data-price')) || 0 : 0;
+    const participants = parseInt(document.getElementById('participants').value) || 0;
+    const total = pricePer * participants;
+    const totalSpan = document.getElementById('totalAmountDisplay');
+    const breakdownDiv = document.getElementById('breakdownText');
+    if (total > 0 && participants > 0 && pricePer > 0) {
+        totalSpan.innerText = `KES ${total.toLocaleString()}`;
+        breakdownDiv.innerText = `${participants} participant(s) × KES ${pricePer.toLocaleString()} = KES ${total.toLocaleString()}`;
+    } else {
+        totalSpan.innerText = `KES 0`;
+        breakdownDiv.innerText = 'Select experience and participants to see total';
+    }
+}
+
+// Set min date for experience date picker (disable past dates)
+function setExperienceDateMin() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const minDate = `${yyyy}-${mm}-${dd}`;
+    const expDateInput = document.getElementById('experienceDate');
+    if (expDateInput) expDateInput.setAttribute('min', minDate);
+}
+
+function setBookingType(type) {
+    document.getElementById('bookingType').value = type;
+    const stayFields = document.getElementById('stayFields');
+    const expFields = document.getElementById('experienceFields');
+    const stayBtn = document.getElementById('stayTypeBtn');
+    const expBtn = document.getElementById('experienceTypeBtn');
+    if (type === 'stay') {
+        stayFields.style.display = 'block';
+        expFields.style.display = 'none';
+        stayBtn.classList.add('active');
+        expBtn.classList.remove('active');
+        initDateRangePicker();
+        updateStayTotal();
+    } else {
+        stayFields.style.display = 'none';
+        expFields.style.display = 'block';
+        expBtn.classList.add('active');
+        stayBtn.classList.remove('active');
+        if (flatpickrInstance) {
+            flatpickrInstance.destroy();
+            flatpickrInstance = null;
+        }
+        setExperienceDateMin();   // disable past dates for experience
+        updateExperienceTotal();
+    }
+}
+
+// Event listeners
+document.getElementById('stayTypeBtn').addEventListener('click', () => setBookingType('stay'));
+document.getElementById('experienceTypeBtn').addEventListener('click', () => setBookingType('experience'));
+document.getElementById('stayProperty').addEventListener('change', () => {
+    if (flatpickrInstance) {
+        flatpickrInstance.clear();
+        document.getElementById('nights').value = '';
+    }
+    initDateRangePicker();
+    updateStayTotal();
+});
+document.getElementById('experienceItem').addEventListener('change', updateExperienceTotal);
+document.getElementById('participants').addEventListener('input', updateExperienceTotal);
 
 // Form submission
-const bookingForm = document.getElementById('bookingForm');
-bookingForm.addEventListener('submit', (e) => {
+document.getElementById('bookingForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    const type = bookingTypeInput.value;
-    let isValid = true;
-    const guestName = document.getElementById('guestName').value.trim();
-    const guestEmail = document.getElementById('guestEmail').value.trim();
-    const guestPhone = document.getElementById('guestPhone').value.trim();
-
-    if (!guestName || !guestEmail || !guestPhone) {
-        alert('Please fill in your full name, email and phone number.');
-        isValid = false;
+    const type = document.getElementById('bookingType').value;
+    const name = document.getElementById('guestName').value.trim();
+    const email = document.getElementById('guestEmail').value.trim();
+    const phone = document.getElementById('guestPhone').value.trim();
+    if (!name || !email || !phone) {
+        alert('Please fill in all required guest details (Name, Email, Phone).');
+        return;
     }
     if (type === 'stay') {
-        if (!stayProperty.value || !checkin.value || !checkout.value) {
-            alert('Please select a property and check-in/out dates.');
-            isValid = false;
-        }
-        const nights = calculateNights();
-        if (nights <= 0) {
-            alert('Check-out date must be after check-in date.');
-            isValid = false;
-        }
+        const property = document.getElementById('stayProperty').value;
+        if (!property) { alert('Please select a property.'); return; }
+        const nights = parseInt(document.getElementById('nights').value);
+        if (!nights || nights <= 0) { alert('Please select a valid date range (check‑in and check‑out) with no blocked dates.'); return; }
+        const dates = flatpickrInstance ? flatpickrInstance.selectedDates : [];
+        if (dates.length !== 2) { alert('Please select both check‑in and check‑out dates.'); return; }
+        const checkin = dates[0].toISOString().slice(0, 10);
+        const checkout = dates[1].toISOString().slice(0, 10);
+        const total = nights * getStayPrice();
+        alert(`✨ Thank you ${name}! Your stay at ${property} from ${checkin} to ${checkout} (${nights} nights) has been requested. Total: KES ${total.toLocaleString()}. We'll contact you on ${phone} to confirm payment.`);
     } else {
-        if (!experienceItem.value || !document.getElementById('experienceDate').value) {
-            alert('Please select an experience and preferred date.');
-            isValid = false;
-        }
+        const experience = document.getElementById('experienceItem').value;
+        if (!experience) { alert('Please select an experience.'); return; }
+        const expDate = document.getElementById('experienceDate').value;
+        if (!expDate) { alert('Please select a preferred date (future date only).'); return; }
+        const participants = parseInt(document.getElementById('participants').value) || 0;
+        if (participants < 1) { alert('Number of participants must be at least 1.'); return; }
+        const opt = document.getElementById('experienceItem').options[document.getElementById('experienceItem').selectedIndex];
+        const pricePer = parseInt(opt.getAttribute('data-price')) || 0;
+        const total = participants * pricePer;
+        alert(`✨ Thank you ${name}! Your booking for ${experience} on ${expDate} with ${participants} participant(s) (Total: KES ${total.toLocaleString()}) has been received. We'll reach out via WhatsApp for deposit.`);
     }
-    if (!isValid) return;
-
-    // Build summary message
-    let details = '';
-    if (type === 'stay') {
-        details = `🏨 Stay: ${stayProperty.options[stayProperty.selectedIndex]?.text}\n📅 ${checkin.value} to ${checkout.value} (${nightsInput.value} nights)\n👥 ${adults.value} Adults, ${children.value} Children\n💰 Total: ${totalSpan.innerText}`;
-    } else {
-        details = `🎒 Experience: ${experienceItem.options[experienceItem.selectedIndex]?.text}\n📅 Date: ${document.getElementById('experienceDate').value}\n⏰ Timeslot: ${document.getElementById('timeSlot').value}\n👤 Participants: ${participantsInput.value}\n💰 Total: ${totalSpan.innerText}`;
-    }
-    const message = `✅ Booking Request Received!\n\nGuest: ${guestName}\nEmail: ${guestEmail}\nPhone: ${guestPhone}\n\n${details}\n\nSpecial Requests: ${document.getElementById('specialRequests').value || 'None'}\n\nA confirmation email will be sent shortly. Our team will contact you for payment.`;
-    alert(message);
-    // In real scenario: redirect to payment or store in DB. For demo, reset some fields optionally.
-    bookingForm.reset();
-    // reset to default stay view
-    setBookingType('stay');
-    document.getElementById('guestName').value = '';
-    document.getElementById('guestEmail').value = '';
-    document.getElementById('guestPhone').value = '';
-    updateTotal();
 });
+
+// Initialise stays mode, then set experience date min (for when toggled)
+setBookingType('stay');
+setExperienceDateMin();
