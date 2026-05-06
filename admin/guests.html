@@ -368,6 +368,36 @@
         .overlay.show {
             display: block;
         }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--orange);
+            color: var(--orange);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: var(--orange);
+            color: white;
+        }
+
+        .btn-primary-travel {
+            background-color: var(--sunrise-gold);
+            color: var(--deep-navy);
+            border: 2px solid var(--sunrise-gold);
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .btn-primary-travel:hover {
+            background-color: transparent;
+            color: var(--sunrise-gold);
+        }
     </style>
 </head>
 
@@ -455,7 +485,62 @@
                             </tr>
                         </thead>
                         <tbody id="guestsTableBody">
-                            <!-- Data loaded via JS -->
+                            <!-- Static sample data rows -->
+                            <tr>
+                                <td>1</td>
+                                <td><strong>James K.</strong></td>
+                                <td>james@example.com</td>
+                                <td>+254712345678</td>
+                                <td>3</td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash-alt"></i></button>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><strong>Sarah M.</strong></td>
+                                <td>sarah@example.com</td>
+                                <td>+254723456789</td>
+                                <td>2</td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash-alt"></i></button>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><strong>David O.</strong></td>
+                                <td>david@example.com</td>
+                                <td>+254734567890</td>
+                                <td>1</td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash-alt"></i></button>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><strong>Linda W.</strong></td>
+                                <td>linda@example.com</td>
+                                <td>+254745678901</td>
+                                <td>4</td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash-alt"></i></button>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td><strong>Michael K.</strong></td>
+                                <td>michael@example.com</td>
+                                <td>+254756789012</td>
+                                <td>2</td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash-alt"></i></button>
+                                 </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -464,216 +549,47 @@
     </div>
     <div class="overlay" id="sidebarOverlay"></div>
 
-    <!-- Add Guest Modal -->
-    <div class="modal fade" id="addGuestModal" tabindex="-1" aria-labelledby="addGuestModalLabel" aria-hidden="true">
+    <!-- Static Add Guest Modal (no JS) -->
+    <div class="modal fade" id="addGuestModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"><i class="fas fa-plus-circle"></i> Add New Guest</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="addGuestForm">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label">Full Name *</label>
-                                <input type="text" class="form-control" id="guestName" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Email Address *</label>
-                                <input type="email" class="form-control" id="guestEmail" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" id="guestPhone">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Total Stays (optional)</label>
-                                <input type="number" class="form-control" id="guestStays" value="0">
-                            </div>
-                        </div>
-                    </form>
+                    <div class="row g-3">
+                        <div class="col-md-6"><label class="form-label">Full Name *</label><input type="text" class="form-control" id="guestName"></div>
+                        <div class="col-md-6"><label class="form-label">Email Address *</label><input type="email" class="form-control" id="guestEmail"></div>
+                        <div class="col-md-6"><label class="form-label">Phone Number</label><input type="text" class="form-control" id="guestPhone"></div>
+                        <div class="col-md-6"><label class="form-label">Total Stays (optional)</label><input type="number" class="form-control" id="guestStays" value="0"></div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn-primary-travel" id="saveGuestBtn">Save Guest</button>
-                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline">Cancel</button><button type="button" class="btn-primary-travel">Save Guest</button></div>
             </div>
         </div>
     </div>
 
-    <!-- Edit Guest Modal -->
-    <div class="modal fade" id="editGuestModal" tabindex="-1" aria-labelledby="editGuestModalLabel" aria-hidden="true">
+    <!-- Static Edit Guest Modal -->
+    <div class="modal fade" id="editGuestModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"><i class="fas fa-edit"></i> Edit Guest</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editGuestForm">
-                        <input type="hidden" id="editGuestId">
-                        <div class="row g-3">
-                            <div class="col-md-6"><label>Full Name</label><input type="text" class="form-control"
-                                    id="editName"></div>
-                            <div class="col-md-6"><label>Email</label><input type="email" class="form-control"
-                                    id="editEmail"></div>
-                            <div class="col-md-6"><label>Phone</label><input type="text" class="form-control"
-                                    id="editPhone"></div>
-                            <div class="col-md-6"><label>Total Stays</label><input type="number" class="form-control"
-                                    id="editStays"></div>
-                        </div>
-                    </form>
+                    <div class="row g-3">
+                        <div class="col-md-6"><label>Full Name</label><input type="text" class="form-control" id="editName"></div>
+                        <div class="col-md-6"><label>Email</label><input type="email" class="form-control" id="editEmail"></div>
+                        <div class="col-md-6"><label>Phone</label><input type="text" class="form-control" id="editPhone"></div>
+                        <div class="col-md-6"><label>Total Stays</label><input type="number" class="form-control" id="editStays"></div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn-primary-travel" id="updateGuestBtn">Update Guest</button>
-                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline">Cancel</button><button type="button" class="btn-primary-travel">Update Guest</button></div>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Sample initial guests data
-        let guests = [
-            { id: 1, name: "James K.", email: "james@example.com", phone: "+254712345678", totalStays: 3 },
-            { id: 2, name: "Sarah M.", email: "sarah@example.com", phone: "+254723456789", totalStays: 2 },
-            { id: 3, name: "David O.", email: "david@example.com", phone: "+254734567890", totalStays: 1 },
-            { id: 4, name: "Linda W.", email: "linda@example.com", phone: "+254745678901", totalStays: 4 },
-            { id: 5, name: "Michael K.", email: "michael@example.com", phone: "+254756789012", totalStays: 2 },
-        ];
-        let nextGuestId = 6;
-
-        // Render table
-        function renderGuests() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = guests.filter(g =>
-                g.name.toLowerCase().includes(searchTerm) ||
-                g.email.toLowerCase().includes(searchTerm)
-            );
-            const tbody = document.getElementById('guestsTableBody');
-            tbody.innerHTML = '';
-            filtered.forEach(g => {
-                const row = tbody.insertRow();
-                row.insertCell(0).innerText = g.id;
-                row.insertCell(1).innerHTML = `<strong>${g.name}</strong>`;
-                row.insertCell(2).innerText = g.email;
-                row.insertCell(3).innerText = g.phone || '—';
-                row.insertCell(4).innerText = g.totalStays;
-                const actions = row.insertCell(5);
-                actions.innerHTML = `<button class="btn-icon edit-btn" data-id="${g.id}"><i class="fas fa-edit"></i></button>
-                                     <button class="btn-icon delete-btn" data-id="${g.id}"><i class="fas fa-trash-alt"></i></button>`;
-            });
-            // attach event listeners
-            document.querySelectorAll('.edit-btn').forEach(btn => {
-                btn.addEventListener('click', () => editGuest(parseInt(btn.dataset.id)));
-            });
-            document.querySelectorAll('.delete-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const id = parseInt(btn.dataset.id);
-                    if (confirm('Delete this guest permanently?')) {
-                        guests = guests.filter(g => g.id !== id);
-                        renderGuests();
-                        alert('Guest deleted.');
-                    }
-                });
-            });
-        }
-
-        function editGuest(id) {
-            const guest = guests.find(g => g.id === id);
-            if (!guest) return;
-            document.getElementById('editGuestId').value = guest.id;
-            document.getElementById('editName').value = guest.name;
-            document.getElementById('editEmail').value = guest.email;
-            document.getElementById('editPhone').value = guest.phone || '';
-            document.getElementById('editStays').value = guest.totalStays;
-            const editModal = new bootstrap.Modal(document.getElementById('editGuestModal'));
-            editModal.show();
-        }
-
-        // Add guest
-        document.getElementById('saveGuestBtn').addEventListener('click', () => {
-            const name = document.getElementById('guestName').value.trim();
-            const email = document.getElementById('guestEmail').value.trim();
-            const phone = document.getElementById('guestPhone').value.trim();
-            const totalStays = parseInt(document.getElementById('guestStays').value) || 0;
-            if (!name || !email) {
-                alert('Please fill Name and Email fields.');
-                return;
-            }
-            const newGuest = { id: nextGuestId++, name, email, phone, totalStays };
-            guests.push(newGuest);
-            renderGuests();
-            document.getElementById('addGuestForm').reset();
-            bootstrap.Modal.getInstance(document.getElementById('addGuestModal')).hide();
-            alert('Guest added successfully!');
-        });
-
-        // Update guest
-        document.getElementById('updateGuestBtn').addEventListener('click', () => {
-            const id = parseInt(document.getElementById('editGuestId').value);
-            const index = guests.findIndex(g => g.id === id);
-            if (index !== -1) {
-                guests[index].name = document.getElementById('editName').value;
-                guests[index].email = document.getElementById('editEmail').value;
-                guests[index].phone = document.getElementById('editPhone').value;
-                guests[index].totalStays = parseInt(document.getElementById('editStays').value) || 0;
-                renderGuests();
-                bootstrap.Modal.getInstance(document.getElementById('editGuestModal')).hide();
-                alert('Guest updated.');
-            }
-        });
-
-        // Search filter
-        document.getElementById('searchInput').addEventListener('input', renderGuests);
-
-        // Sidebar and logout
-        const menuBtn = document.getElementById('menuToggleBtn');
-        const sidebar = document.getElementById('adminSidebar');
-        const overlay = document.getElementById('sidebarOverlay');
-        function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
-        function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; }
-        menuBtn.addEventListener('click', openSidebar);
-        overlay.addEventListener('click', closeSidebar);
-        window.addEventListener('resize', () => { if (window.innerWidth > 992 && sidebar.classList.contains('open')) closeSidebar(); });
-        document.getElementById('logoutBtn').addEventListener('click', () => alert('Logout demo'));
-
-        // Initial render
-        renderGuests();
-    </script>
-    <style>
-        .btn-outline {
-            background: transparent;
-            border: 1.5px solid var(--orange);
-            color: var(--orange);
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-
-        .btn-outline:hover {
-            background: var(--orange);
-            color: white;
-        }
-
-        .btn-primary-travel {
-            background-color: var(--sunrise-gold);
-            color: var(--deep-navy);
-            border: 2px solid var(--sunrise-gold);
-            padding: 8px 24px;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: 0.25s;
-        }
-
-        .btn-primary-travel:hover {
-            background-color: transparent;
-            color: var(--sunrise-gold);
-        }
-    </style>
 </body>
 
 </html>

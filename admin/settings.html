@@ -246,6 +246,7 @@
             border-radius: 28px;
             overflow: hidden;
             border-collapse: collapse;
+            margin-bottom: 2rem;
         }
 
         .data-table th,
@@ -271,6 +272,7 @@
             cursor: pointer;
             margin: 0 4px;
             font-size: 1rem;
+            transition: 0.1s;
         }
 
         .btn-icon.delete {
@@ -279,28 +281,24 @@
 
         .btn-icon:hover {
             opacity: 0.7;
+            transform: scale(1.05);
         }
 
-        .modal-content {
-            border-radius: 28px;
-            border: none;
-        }
-
-        .modal-header {
-            background: var(--deep-navy);
-            color: white;
-            border-radius: 28px 28px 0 0;
-        }
-
-        .modal-header .btn-close {
-            filter: brightness(0) invert(1);
-        }
-
-        .form-control,
-        .form-select {
+        .badge-perm {
+            background: #eef2ff;
+            color: var(--ocean-blue);
+            padding: 4px 10px;
             border-radius: 40px;
-            padding: 10px 18px;
-            border: 1px solid #e2e8f0;
+            font-size: 0.7rem;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .permission-group {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 16px;
         }
 
         .nav-tabs .nav-link {
@@ -314,13 +312,6 @@
             background: var(--sunrise-gold);
             color: var(--deep-navy);
             border-color: var(--sunrise-gold);
-        }
-
-        .permission-group {
-            background: #f8fafc;
-            border-radius: 20px;
-            padding: 16px;
-            margin-bottom: 16px;
         }
 
         @media (max-width: 992px) {
@@ -370,387 +361,6 @@
             display: block;
         }
 
-        .badge-perm {
-            background: #eef2ff;
-            color: var(--ocean-blue);
-            padding: 4px 10px;
-            border-radius: 40px;
-            font-size: 0.7rem;
-            display: inline-block;
-            margin: 2px;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="admin-wrapper">
-        <!-- Sidebar (fixed) -->
-        <aside class="admin-sidebar" id="adminSidebar">
-            <div class="sidebar-header">
-                <img src="../assets/image/savira_nest_logo.png" alt="SaviraNest Logo">
-                <h4>SaviraNest Admin</h4>
-            </div>
-            <div class="sidebar-nav">
-                <div class="nav-item-admin">
-                    <a href="dashboard.html" class="nav-link-admin"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                </div>
-                <div class="nav-item-admin">
-                    <a href="stay.html" class="nav-link-admin"><i class="fas fa-building"></i> Stays</a>
-                </div>
-                <div class="nav-item-admin">
-                    <a href="experience.html" class="nav-link-admin"><i class="fas fa-compass"></i> Experiences</a>
-                </div>
-                <div class="nav-item-admin">
-                    <a href="bookings.html" class="nav-link-admin"><i class="fas fa-calendar-check"></i> Bookings</a>
-                </div>
-                <div class="nav-item-admin">
-                    <a href="guests.html" class="nav-link-admin"><i class="fas fa-users"></i> Guests</a>
-                </div>
-                <div class="nav-item-admin"><a href="transactions.html" class="nav-link-admin"><i
-                            class="fas fa-credit-card"></i> Transactions</a></div>
-                <div class="nav-item-admin"><a href="reports.html" class="nav-link-admin"><i
-                            class="fas fa-chart-line"></i> Reports</a></div>
-                <div class="nav-item-admin">
-                    <a href="settings.html" class="nav-link-admin active"><i class="fas fa-cog"></i> Settings</a>
-                </div>
-            </div>
-            <div class="login-persona">
-                <div class="avatar-sm">MA</div>
-                <div class="name">Michael Amadi</div>
-                <div class="role">Super Administrator</div>
-                <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
-            </div>
-        </aside>
-
-        <!-- Main content -->
-        <main class="admin-main">
-            <div class="admin-topbar">
-                <button class="menu-toggle" id="menuToggleBtn"><i class="fas fa-bars"></i></button>
-            </div>
-
-            <div class="dashboard-content">
-                <h2>Settings</h2>
-                <ul class="nav nav-tabs mt-3" id="settingsTab" role="tablist">
-                    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab"
-                            data-bs-target="#usersTab">Users</button></li>
-                    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#rolesTab">Roles
-                            & Permissions</button></li>
-                </ul>
-
-                <div class="tab-content mt-4">
-                    <!-- Users Tab -->
-                    <div class="tab-pane fade show active" id="usersTab">
-                        <div class="actions-bar">
-                            <h3>System Users</h3>
-                            <button class="btn-primary-admin" data-bs-toggle="modal" data-bs-target="#addUserModal"><i
-                                    class="fas fa-plus"></i> Add User</button>
-                        </div>
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Username</th>
-                                    <th>Full Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Permissions</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="usersTableBody"></tbody>
-                        </table>
-                    </div>
-
-                    <!-- Roles & Permissions Tab -->
-                    <div class="tab-pane fade" id="rolesTab">
-                        <div class="actions-bar">
-                            <h3>User Roles</h3>
-                            <button class="btn-primary-admin" data-bs-toggle="modal" data-bs-target="#addRoleModal"><i
-                                    class="fas fa-plus"></i> Add Role</button>
-                        </div>
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Role Name</th>
-                                    <th>Permissions</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="rolesTableBody"></tbody>
-                        </table>
-                        <div class="mt-4">
-                            <h4>Predefined Permissions</h4>
-                            <div class="permission-group">
-                                <span class="badge-perm">manage_stays</span>
-                                <span class="badge-perm">manage_experiences</span>
-                                <span class="badge-perm">manage_bookings</span>
-                                <span class="badge-perm">manage_guests</span>
-                                <span class="badge-perm">manage_users</span>
-                                <span class="badge-perm">manage_settings</span>
-                                <span class="badge-perm">view_reports</span>
-                            </div>
-                            <p class="text-muted small mt-2">Assign these permissions to roles when editing.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    <div class="overlay" id="sidebarOverlay"></div>
-
-    <!-- Add User Modal -->
-    <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add New User</h5><button type="button" class="btn-close"
-                        data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addUserForm">
-                        <div class="mb-3"><label>Username *</label><input type="text" class="form-control"
-                                id="userUsername" required></div>
-                        <div class="mb-3"><label>Full Name *</label><input type="text" class="form-control"
-                                id="userFullname" required></div>
-                        <div class="mb-3"><label>Email *</label><input type="email" class="form-control" id="userEmail"
-                                required></div>
-                        <div class="mb-3"><label>Role *</label><select class="form-select" id="userRole"></select></div>
-                    </form>
-                </div>
-                <div class="modal-footer"><button type="button" class="btn-outline"
-                        data-bs-dismiss="modal">Cancel</button><button type="button" class="btn-primary-travel"
-                        id="saveUserBtn">Save User</button></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Edit User Modal -->
-    <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit User</h5><button type="button" class="btn-close"
-                        data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="editUserForm"><input type="hidden" id="editUserId">
-                        <div class="mb-3"><label>Username</label><input type="text" class="form-control"
-                                id="editUsername"></div>
-                        <div class="mb-3"><label>Full Name</label><input type="text" class="form-control"
-                                id="editFullname"></div>
-                        <div class="mb-3"><label>Email</label><input type="email" class="form-control" id="editEmail">
-                        </div>
-                        <div class="mb-3"><label>Role</label><select class="form-select" id="editRole"></select></div>
-                    </form>
-                </div>
-                <div class="modal-footer"><button type="button" class="btn-outline"
-                        data-bs-dismiss="modal">Cancel</button><button type="button" class="btn-primary-travel"
-                        id="updateUserBtn">Update User</button></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add Role Modal -->
-    <div class="modal fade" id="addRoleModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add New Role</h5><button type="button" class="btn-close"
-                        data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addRoleForm">
-                        <div class="mb-3"><label>Role Name *</label><input type="text" class="form-control"
-                                id="roleName" required></div>
-                    </form>
-                </div>
-                <div class="modal-footer"><button type="button" class="btn-outline"
-                        data-bs-dismiss="modal">Cancel</button><button type="button" class="btn-primary-travel"
-                        id="saveRoleBtn">Save Role</button></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Edit Role Modal (with permissions) -->
-    <div class="modal fade" id="editRoleModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-md">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Role Permissions</h5><button type="button" class="btn-close"
-                        data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form><input type="hidden" id="editRoleOriginalName">
-                        <div class="mb-3"><label>Role Name</label><input type="text" class="form-control"
-                                id="editRoleName"></div>
-                        <label>Permissions</label>
-                        <div id="rolePermissionsContainer"></div>
-                    </form>
-                </div>
-                <div class="modal-footer"><button type="button" class="btn-outline"
-                        data-bs-dismiss="modal">Cancel</button><button type="button" class="btn-primary-travel"
-                        id="updateRoleBtn">Save Permissions</button></div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Data Models
-        let users = [
-            { id: 1, username: "michael", fullName: "Michael Amadi", email: "michael@saviranest.co.ke", role: "super_admin" },
-            { id: 2, username: "jane_m", fullName: "Jane Mwangi", email: "jane@saviranest.co.ke", role: "property_manager" },
-            { id: 3, username: "peter_k", fullName: "Peter Kamau", email: "peter@saviranest.co.ke", role: "guest_support" }
-        ];
-        let nextUserId = 4;
-
-        let roles = [
-            { name: "super_admin", permissions: ["manage_stays", "manage_experiences", "manage_bookings", "manage_guests", "manage_users", "manage_settings", "view_reports"] },
-            { name: "property_manager", permissions: ["manage_stays", "manage_experiences", "manage_bookings", "view_reports"] },
-            { name: "guest_support", permissions: ["manage_bookings", "manage_guests", "view_reports"] }
-        ];
-
-        const allPermissions = ["manage_stays", "manage_experiences", "manage_bookings", "manage_guests", "manage_users", "manage_settings", "view_reports"];
-
-        function renderUsers() {
-            const tbody = document.getElementById('usersTableBody');
-            tbody.innerHTML = '';
-            users.forEach(u => {
-                const roleObj = roles.find(r => r.name === u.role);
-                const perms = roleObj ? roleObj.permissions : [];
-                const permStr = perms.length > 2 ? perms.slice(0, 2).join(', ') + '...' : perms.join(', ');
-                const row = `<tr>
-                    <td>${u.id}</td><td>${u.username}</td><td>${u.fullName}</td><td>${u.email}</td><td>${u.role}</td>
-                    <td><span class="badge-perm">${permStr || '—'}</span></td>
-                    <td><button class="btn-icon edit-user" data-id="${u.id}"><i class="fas fa-edit"></i></button><button class="btn-icon delete delete-user" data-id="${u.id}"><i class="fas fa-trash-alt"></i></button></td>
-                </tr>`;
-                tbody.insertAdjacentHTML('beforeend', row);
-            });
-            document.querySelectorAll('.edit-user').forEach(btn => btn.addEventListener('click', () => openEditUser(parseInt(btn.dataset.id))));
-            document.querySelectorAll('.delete-user').forEach(btn => btn.addEventListener('click', () => { if (confirm('Delete user?')) { users = users.filter(u => u.id !== parseInt(btn.dataset.id)); renderUsers(); } }));
-        }
-
-        function openEditUser(id) {
-            const user = users.find(u => u.id === id);
-            if (!user) return;
-            document.getElementById('editUserId').value = user.id;
-            document.getElementById('editUsername').value = user.username;
-            document.getElementById('editFullname').value = user.fullName;
-            document.getElementById('editEmail').value = user.email;
-            const roleSelect = document.getElementById('editRole');
-            roleSelect.innerHTML = roles.map(r => `<option value="${r.name}" ${r.name === user.role ? 'selected' : ''}>${r.name}</option>`).join('');
-            new bootstrap.Modal(document.getElementById('editUserModal')).show();
-        }
-
-        function renderRoles() {
-            const tbody = document.getElementById('rolesTableBody');
-            tbody.innerHTML = '';
-            roles.forEach(role => {
-                const permStr = role.permissions.map(p => `<span class="badge-perm">${p}</span>`).join(' ');
-                const row = `<tr>
-                    <td><strong>${role.name}</strong></td>
-                    <td>${permStr}</td>
-                    <td><button class="btn-icon edit-role" data-role="${role.name}"><i class="fas fa-edit"></i></button><button class="btn-icon delete delete-role" data-role="${role.name}"><i class="fas fa-trash-alt"></i></button></td>
-                </tr>`;
-                tbody.insertAdjacentHTML('beforeend', row);
-            });
-            document.querySelectorAll('.edit-role').forEach(btn => btn.addEventListener('click', () => openEditRole(btn.dataset.role)));
-            document.querySelectorAll('.delete-role').forEach(btn => btn.addEventListener('click', () => { if (confirm('Delete role? It will affect users assigned.')) { roles = roles.filter(r => r.name !== btn.dataset.role); renderRoles(); renderUsers(); } }));
-        }
-
-        function openEditRole(roleName) {
-            const role = roles.find(r => r.name === roleName);
-            if (!role) return;
-            document.getElementById('editRoleOriginalName').value = role.name;
-            document.getElementById('editRoleName').value = role.name;
-            const container = document.getElementById('rolePermissionsContainer');
-            container.innerHTML = allPermissions.map(p => `<div class="form-check"><input class="form-check-input" type="checkbox" value="${p}" id="perm_${p}" ${role.permissions.includes(p) ? 'checked' : ''}> <label class="form-check-label" for="perm_${p}">${p}</label></div>`).join('');
-            new bootstrap.Modal(document.getElementById('editRoleModal')).show();
-        }
-
-        document.getElementById('saveUserBtn').addEventListener('click', () => {
-            const username = document.getElementById('userUsername').value.trim();
-            const fullName = document.getElementById('userFullname').value.trim();
-            const email = document.getElementById('userEmail').value.trim();
-            const role = document.getElementById('userRole').value;
-            if (!username || !fullName || !email) { alert('All fields required'); return; }
-            users.push({ id: nextUserId++, username, fullName, email, role });
-            renderUsers();
-            document.getElementById('addUserForm').reset();
-            bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
-            alert('User added');
-        });
-
-        document.getElementById('updateUserBtn').addEventListener('click', () => {
-            const id = parseInt(document.getElementById('editUserId').value);
-            const idx = users.findIndex(u => u.id === id);
-            if (idx !== -1) {
-                users[idx].username = document.getElementById('editUsername').value;
-                users[idx].fullName = document.getElementById('editFullname').value;
-                users[idx].email = document.getElementById('editEmail').value;
-                users[idx].role = document.getElementById('editRole').value;
-                renderUsers();
-                bootstrap.Modal.getInstance(document.getElementById('editUserModal')).hide();
-                alert('User updated');
-            }
-        });
-
-        document.getElementById('saveRoleBtn').addEventListener('click', () => {
-            const newRoleName = document.getElementById('roleName').value.trim();
-            if (!newRoleName) { alert('Role name required'); return; }
-            if (roles.find(r => r.name === newRoleName)) { alert('Role already exists'); return; }
-            roles.push({ name: newRoleName, permissions: [] });
-            renderRoles();
-            // refresh role dropdowns in user modals
-            document.getElementById('addUserForm').reset();
-            bootstrap.Modal.getInstance(document.getElementById('addRoleModal')).hide();
-            alert('Role added');
-        });
-
-        document.getElementById('updateRoleBtn').addEventListener('click', () => {
-            const originalName = document.getElementById('editRoleOriginalName').value;
-            const newName = document.getElementById('editRoleName').value.trim();
-            const selectedPerms = Array.from(document.querySelectorAll('#rolePermissionsContainer input:checked')).map(cb => cb.value);
-            const roleIndex = roles.findIndex(r => r.name === originalName);
-            if (roleIndex !== -1) {
-                if (newName !== originalName && roles.find(r => r.name === newName)) { alert('Role name already exists'); return; }
-                roles[roleIndex].name = newName;
-                roles[roleIndex].permissions = selectedPerms;
-                // update users' role references if name changed
-                if (newName !== originalName) {
-                    users.forEach(u => { if (u.role === originalName) u.role = newName; });
-                }
-                renderRoles();
-                renderUsers();
-                bootstrap.Modal.getInstance(document.getElementById('editRoleModal')).hide();
-                alert('Role updated');
-            }
-        });
-
-        // Populate role dropdowns
-        function refreshRoleSelects() {
-            const roleOptions = roles.map(r => `<option value="${r.name}">${r.name}</option>`).join('');
-            document.getElementById('userRole').innerHTML = roleOptions;
-            document.getElementById('editRole').innerHTML = roleOptions;
-        }
-
-        // initial render
-        refreshRoleSelects();
-        renderUsers();
-        renderRoles();
-
-        // Sidebar & logout
-        const menuBtn = document.getElementById('menuToggleBtn');
-        const sidebar = document.getElementById('adminSidebar');
-        const overlay = document.getElementById('sidebarOverlay');
-        function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
-        function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; }
-        menuBtn.addEventListener('click', openSidebar);
-        overlay.addEventListener('click', closeSidebar);
-        window.addEventListener('resize', () => { if (window.innerWidth > 992 && sidebar.classList.contains('open')) closeSidebar(); });
-        document.getElementById('logoutBtn').addEventListener('click', () => alert('Logout demo'));
-    </script>
-    <style>
         .btn-outline {
             background: transparent;
             border: 1.5px solid var(--orange);
@@ -773,6 +383,7 @@
             padding: 8px 24px;
             border-radius: 40px;
             font-weight: 600;
+            transition: 0.25s;
         }
 
         .btn-primary-travel:hover {
@@ -780,6 +391,414 @@
             color: var(--sunrise-gold);
         }
     </style>
+</head>
+
+<body>
+    <div class="admin-wrapper">
+        <!-- Sidebar (fixed) -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-header">
+                <img src="../assets/image/savira_nest_logo.png" alt="SaviraNest Logo">
+                <h4>SaviraNest Admin</h4>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item-admin"><a href="dashboard.html" class="nav-link-admin"><i class="fas fa-tachometer-alt"></i> Dashboard</a></div>
+                <div class="nav-item-admin"><a href="stay.html" class="nav-link-admin"><i class="fas fa-building"></i> Stays</a></div>
+                <div class="nav-item-admin"><a href="experience.html" class="nav-link-admin"><i class="fas fa-compass"></i> Experiences</a></div>
+                <div class="nav-item-admin"><a href="bookings.html" class="nav-link-admin"><i class="fas fa-calendar-check"></i> Bookings</a></div>
+                <div class="nav-item-admin"><a href="guests.html" class="nav-link-admin"><i class="fas fa-users"></i> Guests</a></div>
+                <div class="nav-item-admin"><a href="transactions.html" class="nav-link-admin"><i class="fas fa-credit-card"></i> Transactions</a></div>
+                <div class="nav-item-admin"><a href="reports.html" class="nav-link-admin"><i class="fas fa-chart-line"></i> Reports</a></div>
+                <div class="nav-item-admin"><a href="settings.html" class="nav-link-admin active"><i class="fas fa-cog"></i> Settings</a></div>
+            </div>
+            <div class="login-persona">
+                <div class="avatar-sm">MA</div>
+                <div class="name">Michael Amadi</div>
+                <div class="role">Super Administrator</div>
+                <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="admin-main">
+            <div class="admin-topbar">
+                <button class="menu-toggle" id="menuToggleBtn"><i class="fas fa-bars"></i></button>
+            </div>
+
+            <div class="dashboard-content">
+                <h2>Settings</h2>
+                <ul class="nav nav-tabs mt-3" id="settingsTab" role="tablist">
+                    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#usersTab">Users</button></li>
+                    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#rolesTab">Roles & Permissions</button></li>
+                </ul>
+
+                <div class="tab-content mt-4">
+                    <!-- Users Tab -->
+                    <div class="tab-pane fade show active" id="usersTab">
+                        <div class="actions-bar">
+                            <h3>System Users</h3>
+                            <button class="btn-primary-admin" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                                <i class="fas fa-plus"></i> Add User
+                            </button>
+                        </div>
+                        <table class="data-table" id="usersTable">
+                            <thead><tr><th>ID</th><th>Username</th><th>Full Name</th><th>Email</th><th>Role</th><th>Permissions</th><th>Actions</th></tr></thead>
+                            <tbody id="usersTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- Roles Tab -->
+                    <div class="tab-pane fade" id="rolesTab">
+                        <div class="actions-bar">
+                            <h3>User Roles</h3>
+                            <button class="btn-primary-admin" data-bs-toggle="modal" data-bs-target="#addRoleModal">
+                                <i class="fas fa-plus"></i> Add Role
+                            </button>
+                        </div>
+                        <table class="data-table" id="rolesTable">
+                            <thead><tr><th>Role Name</th><th>Permissions</th><th>Actions</th></tr></thead>
+                            <tbody id="rolesTableBody"></tbody>
+                        </table>
+                        <div class="mt-4">
+                            <h4>Predefined Permissions</h4>
+                            <div class="permission-group">
+                                <span class="badge-perm">manage_stays</span>
+                                <span class="badge-perm">manage_experiences</span>
+                                <span class="badge-perm">manage_bookings</span>
+                                <span class="badge-perm">manage_guests</span>
+                                <span class="badge-perm">manage_users</span>
+                                <span class="badge-perm">manage_settings</span>
+                                <span class="badge-perm">view_reports</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="overlay" id="sidebarOverlay"></div>
+
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-user-plus"></i> Add New User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3"><label class="form-label">Username *</label><input type="text" class="form-control" id="userUsername" required></div>
+                    <div class="mb-3"><label class="form-label">Full Name *</label><input type="text" class="form-control" id="userFullname" required></div>
+                    <div class="mb-3"><label class="form-label">Email *</label><input type="email" class="form-control" id="userEmail" required></div>
+                    <div class="mb-3"><label class="form-label">Role *</label><select class="form-select" id="userRole"></select></div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button><button type="button" class="btn-primary-travel" id="saveUserBtn">Save User</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-user-edit"></i> Edit User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editUserId">
+                    <div class="mb-3"><label class="form-label">Username</label><input type="text" class="form-control" id="editUsername"></div>
+                    <div class="mb-3"><label class="form-label">Full Name</label><input type="text" class="form-control" id="editFullname"></div>
+                    <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" id="editEmail"></div>
+                    <div class="mb-3"><label class="form-label">Role</label><select class="form-select" id="editRole"></select></div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button><button type="button" class="btn-primary-travel" id="updateUserBtn">Update User</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Role Modal -->
+    <div class="modal fade" id="addRoleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-tag"></i> Add New Role</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3"><label class="form-label">Role Name *</label><input type="text" class="form-control" id="roleName" required></div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button><button type="button" class="btn-primary-travel" id="saveRoleBtn">Save Role</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Role Modal (with permissions) -->
+    <div class="modal fade" id="editRoleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-lock"></i> Edit Role Permissions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editRoleOriginalName">
+                    <div class="mb-3"><label class="form-label">Role Name</label><input type="text" class="form-control" id="editRoleName"></div>
+                    <label class="form-label fw-semibold">Permissions</label>
+                    <div id="rolePermissionsContainer" class="mt-2"></div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button><button type="button" class="btn-primary-travel" id="updateRoleBtn">Save Permissions</button></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ---------- DATA MODELS ----------
+        let users = [
+            { id: 1, username: "michael", fullName: "Michael Amadi", email: "michael@saviranest.co.ke", role: "super_admin" },
+            { id: 2, username: "jane_m", fullName: "Jane Mwangi", email: "jane@saviranest.co.ke", role: "property_manager" },
+            { id: 3, username: "peter_k", fullName: "Peter Kamau", email: "peter@saviranest.co.ke", role: "guest_support" }
+        ];
+        let nextUserId = 4;
+
+        let roles = [
+            { name: "super_admin", permissions: ["manage_stays", "manage_experiences", "manage_bookings", "manage_guests", "manage_users", "manage_settings", "view_reports"] },
+            { name: "property_manager", permissions: ["manage_stays", "manage_experiences", "manage_bookings", "view_reports"] },
+            { name: "guest_support", permissions: ["manage_bookings", "manage_guests", "view_reports"] }
+        ];
+
+        const allPermissions = ["manage_stays", "manage_experiences", "manage_bookings", "manage_guests", "manage_users", "manage_settings", "view_reports"];
+
+        // Helper: get permissions for a role
+        function getPermissionsForRole(roleName) {
+            const role = roles.find(r => r.name === roleName);
+            return role ? role.permissions : [];
+        }
+
+        // Render Users Table
+        function renderUsers() {
+            const tbody = document.getElementById('usersTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            users.forEach(u => {
+                const perms = getPermissionsForRole(u.role);
+                const permHtml = perms.slice(0, 3).map(p => `<span class="badge-perm">${p}</span>`).join(' ') + (perms.length > 3 ? ' <span class="badge-perm">+...</span>' : '');
+                const row = `
+                    <tr>
+                        <td>${u.id}</td>
+                        <td><strong>${escapeHtml(u.username)}</strong></td>
+                        <td>${escapeHtml(u.fullName)}</td>
+                        <td>${escapeHtml(u.email)}</td>
+                        <td>${escapeHtml(u.role)}</td>
+                        <td>${permHtml || '—'}</td>
+                        <td>
+                            <button class="btn-icon edit-user" data-id="${u.id}"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon delete delete-user" data-id="${u.id}"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                `;
+                tbody.insertAdjacentHTML('beforeend', row);
+            });
+            // attach events
+            document.querySelectorAll('.edit-user').forEach(btn => btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openEditUser(parseInt(btn.dataset.id));
+            }));
+            document.querySelectorAll('.delete-user').forEach(btn => btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const id = parseInt(btn.dataset.id);
+                if (confirm('Delete this user permanently?')) {
+                    users = users.filter(u => u.id !== id);
+                    renderUsers();
+                    showToast('User deleted');
+                }
+            }));
+        }
+
+        function openEditUser(id) {
+            const user = users.find(u => u.id === id);
+            if (!user) return;
+            document.getElementById('editUserId').value = user.id;
+            document.getElementById('editUsername').value = user.username;
+            document.getElementById('editFullname').value = user.fullName;
+            document.getElementById('editEmail').value = user.email;
+            const roleSelect = document.getElementById('editRole');
+            roleSelect.innerHTML = roles.map(r => `<option value="${escapeHtml(r.name)}" ${r.name === user.role ? 'selected' : ''}>${escapeHtml(r.name)}</option>`).join('');
+            new bootstrap.Modal(document.getElementById('editUserModal')).show();
+        }
+
+        // Render Roles Table
+        function renderRoles() {
+            const tbody = document.getElementById('rolesTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            roles.forEach(role => {
+                const permHtml = role.permissions.map(p => `<span class="badge-perm">${escapeHtml(p)}</span>`).join(' ');
+                const row = `
+                    <tr>
+                        <td><strong>${escapeHtml(role.name)}</strong></td>
+                        <td>${permHtml || '—'}</td>
+                        <td>
+                            <button class="btn-icon edit-role" data-role="${escapeHtml(role.name)}"><i class="fas fa-edit"></i></button>
+                            <button class="btn-icon delete delete-role" data-role="${escapeHtml(role.name)}"><i class="fas fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                `;
+                tbody.insertAdjacentHTML('beforeend', row);
+            });
+            document.querySelectorAll('.edit-role').forEach(btn => btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openEditRole(btn.dataset.role);
+            }));
+            document.querySelectorAll('.delete-role').forEach(btn => btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const roleName = btn.dataset.role;
+                if (roleName === 'super_admin') {
+                    alert('Cannot delete super_admin role.');
+                    return;
+                }
+                if (confirm(`Delete role "${roleName}"? Users with this role will lose it.`)) {
+                    roles = roles.filter(r => r.name !== roleName);
+                    // reassign users that had this role to default 'guest_support' if exists, else first role
+                    const defaultRole = roles.length > 0 ? roles[0].name : 'guest_support';
+                    users.forEach(u => { if (u.role === roleName) u.role = defaultRole; });
+                    renderRoles();
+                    renderUsers();
+                    refreshRoleSelects();
+                    showToast(`Role "${roleName}" deleted.`);
+                }
+            }));
+        }
+
+        function openEditRole(roleName) {
+            const role = roles.find(r => r.name === roleName);
+            if (!role) return;
+            document.getElementById('editRoleOriginalName').value = role.name;
+            document.getElementById('editRoleName').value = role.name;
+            const container = document.getElementById('rolePermissionsContainer');
+            container.innerHTML = allPermissions.map(p => `
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="${p}" id="perm_${p}" ${role.permissions.includes(p) ? 'checked' : ''}>
+                    <label class="form-check-label" for="perm_${p}">${p}</label>
+                </div>
+            `).join('');
+            new bootstrap.Modal(document.getElementById('editRoleModal')).show();
+        }
+
+        // Helper to refresh role dropdowns in modals
+        function refreshRoleSelects() {
+            const roleOptions = roles.map(r => `<option value="${escapeHtml(r.name)}">${escapeHtml(r.name)}</option>`).join('');
+            const userRoleSelect = document.getElementById('userRole');
+            const editRoleSelect = document.getElementById('editRole');
+            if (userRoleSelect) userRoleSelect.innerHTML = roleOptions;
+            if (editRoleSelect) editRoleSelect.innerHTML = roleOptions;
+        }
+
+        // Add User
+        document.getElementById('saveUserBtn')?.addEventListener('click', () => {
+            const username = document.getElementById('userUsername').value.trim();
+            const fullName = document.getElementById('userFullname').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const role = document.getElementById('userRole').value;
+            if (!username || !fullName || !email) { alert('Please fill all required fields.'); return; }
+            if (!roles.find(r => r.name === role)) { alert('Invalid role selected.'); return; }
+            users.push({ id: nextUserId++, username, fullName, email, role });
+            renderUsers();
+            document.getElementById('userUsername').value = '';
+            document.getElementById('userFullname').value = '';
+            document.getElementById('userEmail').value = '';
+            bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
+            showToast('User added successfully');
+        });
+
+        // Update User
+        document.getElementById('updateUserBtn')?.addEventListener('click', () => {
+            const id = parseInt(document.getElementById('editUserId').value);
+            const idx = users.findIndex(u => u.id === id);
+            if (idx !== -1) {
+                const newUsername = document.getElementById('editUsername').value.trim();
+                const newFullname = document.getElementById('editFullname').value.trim();
+                const newEmail = document.getElementById('editEmail').value.trim();
+                const newRole = document.getElementById('editRole').value;
+                if (!newUsername || !newFullname || !newEmail) { alert('All fields required.'); return; }
+                users[idx].username = newUsername;
+                users[idx].fullName = newFullname;
+                users[idx].email = newEmail;
+                users[idx].role = newRole;
+                renderUsers();
+                bootstrap.Modal.getInstance(document.getElementById('editUserModal')).hide();
+                showToast('User updated');
+            }
+        });
+
+        // Add Role
+        document.getElementById('saveRoleBtn')?.addEventListener('click', () => {
+            const newRoleName = document.getElementById('roleName').value.trim();
+            if (!newRoleName) { alert('Role name required'); return; }
+            if (roles.find(r => r.name === newRoleName)) { alert('Role already exists'); return; }
+            roles.push({ name: newRoleName, permissions: [] });
+            renderRoles();
+            refreshRoleSelects();
+            document.getElementById('roleName').value = '';
+            bootstrap.Modal.getInstance(document.getElementById('addRoleModal')).hide();
+            showToast('Role added');
+        });
+
+        // Update Role (including permissions)
+        document.getElementById('updateRoleBtn')?.addEventListener('click', () => {
+            const originalName = document.getElementById('editRoleOriginalName').value;
+            let newName = document.getElementById('editRoleName').value.trim();
+            const selectedPerms = Array.from(document.querySelectorAll('#rolePermissionsContainer input:checked')).map(cb => cb.value);
+            const roleIdx = roles.findIndex(r => r.name === originalName);
+            if (roleIdx === -1) { alert('Role not found'); return; }
+            if (!newName) { alert('Role name cannot be empty'); return; }
+            if (newName !== originalName && roles.find(r => r.name === newName)) { alert('Another role with this name already exists'); return; }
+            roles[roleIdx].name = newName;
+            roles[roleIdx].permissions = selectedPerms;
+            // update user role references if name changed
+            if (newName !== originalName) {
+                users.forEach(u => { if (u.role === originalName) u.role = newName; });
+            }
+            renderRoles();
+            renderUsers();
+            refreshRoleSelects();
+            bootstrap.Modal.getInstance(document.getElementById('editRoleModal')).hide();
+            showToast('Role updated');
+        });
+
+        // Simple toast utility
+        function showToast(msg) {
+            // quick alert fallback
+            alert(msg);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        // Sidebar and logout
+        const menuBtn = document.getElementById('menuToggleBtn');
+        const sidebar = document.getElementById('adminSidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
+        function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; }
+        if (menuBtn) menuBtn.addEventListener('click', openSidebar);
+        if (overlay) overlay.addEventListener('click', closeSidebar);
+        window.addEventListener('resize', () => { if (window.innerWidth > 992 && sidebar.classList.contains('open')) closeSidebar(); });
+        document.getElementById('logoutBtn')?.addEventListener('click', () => alert('Logout demo'));
+
+        // Initial render
+        refreshRoleSelects();
+        renderUsers();
+        renderRoles();
+    </script>
 </body>
 
 </html>

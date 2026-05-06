@@ -384,6 +384,36 @@
         .overlay.show {
             display: block;
         }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--orange);
+            color: var(--orange);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: var(--orange);
+            color: white;
+        }
+
+        .btn-primary-travel {
+            background-color: var(--sunrise-gold);
+            color: var(--deep-navy);
+            border: 2px solid var(--sunrise-gold);
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .btn-primary-travel:hover {
+            background-color: transparent;
+            color: var(--sunrise-gold);
+        }
     </style>
 </head>
 
@@ -440,7 +470,7 @@
                                 <option value="failed">Failed</option>
                             </select>
                         </div>
-                        <button class="btn-primary-admin" data-bs-toggle="modal" data-bs-target="#addTransactionModal">
+                        <button class="btn-primary-admin">
                             <i class="fas fa-plus"></i> Add Transaction
                         </button>
                     </div>
@@ -460,7 +490,74 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="transactionsTableBody"></tbody>
+                        <tbody id="transactionsTableBody">
+                            <!-- Static sample data rows -->
+                            <tr>
+                                <td>1</td>
+                                <td>BKG-001</td>
+                                <td><strong>James K.</strong></td>
+                                <td>KES 42,500</td>
+                                <td>M-Pesa</td>
+                                <td><span class="badge-status">Completed</span></td>
+                                <td>2025-06-10</td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash-alt"></i></button>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>BKG-002</td>
+                                <td><strong>Sarah M.</strong></td>
+                                <td>KES 66,000</td>
+                                <td>Credit Card</td>
+                                <td><span class="badge-status">Completed</span></td>
+                                <td>2025-05-20</td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash-alt"></i></button>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>BKG-003</td>
+                                <td><strong>David O.</strong></td>
+                                <td>KES 28,500</td>
+                                <td>Bank Transfer</td>
+                                <td><span class="badge-status badge-pending">Pending</span></td>
+                                <td>2025-07-01</td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash-alt"></i></button>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>BKG-004</td>
+                                <td><strong>Linda W.</strong></td>
+                                <td>KES 36,000</td>
+                                <td>M-Pesa</td>
+                                <td><span class="badge-status">Completed</span></td>
+                                <td>2025-06-25</td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash-alt"></i></button>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>BKG-005</td>
+                                <td><strong>Michael K.</strong></td>
+                                <td>KES 28,000</td>
+                                <td>Cash</td>
+                                <td><span class="badge-status badge-failed">Failed</span></td>
+                                <td>2025-06-18</td>
+                                <td>
+                                    <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                    <button class="btn-icon delete"><i class="fas fa-trash-alt"></i></button>
+                                 </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -468,266 +565,51 @@
     </div>
     <div class="overlay" id="sidebarOverlay"></div>
 
-    <!-- Add Transaction Modal -->
-    <div class="modal fade" id="addTransactionModal" tabindex="-1" aria-labelledby="addTransactionModalLabel"
-        aria-hidden="true">
+    <!-- Static Add Transaction Modal (no JS) -->
+    <div class="modal fade" id="addTransactionModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"><i class="fas fa-plus-circle"></i> Add New Transaction</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="addTransactionForm">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label">Booking Reference *</label>
-                                <input type="text" class="form-control" id="transBookingRef" placeholder="e.g., BKG-001"
-                                    required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Guest Name *</label>
-                                <input type="text" class="form-control" id="transGuestName" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Amount (KES) *</label>
-                                <input type="number" class="form-control" id="transAmount" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Payment Method *</label>
-                                <select class="form-select" id="transMethod" required>
-                                    <option value="M-Pesa">M-Pesa</option>
-                                    <option value="Credit Card">Credit Card</option>
-                                    <option value="Bank Transfer">Bank Transfer</option>
-                                    <option value="Cash">Cash</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Status *</label>
-                                <select class="form-select" id="transStatus" required>
-                                    <option value="completed">Completed</option>
-                                    <option value="pending">Pending</option>
-                                    <option value="failed">Failed</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Transaction Date *</label>
-                                <input type="date" class="form-control" id="transDate" required>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="row g-3">
+                        <div class="col-md-6"><label class="form-label">Booking Reference *</label><input type="text" class="form-control" placeholder="e.g., BKG-001"></div>
+                        <div class="col-md-6"><label class="form-label">Guest Name *</label><input type="text" class="form-control"></div>
+                        <div class="col-md-6"><label class="form-label">Amount (KES) *</label><input type="number" class="form-control"></div>
+                        <div class="col-md-6"><label class="form-label">Payment Method *</label><select class="form-select"><option>M-Pesa</option><option>Credit Card</option><option>Bank Transfer</option><option>Cash</option></select></div>
+                        <div class="col-md-6"><label class="form-label">Status *</label><select class="form-select"><option>Completed</option><option>Pending</option><option>Failed</option></select></div>
+                        <div class="col-md-6"><label class="form-label">Transaction Date *</label><input type="date" class="form-control"></div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn-primary-travel" id="saveTransactionBtn">Save Transaction</button>
-                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline">Cancel</button><button type="button" class="btn-primary-travel">Save Transaction</button></div>
             </div>
         </div>
     </div>
 
-    <!-- Edit Transaction Modal -->
-    <div class="modal fade" id="editTransactionModal" tabindex="-1" aria-labelledby="editTransactionModalLabel"
-        aria-hidden="true">
+    <!-- Static Edit Transaction Modal -->
+    <div class="modal fade" id="editTransactionModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"><i class="fas fa-edit"></i> Edit Transaction</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editTransactionForm">
-                        <input type="hidden" id="editTransactionId">
-                        <div class="row g-3">
-                            <div class="col-md-6"><label>Booking Reference</label><input type="text"
-                                    class="form-control" id="editBookingRef"></div>
-                            <div class="col-md-6"><label>Guest Name</label><input type="text" class="form-control"
-                                    id="editGuestName"></div>
-                            <div class="col-md-6"><label>Amount (KES)</label><input type="number" class="form-control"
-                                    id="editAmount"></div>
-                            <div class="col-md-6"><label>Payment Method</label><select class="form-select"
-                                    id="editMethod">
-                                    <option>M-Pesa</option>
-                                    <option>Credit Card</option>
-                                    <option>Bank Transfer</option>
-                                    <option>Cash</option>
-                                </select></div>
-                            <div class="col-md-6"><label>Status</label><select class="form-select" id="editStatus">
-                                    <option value="completed">Completed</option>
-                                    <option value="pending">Pending</option>
-                                    <option value="failed">Failed</option>
-                                </select></div>
-                            <div class="col-md-6"><label>Transaction Date</label><input type="date" class="form-control"
-                                    id="editDate"></div>
-                        </div>
-                    </form>
+                    <div class="row g-3">
+                        <div class="col-md-6"><label>Booking Reference</label><input type="text" class="form-control"></div>
+                        <div class="col-md-6"><label>Guest Name</label><input type="text" class="form-control"></div>
+                        <div class="col-md-6"><label>Amount (KES)</label><input type="number" class="form-control"></div>
+                        <div class="col-md-6"><label>Payment Method</label><select class="form-select"><option>M-Pesa</option><option>Credit Card</option><option>Bank Transfer</option><option>Cash</option></select></div>
+                        <div class="col-md-6"><label>Status</label><select class="form-select"><option>Completed</option><option>Pending</option><option>Failed</option></select></div>
+                        <div class="col-md-6"><label>Transaction Date</label><input type="date" class="form-control"></div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn-primary-travel" id="updateTransactionBtn">Update
-                        Transaction</button>
-                </div>
+                <div class="modal-footer"><button type="button" class="btn-outline">Cancel</button><button type="button" class="btn-primary-travel">Update Transaction</button></div>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Sample transactions data
-        let transactions = [
-            { id: 1, bookingRef: "BKG-001", guestName: "James K.", amount: 42500, method: "M-Pesa", status: "completed", date: "2025-06-10" },
-            { id: 2, bookingRef: "BKG-002", guestName: "Sarah M.", amount: 66000, method: "Credit Card", status: "completed", date: "2025-05-20" },
-            { id: 3, bookingRef: "BKG-003", guestName: "David O.", amount: 28500, method: "Bank Transfer", status: "pending", date: "2025-07-01" },
-            { id: 4, bookingRef: "BKG-004", guestName: "Linda W.", amount: 36000, method: "M-Pesa", status: "completed", date: "2025-06-25" },
-            { id: 5, bookingRef: "BKG-005", guestName: "Michael K.", amount: 28000, method: "Cash", status: "failed", date: "2025-06-18" }
-        ];
-        let nextTransId = 6;
-
-        function getStatusBadgeClass(status) {
-            if (status === 'completed') return 'badge-status';
-            if (status === 'pending') return 'badge-status badge-pending';
-            if (status === 'failed') return 'badge-status badge-failed';
-            return 'badge-status';
-        }
-
-        function getStatusDisplay(status) {
-            return status.charAt(0).toUpperCase() + status.slice(1);
-        }
-
-        function renderTransactions() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const statusFilter = document.getElementById('statusFilter').value;
-            const filtered = transactions.filter(t => {
-                const matchSearch = t.guestName.toLowerCase().includes(searchTerm) || t.bookingRef.toLowerCase().includes(searchTerm);
-                const matchStatus = statusFilter === 'all' || t.status === statusFilter;
-                return matchSearch && matchStatus;
-            });
-            const tbody = document.getElementById('transactionsTableBody');
-            tbody.innerHTML = '';
-            filtered.forEach(t => {
-                const row = tbody.insertRow();
-                row.insertCell(0).innerText = t.id;
-                row.insertCell(1).innerText = t.bookingRef;
-                row.insertCell(2).innerHTML = `<strong>${t.guestName}</strong>`;
-                row.insertCell(3).innerText = `KES ${t.amount.toLocaleString()}`;
-                row.insertCell(4).innerText = t.method;
-                row.insertCell(5).innerHTML = `<span class="${getStatusBadgeClass(t.status)}">${getStatusDisplay(t.status)}</span>`;
-                row.insertCell(6).innerText = t.date;
-                const actions = row.insertCell(7);
-                actions.innerHTML = `<button class="btn-icon edit-btn" data-id="${t.id}"><i class="fas fa-edit"></i></button>
-                                     <button class="btn-icon delete-btn" data-id="${t.id}"><i class="fas fa-trash-alt"></i></button>`;
-            });
-            // attach event listeners
-            document.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', () => editTransaction(parseInt(btn.dataset.id))));
-            document.querySelectorAll('.delete-btn').forEach(btn => btn.addEventListener('click', () => {
-                const id = parseInt(btn.dataset.id);
-                if (confirm('Delete this transaction permanently?')) {
-                    transactions = transactions.filter(t => t.id !== id);
-                    renderTransactions();
-                    alert('Transaction deleted.');
-                }
-            }));
-        }
-
-        function editTransaction(id) {
-            const trans = transactions.find(t => t.id === id);
-            if (!trans) return;
-            document.getElementById('editTransactionId').value = trans.id;
-            document.getElementById('editBookingRef').value = trans.bookingRef;
-            document.getElementById('editGuestName').value = trans.guestName;
-            document.getElementById('editAmount').value = trans.amount;
-            document.getElementById('editMethod').value = trans.method;
-            document.getElementById('editStatus').value = trans.status;
-            document.getElementById('editDate').value = trans.date;
-            const editModal = new bootstrap.Modal(document.getElementById('editTransactionModal'));
-            editModal.show();
-        }
-
-        // Add transaction
-        document.getElementById('saveTransactionBtn').addEventListener('click', () => {
-            const bookingRef = document.getElementById('transBookingRef').value.trim();
-            const guestName = document.getElementById('transGuestName').value.trim();
-            const amount = parseFloat(document.getElementById('transAmount').value);
-            const method = document.getElementById('transMethod').value;
-            const status = document.getElementById('transStatus').value;
-            const date = document.getElementById('transDate').value;
-            if (!bookingRef || !guestName || !amount || !date) {
-                alert('Please fill all required fields.');
-                return;
-            }
-            const newTrans = { id: nextTransId++, bookingRef, guestName, amount, method, status, date };
-            transactions.push(newTrans);
-            renderTransactions();
-            document.getElementById('addTransactionForm').reset();
-            bootstrap.Modal.getInstance(document.getElementById('addTransactionModal')).hide();
-            alert('Transaction added successfully!');
-        });
-
-        // Update transaction
-        document.getElementById('updateTransactionBtn').addEventListener('click', () => {
-            const id = parseInt(document.getElementById('editTransactionId').value);
-            const index = transactions.findIndex(t => t.id === id);
-            if (index !== -1) {
-                transactions[index].bookingRef = document.getElementById('editBookingRef').value;
-                transactions[index].guestName = document.getElementById('editGuestName').value;
-                transactions[index].amount = parseFloat(document.getElementById('editAmount').value);
-                transactions[index].method = document.getElementById('editMethod').value;
-                transactions[index].status = document.getElementById('editStatus').value;
-                transactions[index].date = document.getElementById('editDate').value;
-                renderTransactions();
-                bootstrap.Modal.getInstance(document.getElementById('editTransactionModal')).hide();
-                alert('Transaction updated.');
-            }
-        });
-
-        // Filters
-        document.getElementById('searchInput').addEventListener('input', renderTransactions);
-        document.getElementById('statusFilter').addEventListener('change', renderTransactions);
-
-        // Sidebar and logout
-        const menuBtn = document.getElementById('menuToggleBtn');
-        const sidebar = document.getElementById('adminSidebar');
-        const overlay = document.getElementById('sidebarOverlay');
-        function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
-        function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); document.body.style.overflow = ''; }
-        menuBtn.addEventListener('click', openSidebar);
-        overlay.addEventListener('click', closeSidebar);
-        window.addEventListener('resize', () => { if (window.innerWidth > 992 && sidebar.classList.contains('open')) closeSidebar(); });
-        document.getElementById('logoutBtn').addEventListener('click', () => alert('Logout demo'));
-
-        // Initial render
-        renderTransactions();
-    </script>
-    <style>
-        .btn-outline {
-            background: transparent;
-            border: 1.5px solid var(--orange);
-            color: var(--orange);
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-
-        .btn-outline:hover {
-            background: var(--orange);
-            color: white;
-        }
-
-        .btn-primary-travel {
-            background-color: var(--sunrise-gold);
-            color: var(--deep-navy);
-            border: 2px solid var(--sunrise-gold);
-            padding: 8px 24px;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: 0.25s;
-        }
-
-        .btn-primary-travel:hover {
-            background-color: transparent;
-            color: var(--sunrise-gold);
-        }
-    </style>
 </body>
 
 </html>
