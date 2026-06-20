@@ -647,8 +647,8 @@ footer {
 }
 
 .mobile-contact-info i {
-    color: var(--orange);
-    width: 24px;
+    /* color: var(--orange); */
+    width: 34px;
 }
 
 .mobile-social-links {
@@ -658,14 +658,34 @@ footer {
 }
 
 .mobile-social-links a {
-    color: var(--deep-navy);
-    font-size: 1.2rem;
+    color: var(--sunrise-gold);
     transition: 0.2s;
+    width: 34px;
+    height: 34px;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--sunrise-gold);
+    border-radius: 8px;
+    display: inline-flex;
+    margin-right: 8px;
+    padding: 12px;
 }
 
 .mobile-social-links a:hover {
-    color: var(--sunrise-gold);
+    width: 34px;
+    height: 34px;
+    transition: 0.2s;
+    align-items: center;
+    justify-content: center;
+    color: var(--deep-navy);
+    border-radius: 8px;
+    display: inline-flex;
+    margin-right: 8px;
+    padding: 12px;
+    border: 1.5px solid var(--deep-navy);
 }
+
 
 /* Responsive: On screens < 992px hide desktop nav & show offcanvas toggler */
 @media (max-width: 991px) {
@@ -725,6 +745,26 @@ footer {
     .travel-logo {
         height: 55px;
     }
+
+    .ftr-sub-content p{
+        display: none;
+    }
+
+    .ftr-sub-content h4{
+        font-size: 0.5rem;
+    }
+
+    .ftr-tag{
+        display: none;
+    }
+
+    .ftr-main-content p{
+        display: none;
+    }
+
+    .ftr-main-content h4{
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -739,6 +779,14 @@ footer {
     .card-buttons .btn {
         width: 100%;
     }
+
+    /* .ftr-sub-content h4{
+        font-size: 0.5rem;
+    }
+
+    .ftr-main-content h4{
+        font-size: 0.2rem;
+    } */
 }
 
 .footer-grid img {

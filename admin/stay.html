@@ -193,33 +193,49 @@
                 <div class="modal-body">
                     <form id="addStayForm">
                         <div class="row g-3">
-                            <div class="col-md-6"><label class="form-label">Property Title *</label><input type="text"
+                            <div class="col-md-4"><label class="form-label">Property Title *</label><input type="text"
                                     class="form-control" id="stayTitle"></div>
-                            <div class="col-md-6"><label class="form-label">Location *</label><input type="text"
+                            <div class="col-md-4"><label class="form-label">Location *</label><input type="text"
                                     class="form-control" id="stayLocation"></div>
-                            <div class="col-md-6"><label class="form-label">Category *</label><select
+                            <div class="col-md-4"><label class="form-label">Category *</label><select
                                     class="form-select" id="stayCategory">
                                     <option value="coast">Coast / Beach</option>
                                     <option value="safari">Safari Lodges</option>
                                     <option value="lake">Lake & Highlands</option>
                                 </select></div>
-                            <div class="col-md-6"><label class="form-label">Price (KES/night) *</label><input
+                            <div class="col-md-4"><label class="form-label">Rate *</label><select class="form-select"
+                                    id="stayCategory">
+                                    <option value="per_night">Per Night</option>
+                                    <option value="per_day">Per Day</option>
+                                </select></div>
+                            <div class="col-md-4"><label class="form-label">Price (KES/night) *</label><input
                                     type="number" class="form-control" id="stayPrice"></div>
-                            <div class="col-12"><label class="form-label">Short Description *</label><textarea
-                                    class="form-control" id="stayDesc" rows="2"></textarea></div>
-                            <div class="col-md-6"><label class="form-label">Rating (0-5) *</label><input type="number"
+                            <div class="col-md-4"><label class="form-label">Currency *</label><input type="text"
+                                    class="form-control" id="stayPrice"></div>
+                            <div class="col-md-4"><label class="form-label">Rating (0-5) *</label><input type="number"
                                     step="0.1" class="form-control" id="stayRating"></div>
-                            <div class="col-md-6"><label class="form-label">Image URL</label><input type="text"
+                            <div class="col-md-4"><label class="form-label">Contact *</label><input type="text"
+                                    class="form-control" id="stayLocation"></div>
+                            <div class="col-md-4"><label class="form-label">Email *</label><input type="text"
+                                    class="form-control" id="stayLocation"></div>
+                            <div class="col-12"><label class="form-label">Short Excerpt *</label>
+                                <textarea class="form-control" id="stayDesc" rows="2"></textarea>
+                            </div>
+                            <div class="col-12"><label class="form-label">Short Description *</label>
+                                <textarea class="form-control" id="stayDesc" rows="3"></textarea>
+                            </div>
+                            <div class="col-md-12"><label class="form-label">Image URL</label><input type="file"
                                     class="form-control" id="stayImage" placeholder="https://..."></div>
+
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer"><button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button><button type="button"
-                        class="btn-primary-travel">Save Stay</button></div>
+                <div class="modal-footer"><button type="button" class="btn-outline"
+                        data-bs-dismiss="modal">Cancel</button><button type="button" class="btn-primary-travel">Save
+                        Stay</button></div>
             </div>
         </div>
     </div>
-
     <!-- Edit Stay Modal (static) -->
     <div class="modal fade" id="editStayModal" tabindex="-1" aria-labelledby="editStayModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -252,8 +268,9 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer"><button type="button" class="btn-outline" data-bs-dismiss="modal">Cancel</button><button type="button"
-                        class="btn-primary-travel">Update Stay</button></div>
+                <div class="modal-footer"><button type="button" class="btn-outline"
+                        data-bs-dismiss="modal">Cancel</button><button type="button" class="btn-primary-travel">Update
+                        Stay</button></div>
             </div>
         </div>
     </div>
